@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('member','MembersController');
+
+Route::get('medicalrecord/create', [
+    'as' => 'medicalrecord.create', 'uses' => 'MedicalRecordsController@create'
+]);
 /*
 |--------------------------------------------------------------------------
 | Application Routes
