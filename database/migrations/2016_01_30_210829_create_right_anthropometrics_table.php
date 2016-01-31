@@ -14,11 +14,11 @@ class CreateRightAnthropometricsTable extends Migration
     {
         Schema::create('right_anthropometrics', function (Blueprint $table) {
            $table->increments('id');
-           $table->integer('arm');
-           $table->integer('forearm');
-           $table->integer('high_leg');
-           $table->integer('lower_leg');
-           $table->integer('calf');
+           $table->integer('right_arm');
+           $table->integer('right_forearm');
+           $table->integer('right_high_leg');
+           $table->integer('right_lower_leg');
+           $table->integer('right_calf');
            $table->integer('member_id')->unsigned();
            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
 
