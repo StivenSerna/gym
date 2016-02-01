@@ -155,7 +155,7 @@
 <script type="text/javascript">
 	$('.datepicker').datepicker({
 
-		format: "mm/dd/yyyy",
+		format: "yyyy-mm-dd",
 		language: "es",
 		todayBtn: "linked",
 		autoclose: true,
@@ -163,7 +163,7 @@
 	});
 
 	$('.birthdate').datepicker({
-		format: "mm/dd/yyyy",
+		format: "yyyy/mm/dd",
 		startView: 2,
 		language: "es",
 		orientation: "bottom left",
