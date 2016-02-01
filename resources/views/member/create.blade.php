@@ -2,24 +2,24 @@
 
 @section('tittle', 'Registrar miembro')
 
-@section('content')
+@section('header')
 
 <!-- Page titulo -->
-
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">
-			Registro de nuevo miembro
-		</h1>
-		<ol class="breadcrumb">
-			<li class="active">
-				<i class="fa fa-dashboard"></i> Inicio
-			</li>
-		</ol>
-	</div>
-</div>
-
+<h1 class="page-header">
+	Registro de nuevo miembro
+</h1>
+<ol class="breadcrumb">
+	<li class="active">
+		<i class="fa fa-dashboard"></i> Inicio
+	</li>
+</ol>
 <!-- Page fin titulo -->
+
+@endsection
+
+
+
+@section('content')
 
 {!! Form::open(['route'=>'admin.member.store','method'=>'POST']) !!}
 
@@ -133,7 +133,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="button-group">
-						<a class="btn btn-danger btn-block" href="#" role="button">Cancelar</a>
+							<a class="btn btn-danger btn-block" href="#" role="button">Cancelar</a>
 						</div>
 					</div>
 					<div class="col-md-6">

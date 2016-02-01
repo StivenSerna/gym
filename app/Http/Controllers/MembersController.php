@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Member;
+use Laracasts\Flash\Flash;
 
 class MembersController extends Controller
 {
     public function index ()
     {
-
+        return view('member.index');
     }
 
     public function create ()
@@ -24,8 +25,9 @@ class MembersController extends Controller
     {
         $member = new Member($request->all());
         $member->save();
+        Flash::success("¡Se ha registrado a " . $member->first_name . " de manera exitosa!");
 
-        dd('Miembro creado');
+        return redirect()->route('medicalrecord.create');
     }
 
     public function show ($id)

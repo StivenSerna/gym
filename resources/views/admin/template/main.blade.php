@@ -10,7 +10,7 @@
     <title>@yield('tittle', 'Default') | Panel de administración</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link href="{{ asset('plugins/bootstrap/css/sb-admin.css') }}" rel="stylesheet">
 
@@ -30,8 +30,8 @@
         <![endif]-->
     </head>
     <body>
-    <div class="main-container">
-    </div>
+        <div class="main-container">
+        </div>
 
         <div id="wrapper">
             <!-- Navigation -->
@@ -39,7 +39,13 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @yield('header')
+                        </div>
+                    </div>
                     <!-- /.row -->
+                    @include('flash::message')
                     @yield('content')
 
                 </div>
@@ -50,9 +56,9 @@
         <!-- /#wrapper -->
 
         <!-- jQuery -->
-        
+
         <!-- Bootstrap Core JavaScript -->
-        
+
 
     </body>
 

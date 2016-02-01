@@ -1,25 +1,28 @@
 @extends('admin.template.main')
 
-@section('tittle', 'Ficha')
+@section('tittle', 'Ficha medica')
+
+@section('header')
+
+<!-- Page titulo -->
+<h1 class="page-header">
+	Información medica
+</h1>
+<ol class="breadcrumb">
+	<li class="active">
+		<i class="fa fa-dashboard"></i> Inicio
+	</li>
+</ol>
+<!-- end Page titulo -->
+
+@endsection
 
 @section('content')
 
-<!-- Page titulo -->
-
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">
-			REGISTRO DE FICHA MEDICA  
-		</h1>
-		<ol class="breadcrumb">
-			<li class="active">
-				<i class="fa fa-dashboard"></i> Inicio
-			</li>
-		</ol>
-	</div>
+<div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Información:</strong> Puede modificar la ficha medica desde el modulo de miembros en cualquier momento.
 </div>
-
-<!-- Page fin titulo -->
 
 {!! Form::open() !!}
 
@@ -59,7 +62,7 @@
 					{!!Form::label('Observaciones:')!!}
 					{!!Form::textarea('observation', null,['class'=>'form-control','placeholder'=>'Observaciones '])!!}
 				</div>
-				
+
 			</div>
 
 
