@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('tittle', 'Registro')
+@section('tittle', 'Registrar miembro')
 
 @section('content')
 
@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">
-			REGISTRO DE USUARIOS
+			Registro de nuevo miembro
 		</h1>
 		<ol class="breadcrumb">
 			<li class="active">
@@ -21,7 +21,7 @@
 
 <!-- Page fin titulo -->
 
-{!! Form::open(['route'=>'member.index','method'=>'POST']) !!}
+{!! Form::open(['route'=>'admin.member.store','method'=>'POST']) !!}
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
@@ -35,31 +35,30 @@
 			<div class="col-lg-6">
 
 				<div class="form-group">
-					{!! Form::label('Nº identificación:')!!}
-					{!!Form::text('identification', null,['class'=>'form-control','placeholder'=>'Nº identificación'])!!}
-				</div>
-
-				<div class="form-group">
-					{!!Form::label('Primer Nombre:')!!}
-					{!!Form::text('firstname', null,['class'=>'form-control','placeholder'=>'Primer Nombre '])!!}
+					{!! Form::label('first_name', 'Primer Nombre:') !!}
+					{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Primer Nombre ']) !!}
 				</div>
 
 
 				<div class="form-group">
-					{!!Form::label('Segundo Nombre:')!!}
-					{!!Form::text('secondname', null,['class'=>'form-control','placeholder'=>'Segundo Nombre'])!!}
+					{!!Form::label('second_name', 'Segundo Nombre:')!!}
+					{!!Form::text('second_name', null,['class'=>'form-control','placeholder'=>'Segundo Nombre'])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Apellidos:')!!}
-					{!!Form::text('lastname', null,['class'=>'form-control','placeholder'=>'Apellidos'])!!}
+					{!! Form::label('last_name' ,'Apellidos:') !!}
+					{!! Form::text('last_name', null,['class'=>'form-control','placeholder'=>'Apellidos']) !!}
 				</div>
 
+				<div class="form-group">
+					{!! Form::label('document', 'Nº identificación:')!!}
+					{!! Form::text('document', null,['class'=>'form-control', 'placeholder'=>'Nº identificación']) !!}
+				</div>
 
 				<div class="form-group">
-					{!!Form::label('Fecha de Nacimiento:')!!}
+					{!!Form::label('birthday', 'Fecha de Nacimiento:')!!}
 					<div class='input-group date' date-provide='datepicker'>
-						{!! Form::text('birthdate', null, array('class'=>'form-control birthdate')) !!}
+						{!! Form::text('birthday', null, array('class'=>'form-control birthdate')) !!}
 						<div class="input-group-addon">
 							<span class='glyphicon glyphicon-th'></span>
 						</div>
@@ -67,7 +66,7 @@
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Email:')!!}
+					{!!Form::label('email', 'Email:')!!}
 					{!!Form::text('email', null,['class'=>'form-control','placeholder'=>'Email'])!!}
 				</div>
 
@@ -85,36 +84,34 @@
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputFile">Foto:</label>
-						<input type="file" id="file_url" name="foto">
+						{!!Form::label('photo', 'Foto:')!!}
+						{!! Form::file('photo',  array('id' => 'photo', 'name' => 'photo')) !!}
 						<p class="help-block">Escoger una foto desde el ordenador.</p>
 					</div>
 
 				</div>
 
 
-
-
 				<div class="form-group">
-					{!!Form::label('Genero:')!!}
-					{!! Form::select('size', array('M' => 'Masculino', 'F' => 'Femenino'), null, ['class' => 'form-control']) !!}
+					{!!Form::label('gender', 'Genero:')!!}
+					{!! Form::select('gender', ['M' => 'Masculino', 'F' => 'Femenino'], null,  ['class' => 'form-control']) !!}
 				</div>
 
 
 				<div class="form-group">
-					{!!Form::label('Direccion:')!!}
-					{!!Form::text('direction', null,['class'=>'form-control','placeholder'=>'Direccion'])!!}
+					{!!Form::label('address', 'Direccion:')!!}
+					{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion'])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Telefono:')!!}
+					{!!Form::label('phone', 'Telefono:')!!}
 					{!!Form::text('phone', null,['class'=>'form-control','placeholder'=>'Telefono'])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Fecha de ingreso:')!!}
+					{!!Form::label('date_of_admission', 'Fecha de ingreso:')!!}
 					<div class='input-group date'>
-						{!! Form::text('date-of-admission', null, array('class'=>'form-control datepicker')) !!}
+						{!! Form::text('date_of_admission', null, array('class'=>'form-control datepicker')) !!}
 						<div class="input-group-addon">
 							<span class='glyphicon glyphicon-th'></span>
 						</div>
@@ -153,14 +150,12 @@
 
 </div>
 
-
-
 {!! Form::close() !!}
 
 <script type="text/javascript">
 	$('.datepicker').datepicker({
 
-		format: "dd/mm/yyyy",
+		format: "mm/dd/yyyy",
 		language: "es",
 		todayBtn: "linked",
 		autoclose: true,
@@ -168,7 +163,7 @@
 	});
 
 	$('.birthdate').datepicker({
-		format: "dd/mm/yyyy",
+		format: "mm/dd/yyyy",
 		startView: 2,
 		language: "es",
 		orientation: "bottom left",
@@ -185,7 +180,7 @@
 		}
 	}
 
-	$("#file_url").change(function(){
+	$("#photo").change(function(){
 		mostrarImagen(this);
 	});
 

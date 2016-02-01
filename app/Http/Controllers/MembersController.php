@@ -6,24 +6,26 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Member;
 
 class MembersController extends Controller
 {
     public function index ()
     {
-        
+
     }
 
     public function create ()
     {
-
-    	return view('member.create');
-
+        return view('member.create');
     }
 
-    public function store ()
+    public function store (Request $request)
     {
-        return redirect()->route('medicalrecord.create');
+        $member = new Member($request->all());
+        $member->save();
+
+        dd('Miembro creado');
     }
 
     public function show ($id)
