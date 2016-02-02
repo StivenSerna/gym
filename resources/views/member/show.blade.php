@@ -31,24 +31,13 @@
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="home">
 		<p></p><br>
-			<div class="panel panel-primary">
-				<div class="panel-heading">Panel heading without title
-				</div>
-				<div class="panel-body">
-					Panel content
-				</div>
-			</div>
-
+		<!-- contenido tab 1 -->
+		@include('member.partials.tabpersonal')
+		<!-- fin contenido tab 1 -->
 		</div>
 		<div role="tabpanel" class="tab-pane" id="profile">
 		<p></p><br>
-			<div class="panel panel-primary">
-				<div class="panel-heading">Panel 
-				</div>
-				<div class="panel-body">
-					Panel content
-				</div>
-			</div>
+		@include('member.partials.tabpersonal')
 
 		</div>
 
