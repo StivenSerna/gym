@@ -20,54 +20,65 @@
 @section('content')
 
 <div class="row">
-	<div class="col-sm-12 col-md-12">
+
+	<div class="col-lg-3">
+
 		<div class="thumbnail">
 			<div class="caption">
-				<h3>Buscar</h3>
-				<p>Buscar por : </p>
-
+				{!! link_to_route('admin.member.create', $title = 'Registrar nuevo', $parameters = array(),
+				$attributes = array('class' => 'btn btn-primary btn-lg', 'type' => 'button')) !!}
 			</div>
 		</div>
-	</div>
-</div>
+		<div class="row">
 
-<div class="row">
-	<div class="col-lg-6">
-		<div class="input-group">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button"><i class="fa fa-search"></i>
-</button>
-			</span>
-			<input type="text" class="form-control" placeholder="Search for...">
-		</div><!-- /input-group -->
-	</div><!-- /.col-lg-6 -->
-	<div class="col-lg-6">
-		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search for...">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button">Go!</button>
-			</span>
-		</div><!-- /input-group -->
-	</div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
+		</div>
+		@include('member.forms.search')
+	</div><!-- /.col-lg-3 -->
 
-<div class="row">
+	<div class="col-lg-9">
 
-	<div class="col-lg-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><i class="fa fa-users"></i> Miembros</h3>
 			</div>
 			<div class="panel-body">
+
+				<table class="table">
+					<thead>
+						<th>Nombre</th>
+						<th>Telefono</th>
+						<th>Direccion</th>
+						<th>Correo</th>
+						<th>Fecha de ingreso</th>
+					</thead>
+					<tbody>
+						@foreach($mem as $member)
+						<tr>
+							<td>{{ $member->first_name }}</td>
+							<td>{{ $member->phone }}</td>
+							<td>{{ $member->address }}</td>
+							<td>{{ $member->email }}</td>
+							<td>{{ $member->date_of_admission }}</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+
 			</div>
 		</div>
-	</div>
+	</div><!-- /.col-lg-6 -->
 
-	<div class="col-lg-6">
+</div><!-- /.row -->
 
-	</div>
-</div>
-
-
+<script type="text/javascript">
+	$('#datepicker').datepicker({
+		format: "yyyy-mm-dd",
+		startView: 2,
+		language: "es",
+		todayBtn: "linked",
+		autoclose: true,
+		orientation: "bottom left"
+	});
+</script>
 
 @endsection

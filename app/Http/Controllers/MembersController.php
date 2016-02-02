@@ -13,7 +13,8 @@ class MembersController extends Controller
 {
     public function index ()
     {
-        return view('member.index');
+        $members = Member::orderBy('created_at', 'DEC')->paginate(15);
+        return view('member.index')->with('mem', $members);
     }
 
     public function create ()
