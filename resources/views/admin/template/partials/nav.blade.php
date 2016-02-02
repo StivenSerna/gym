@@ -117,39 +117,18 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
+                <a href="{{ route('root') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Miembros <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="#">Administrar miembros</a>
+                        {!! link_to_route('admin.member.index', $title = 'Administrar miembros', $parameters = array(), $attributes = array()) !!}
                     </li>
                     <li>
-                        <a href="#">Registrar miembro</a>
+                        {!! link_to_route('admin.member.create', $title = 'Registrar miembro', $parameters = array(), $attributes = array()) !!}
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-            </li>
-            <li>
-                <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-            </li>
-            <li>
-                <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-            </li>
-            <li>
-                <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-            </li>
-            <li>
-                <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-            </li>
-            <li class="active">
-                <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-            </li>
-            <li>
-                <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
             </li>
         </ul>
     </div>

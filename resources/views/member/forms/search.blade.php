@@ -1,6 +1,5 @@
 <div class="thumbnail">
 	<div class="caption">
-		<h3>Buscar</h3>
 		<p></p>
 
 		<div class="form-group">
