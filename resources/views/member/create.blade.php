@@ -91,7 +91,6 @@
 
 				</div>
 
-
 				<div class="form-group">
 					{!!Form::label('gender', 'Genero:')!!}
 					{!! Form::select('gender', ['M' => 'Masculino', 'F' => 'Femenino'], null,  ['class' => 'form-control']) !!}

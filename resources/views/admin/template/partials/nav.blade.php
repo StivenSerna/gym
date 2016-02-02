@@ -117,7 +117,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="{{ route('root') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
+                <a href="{{ route('inicio') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Miembros <i class="fa fa-fw fa-caret-down"></i></a>

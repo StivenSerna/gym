@@ -13,10 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inicio');
 
 Route::group(['prefix' => 'admin'], function(){
 	Route::resource('member', 'MembersController');
+	Route::get('member/{id}/destroy', [
+		'uses' => 'MembersController@destroy',
+		'as' => 'admin.member.destroy']);
+
 });
 
 Route::get('medicalrecord/create', [
