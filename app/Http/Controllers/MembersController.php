@@ -33,6 +33,7 @@ class MembersController extends Controller
 
     public function show ($id)
     {
+        return view('member.show', ['id' => 1]);
 
     }
 

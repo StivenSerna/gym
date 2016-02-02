@@ -11,6 +11,11 @@
 |
 */
 
+/*
+|Rutas de ficha antropometrica
+*/
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,6 +27,11 @@ Route::group(['prefix' => 'admin'], function(){
 Route::get('medicalrecord/create', [
     'as' => 'medicalrecord.create', 'uses' => 'MedicalRecordsController@create'
 ]);
+
+Route::get('anthropometricrecord/create', [
+    'as' => 'anthropometricrecord.create', 'uses' => 'AnthropometricsRecordsController@create'
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
