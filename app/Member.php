@@ -15,6 +15,11 @@ class Member extends Model
         return $this->hasOne('App\MedicalRecord');
     }
 
+    public function image()
+    {
+        return $this->hasOne('App\Image');
+    }
+
     public function anthropometricmeasurement()
     {
         return $this->hasOne('App\AnthropometricMeasurement');

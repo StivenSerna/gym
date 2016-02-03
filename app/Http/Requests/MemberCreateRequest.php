@@ -40,7 +40,7 @@ class MemberCreateRequest extends Request
     public function messages()
     {
         return [
-        'required' => 'Este campo es requerido',
+        'required' => 'Este campo :attribute es requerido',
         'unique' => 'Ya existe un registro con este campo',
         ];
     }

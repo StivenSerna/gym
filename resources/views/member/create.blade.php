@@ -19,7 +19,23 @@
 
 @section('content')
 
-{!! Form::open(['route'=>'admin.member.store', 'method'=>'POST']) !!}
+<!-- Mostrar errores -->
+
+@if(count($errors) > 0)
+<div class="alert alert-danger alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong>¡Error! </strong>
+	@foreach($errors->all() as $error)
+
+	<li>{!! $error !!}</li>
+
+	@endforeach
+</div>
+@endif
+
+<!-- Fin mostrar errores -->
+
+{!! Form::open(['route'=>'admin.member.store', 'method'=>'POST', 'files' => true]) !!}
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
@@ -37,9 +53,8 @@
 					{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Primer Nombre ', 'aria-describedby'=> "inputError2Status"]) !!}
 					@if ($errors->has('first_name'))
 					<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-  						<span id="inputError2Status" class="help-block">
+					<span id="inputError2Status" class="help-block">
 						{{ $errors->first('first_name') }}
-						</span>
 					</span>
 					@endif
 				</div>
@@ -81,7 +96,7 @@
 
 				<div class="row">
 
-					<div class="col-xs-6 col-md-3">
+					<div class="col-xs-8 col-md-4">
 						<a class="thumbnail">
 							<img id="img_destino" src="http://placehold.it/171x180" alt="Foto">
 						</a>
@@ -89,7 +104,7 @@
 
 					<div class="form-group">
 						{!!Form::label('photo', 'Foto:')!!}
-						{!! Form::file('photo',  array('id' => 'photo', 'name' => 'photo')) !!}
+						{!! Form::file('photo',  array('id' => 'photo')) !!}
 						<p class="help-block">Escoger una foto desde el ordenador.</p>
 					</div>
 

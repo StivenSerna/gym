@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\MemberCreateRequest;
 use App\Http\Controllers\Controller;
 use App\Member;
+use App\Image;
 use Laracasts\Flash\Flash;
 
 class MembersController extends Controller
@@ -25,11 +26,24 @@ class MembersController extends Controller
 
     public function store (MemberCreateRequest $request)
     {
+        if($request->file('photo')){
+            $file = $request->file('photo');
+            $name = 'fotogym_' . time() . '.' . $file->getClientOriginalExtension();
+            $path= public_path() . '/images/members/';
+            $file->move($path, $name);
+        }
+
         $member = new Member($request->all());
         $member->save();
+
+        $image = new Image();
+        $image->name = $name;
+        $image->member()->associate($member);
+        $image->save();
+
         Flash::success("¡Se ha registrado a " . $member->first_name . " de manera exitosa!");
 
-        return redirect()->route('medicalrecord.create', $member->id);
+        return redirect()->route('medicalrecord.create', $image->member_id);
     }
 
     public function show ($id)
