@@ -25,7 +25,6 @@ class MemberCreateRequest extends Request
     {
         return [
         'first_name' => 'required',
-        'second_name' => 'required',
         'last_name' => 'required',
         'email' => 'required',
         'phone' => 'required',
