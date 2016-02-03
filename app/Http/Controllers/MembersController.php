@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\MemberCreateRequest;
 use App\Http\Controllers\Controller;
 use App\Member;
 use Laracasts\Flash\Flash;
@@ -22,13 +23,13 @@ class MembersController extends Controller
         return view('member.create');
     }
 
-    public function store (Request $request)
+    public function store (MemberCreateRequest $request)
     {
         $member = new Member($request->all());
         $member->save();
-        Flash::success("¡Se ha registrado a " . $member->first_name . " fue registrado de manera exitosa!");
+        Flash::success("¡Se ha registrado a " . $member->first_name . " de manera exitosa!");
 
-        return redirect()->route('medicalrecord.create');
+        return redirect()->route('medicalrecord.create', $member->id);
     }
 
     public function show ($id)

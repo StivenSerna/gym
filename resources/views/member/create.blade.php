@@ -17,11 +17,9 @@
 
 @endsection
 
-
-
 @section('content')
 
-{!! Form::open(['route'=>'admin.member.store','method'=>'POST']) !!}
+{!! Form::open(['route'=>'admin.member.store', 'method'=>'POST']) !!}
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
@@ -34,11 +32,17 @@
 
 			<div class="col-lg-6">
 
-				<div class="form-group">
-					{!! Form::label('first_name', 'Primer Nombre:') !!}
-					{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Primer Nombre ']) !!}
+				<div class='form-group {{ $errors->has('first_name') ? 'has-error' : '' }} has-feedback'>
+					{!! Form::label('first_name', 'Primer Nombre:', array('class' => 'control-label')) !!}
+					{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Primer Nombre ', 'aria-describedby'=> "inputError2Status"]) !!}
+					@if ($errors->has('first_name'))
+					<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  						<span id="inputError2Status" class="help-block">
+						{{ $errors->first('first_name') }}
+						</span>
+					</span>
+					@endif
 				</div>
-
 
 				<div class="form-group">
 					{!!Form::label('second_name', 'Segundo Nombre:')!!}

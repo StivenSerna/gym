@@ -24,7 +24,9 @@
   <strong>Información:</strong> Puede modificar la ficha medica desde el modulo de miembros en cualquier momento.
 </div>
 
-{!! Form::open() !!}
+{!! Form::open(['route'=>'medicalrecord.store', 'method'=>'POST']) !!}
+
+{!! Form::hidden('member_id', $member_id) !!}
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
@@ -39,17 +41,17 @@
 
 				<div class="form-group">
 					{!!Form::label('Enfermedades Actuales:')!!}
-					{!!Form::text('currentillness', null,['class'=>'form-control','placeholder'=>'Enfermedades Actuales '])!!}
+					{!!Form::text('current_diseases', null,['class'=>'form-control','placeholder'=>'Enfermedades Actuales '])!!}
 				</div>
 
 				<div class="form-group">
 					{!!Form::label('Enfermedades Sufridas:')!!}
-					{!!Form::text('sustaineddiseases', null,['class'=>'form-control','placeholder'=>'Enfermedades Sufridas '])!!}
+					{!!Form::text('suffered_diseases', null,['class'=>'form-control','placeholder'=>'Enfermedades Sufridas '])!!}
 				</div>
 
 				<div class="form-group">
 					{!!Form::label('Fracturas Sufridas:')!!}
-					{!!Form::text('sufferedfractures', null,['class'=>'form-control','placeholder'=>'Fracturas Sufridas'])!!}
+					{!!Form::text('suffered_fractures', null,['class'=>'form-control','placeholder'=>'Fracturas Sufridas'])!!}
 				</div>
 
 

@@ -87,7 +87,6 @@
 </div><!-- /.row -->
 
 
-
 <script type="text/javascript">
 	$('#input-daterange').datepicker({
 		format: "yyyy-mm-dd",

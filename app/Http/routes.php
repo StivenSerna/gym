@@ -28,12 +28,26 @@ Route::group(['prefix' => 'admin'], function(){
 
 });
 
-Route::get('medicalrecord/create', [
-    'as' => 'medicalrecord.create', 'uses' => 'MedicalRecordsController@create'
+
+Route::get('medicalrecord/{member_id}/create', [
+    'as' => 'medicalrecord.create',
+    'uses' => 'MedicalRecordsController@create'
 ]);
 
-Route::get('anthropometricrecord/create', [
-    'as' => 'anthropometricrecord.create', 'uses' => 'AnthropometricsRecordsController@create'
+Route::post('medicalrecord', [
+    'as' => 'medicalrecord.store',
+    'uses' => 'MedicalRecordsController@store'
+]);
+
+
+Route::get('anthropometricrecord/{member_id}/create', [
+    'as' => 'anthropometricrecord.create',
+    'uses' => 'AnthropometricsRecordsController@create'
+]);
+
+Route::post('anthropometricrecord', [
+    'as' => 'anthropometricrecord.store',
+    'uses' => 'AnthropometricsRecordsController@store'
 ]);
 
 /*
