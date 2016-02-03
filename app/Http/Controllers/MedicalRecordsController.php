@@ -24,7 +24,9 @@ class MedicalRecordsController extends Controller
         $medicalrecord->current_diseases = $request->current_diseases;
         $medicalrecord->suffered_fractures = $request->suffered_fractures;
         $medicalrecord->observation = $request->observation;
-        $medicalrecord->member_id = $request->member_id;
+
+        $member = Member::find($request->member_id);
+        $medicalrecord->member()->associate($member);
         $medicalrecord->save();
         Flash::success("¡ Se ha registrado la ficha medica de " . $medicalrecord->member->first_name . " exitosamente !");
         return redirect()->route('anthropometricrecord.create', $medicalrecord->member->id);

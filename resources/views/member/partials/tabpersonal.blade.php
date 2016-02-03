@@ -76,17 +76,22 @@
 						<div class="form-group">
 							<h4>Enfermedades Actuales:</h4>
 						</div>
-						
+
 
 						<div class="form-group">
 							<h4>Enfermdades Sufridas:</h4>
 						</div>
-						
+
 
 						<div class="form-group">
 						<h4>Fractura Sufridas:</h4>
+						<!--
+						@if(isset($user->medicalrecord->suffered_fractures))
+							{!! $user->medicalrecord->suffered_fractures !!}
+						@endif
+						-->
 						</div>
-						
+
 
 					</div>
 
@@ -94,6 +99,9 @@
 
 						<div class="form-group">
 							<h4>Observaciones:</h4>
+							<!--
+							<img src="{{'../../images/members/'}}{{ $user->image->name }}" alt="..." class="img-circle">
+							-->
 						</div>
 					</div>
 				</div>
