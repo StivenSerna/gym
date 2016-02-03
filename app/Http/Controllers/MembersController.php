@@ -34,7 +34,8 @@ class MembersController extends Controller
 
     public function show ($id)
     {
-        return view('member.show', ['id' => 1]);
+        $serna = Member::find($id);
+        return view('member.show', ['user' => $serna]);
 
     }
 

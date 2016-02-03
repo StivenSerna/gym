@@ -50,6 +50,8 @@ Route::post('anthropometricrecord', [
     'uses' => 'AnthropometricsRecordsController@store'
 ]);
 
+Route::resource('membership', 'MembershipsController');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
