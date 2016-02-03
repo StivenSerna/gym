@@ -36,6 +36,8 @@ Route::get('anthropometricrecord/create', [
     'as' => 'anthropometricrecord.create', 'uses' => 'AnthropometricsRecordsController@create'
 ]);
 
+Route::resource('membership', 'MembershipsController');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
