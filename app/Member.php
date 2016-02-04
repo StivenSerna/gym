@@ -20,9 +20,19 @@ class Member extends Model
         return $this->hasOne('App\Image');
     }
 
-    public function anthropometricmeasurement()
+    public function anthropometricMeasurements()
     {
-        return $this->hasOne('App\AnthropometricMeasurement');
+        return $this->hasMany('App\AnthropometricMeasurement');
+    }
+
+    public function leftAnthropometrics()
+    {
+        return $this->hasMany('App\LeftAnthropometric');
+    }
+
+    public function rightAnthropometrics()
+    {
+        return $this->hasMany('App\RightAnthropometric');
     }
 
 }

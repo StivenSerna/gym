@@ -68,7 +68,7 @@
 							<td>{{ $member->address }}</td>
 							<td>{{ $member->email }}</td>
 							<td>{{ $member->date_of_admission }}</td>
-							<td><a href="" class="btn btn-info"><i class="fa fa-info-circle "></i></a>
+							<td><a href="{{ route('admin.member.show', $member->id) }}" class="btn btn-info"><i class="fa fa-info-circle "></i></a>
 								<a href="{{ route('admin.member.destroy', $member->id) }}"
 								onclick="return confirm('¿Esta seguro de querer eliminar el registro?')" class="btn btn-danger"><i class="fa fa-trash "></i></a>
 							</td>

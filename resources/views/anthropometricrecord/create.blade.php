@@ -19,7 +19,9 @@
 
 @section('content')
 
-{!! Form::open() !!}
+{!! Form::open(['route'=>'anthropometricrecord.store', 'method'=>'POST']) !!}
+
+{!! Form::hidden('member_id', $member_id) !!}
 
 <div class="row">
 	<div class="col-lg-3 col-md-9">
@@ -34,29 +36,29 @@
 			<div class="col-lg-12">
 
 				<div class="form-group">
-					{!!Form::label('Peso:')!!}
-					{!!Form::text('currentillness', null,['class'=>'form-control','placeholder'=>'Peso'])!!}
+					{!! Form::label('weight', 'Peso:') !!}
+					{!! Form::text('weight', null,['class'=>'form-control','placeholder'=>'Peso']) !!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Estatura:')!!}
-					{!!Form::text('sustaineddiseases', null,['class'=>'form-control','placeholder'=>'Estatura'])!!}
+					{!!Form::label('height', 'Estatura:')!!}
+					{!!Form::text('height', null,['class'=>'form-control','placeholder'=>'Estatura'])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Comentario:')!!}
-					{!!Form::textarea('observation', null,['class'=>'form-control', 'rows'=>'3','placeholder'=>'Comentarios '])!!}
+					{!!Form::label('comment', 'Comentario:')!!}
+					{!!Form::textarea('comment', null,['class'=>'form-control', 'rows'=>'3','placeholder'=>'Comentarios '])!!}
 				</div>
 
 			</div>
 		</div>
 	</div>
 </div>
-		
+
 	</div>
 
 	<div class="col-lg-6 col-md-6">
-		
+
 	</div>
 </div>
 
@@ -73,32 +75,32 @@
 
 				<div class="form-group">
 					{!!Form::label('PERFIL IZQUIERDO')!!}
-					
+
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Brazo:')!!}
-					{!!Form::text('left-arm', null,['class'=>'form-control','placeholder'=>' '])!!}
+					{!!Form::label('left_arm', 'Brazo:')!!}
+					{!!Form::text('left_arm', null,['class'=>'form-control','placeholder'=>' '])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Antebrazo:')!!}
-					{!!Form::text('forearm', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('left_forearm', 'Antebrazo:')!!}
+					{!!Form::text('left_forearm', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pierna Alta:')!!}
-					{!!Form::text('high-leg', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('left_high_leg', 'Pierna Alta:')!!}
+					{!!Form::text('left_high_leg', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pierna Baja:')!!}
-					{!!Form::text('lower-leg', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('left_lower_leg', 'Pierna Baja:')!!}
+					{!!Form::text('left_lower_leg', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pantorrilla:')!!}
-					{!!Form::text('calf', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('left_calf', 'Pantorrilla:')!!}
+					{!!Form::text('left_calf', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 
@@ -112,26 +114,26 @@
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Hombros:')!!}
+					{!!Form::label('shoulders', 'Hombros:')!!}
 					{!!Form::text('shoulders', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pecho:')!!}
+					{!!Form::label('chest', 'Pecho:')!!}
 					{!!Form::text('chest', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Cadera:')!!}
+					{!!Form::label('hip', 'Cadera:')!!}
 					{!!Form::text('hip', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Abdomen:')!!}
+					{!!Form::label('abdomen', 'Abdomen:')!!}
 					{!!Form::text('abdomen', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 				<div class="form-group">
-					{!!Form::label('Cintura:')!!}
+					{!!Form::label('waist', 'Cintura:')!!}
 					{!!Form::text('waist', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
@@ -144,28 +146,28 @@
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Brazo:')!!}
-					{!!Form::text('right-arm', null,['class'=>'form-control','placeholder'=>' '])!!}
+					{!!Form::label('right_arm', 'Brazo:')!!}
+					{!!Form::text('right_arm', null,['class'=>'form-control','placeholder'=>' '])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Antebrazo:')!!}
-					{!!Form::text('forearm', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('right_forearm', 'Antebrazo:')!!}
+					{!!Form::text('right_forearm', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pierna Alta:')!!}
-					{!!Form::text('high-leg', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('right_high_leg', 'Pierna Alta:')!!}
+					{!!Form::text('right_high_leg', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pierna Baja:')!!}
-					{!!Form::text('lower-leg', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('right_lower_leg', 'Pierna Baja:')!!}
+					{!!Form::text('right_lower_leg', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 				<div class="form-group">
-					{!!Form::label('Pantorrilla:')!!}
-					{!!Form::text('calf', null,['class'=>'form-control','placeholder'=>''])!!}
+					{!!Form::label('right_calf', 'Pantorrilla:')!!}
+					{!!Form::text('right_calf', null,['class'=>'form-control','placeholder'=>''])!!}
 				</div>
 
 			</div>
