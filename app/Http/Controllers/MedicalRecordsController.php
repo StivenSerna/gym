@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MedicalCreateRequest;
 use App\Member;
 use App\MedicalRecord;
 use Laracasts\Flash\Flash;
@@ -17,7 +18,7 @@ class MedicalRecordsController extends Controller
     	return view('medicalrecord.create')->with('member_id', $member_id);
     }
 
-    public function store(Request $request)
+    public function store(MedicalCreateRequest $request)
     {
         $medicalrecord = MedicalRecord::firstOrCreate(['member_id' => $request->member_id]);
         $medicalrecord->suffered_diseases = $request->suffered_diseases;

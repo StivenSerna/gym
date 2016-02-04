@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class MemberCreateRequest extends Request
+class MedicalCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,11 @@ class MemberCreateRequest extends Request
     public function rules()
     {
         return [
-        'first_name' => 'required|alpha',
-        'last_name' => 'required|alpha',
-        'email' => 'required',
-        'phone' => 'numeric',
-        'birthday' => 'required',
-        'gender' => 'required',
-        'address' => 'required',
-        'document' => 'required|numeric|unique:members',
-        'date_of_admission' => 'required'
+        
+       'current_diseases' =>'alpha',
+        'suffered_diseases' =>'required|alpha',
+        'suffered_fractures'=>'alpha',
+        'observation' => 'required'
         ];
     }
 
@@ -40,8 +36,6 @@ class MemberCreateRequest extends Request
     {
         return [
         'required' => 'Este campo es requerido',
-        'document.unique' => 'Ya existe un Miembro con este documento',
-        'unique' => 'Ya existe un registro con este campo',
         'alpha' => 'Este campo solo debe contener caracteres alfabeticos'
         ];
     }

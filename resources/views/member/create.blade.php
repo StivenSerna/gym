@@ -64,14 +64,26 @@
 					{!!Form::text('second_name', null,['class'=>'form-control','placeholder'=>'Segundo Nombre'])!!}
 				</div>
 
-				<div class="form-group">
+				<div class='form-group {{ $errors->has('last_name') ? 'has-error' : '' }} has-feedback'>
 					{!! Form::label('last_name' ,'Apellidos:') !!}
-					{!! Form::text('last_name', null,['class'=>'form-control','placeholder'=>'Apellidos']) !!}
+					{!! Form::text('last_name', null,['class'=>'form-control','placeholder'=>'Apellidos', 'aria-describedby'=> "inputError2Status"]) !!}
+					@if ($errors->has('last_name'))
+					<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+					<span id="inputError2Status" class="help-block">
+						{{ $errors->first('last_name') }}
+					</span>
+					@endif
 				</div>
 
-				<div class="form-group">
+				<div class='form-group {{ $errors->has('document') ? 'has-error' : '' }} has-feedback'>
 					{!! Form::label('document', 'Nº identificación:')!!}
-					{!! Form::text('document', null,['class'=>'form-control', 'placeholder'=>'Nº identificación']) !!}
+					{!! Form::text('document', null,['class'=>'form-control', 'placeholder'=>'Nº identificación', 'aria-describedby'=> "inputError2Status"]) !!}
+					@if ($errors->has('document'))
+					<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+					<span id="inputError2Status" class="help-block">
+						{{ $errors->first('document') }}
+					</span>
+					@endif
 				</div>
 
 				<div class="form-group">
@@ -116,9 +128,15 @@
 				</div>
 
 
-				<div class="form-group">
+				<div class='form-group {{ $errors->has('address') ? 'has-error' : '' }} has-feedback'>>
 					{!!Form::label('address', 'Direccion:')!!}
-					{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion'])!!}
+					{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion' , 'aria-describedby'=> "inputError2Status"])!!}
+					@if ($errors->has('address'))
+					<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+					<span id="inputError2Status" class="help-block">
+						{{ $errors->first('address') }}
+					</span>
+					@endif
 				</div>
 
 				<div class="form-group">
