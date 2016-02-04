@@ -20,7 +20,7 @@ class AnthropometricsRecordsController extends Controller
     public function store(Request $request)
     {
         $anthropometricm = new AnthropometricMeasurement($request->all());
-        //$anthropometricm->save();
+        //$anthropometricm->save() esto es un comentario;
         dd($anthropometricm);
         //Flash::success("¡ Se ha registrado la ficha antropometrica de " . $medicalrecord->member->first_name . " exitosamente !");
 
