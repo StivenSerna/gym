@@ -2,7 +2,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-credit-card"></i> </h3>
+				<h3 class="panel-title"><i class="fa fa-credit-card"></i> CREACIÓN DE MEMBRESÍA</h3>
 			</div>
 			<div class="panel-body">
 
@@ -10,9 +10,11 @@
 
 					<div class="col-lg-12">
 
+						<h5>Acontinuacion se muestran los campos requeridos para la cración de una nueva membresía</h5>
+
 						<div class="form-group">
-							{!! Form::label('first_name', 'Descripcion:') !!}
-							{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Descripcion: ']) !!}
+							{!! Form::label('description', 'Descripcion:') !!}
+							{!! Form::text('description', null,['class'=>'form-control','placeholder'=>'Descripcion: ']) !!}
 						</div>
 
 
@@ -28,8 +30,8 @@
 						<div class="input-group">
 
 							<div class="form-group">
-								{!! Form::label('first_name', 'Precio:') !!}
-								{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Precio ']) !!}
+								{!! Form::label('price', 'Precio:') !!}
+								{!! Form::text('price', null,['class'=>'form-control','placeholder'=>'Precio ']) !!}
 							</div>
 						</div>
 
@@ -38,8 +40,8 @@
 					<div class="col-lg-3">
 
 						<div class="form-group">
-							{!! Form::label('first_name', 'Meses:') !!}
-							{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Meses ']) !!}
+							{!! Form::label('month', 'Meses:') !!}
+							{!! Form::text('month', null,['class'=>'form-control','placeholder'=>'Meses ']) !!}
 						</div>
 
 					</div>
@@ -47,8 +49,8 @@
 					<div class="col-lg-3">
 
 						<div class="form-group">
-							{!! Form::label('first_name', 'Dias:') !!}
-							{!! Form::text('first_name', null,['class'=>'form-control','placeholder'=>'Dias ']) !!}
+							{!! Form::label('day', 'Dias:') !!}
+							{!! Form::text('day', null,['class'=>'form-control','placeholder'=>'Dias ']) !!}
 
 						</div>
 
