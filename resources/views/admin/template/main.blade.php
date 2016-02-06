@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <title>@yield('tittle', 'Default') | Panel de administración</title>
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/bootstrap/css/bootstraptheme.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('plugins/bootstrap/css/sb-admin.css') }}" rel="stylesheet">

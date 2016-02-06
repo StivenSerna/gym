@@ -26,20 +26,28 @@ class MembersController extends Controller
 
     public function store (MemberCreateRequest $request)
     {
+
         if($request->file('photo')){
             $file = $request->file('photo');
             $name = 'fotogym_' . time() . '.' . $file->getClientOriginalExtension();
             $path= public_path() . '/images/members/';
             $file->move($path, $name);
         }
-
         $member = new Member($request->all());
         $member->save();
 
         $image = new Image();
-        $image->name = $name;
+
+        if(isset($name)){
+            $image->name = $name;
+        }
+        else{
+            $image->name = 'fotogym_placeholder.png' ;
+        }
+
         $image->member()->associate($member);
         $image->save();
+
 
         Flash::success("¡Se ha registrado a " . $member->first_name . " de manera exitosa!");
 
@@ -49,7 +57,7 @@ class MembersController extends Controller
     public function show ($id)
     {
         $member = Member::find($id);
-        return view('member.show', ['user' => $member]);
+        return view('member.show', ['member' => $member]);
     }
 
     public function edit ($id)

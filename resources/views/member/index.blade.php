@@ -38,8 +38,6 @@
 			</div>
 		</div>
 
-
-
 		@include('member.forms.search')
 	</div><!-- /.col-lg-3 -->
 

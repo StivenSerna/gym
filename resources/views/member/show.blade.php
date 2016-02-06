@@ -19,11 +19,14 @@
 
 @section('content')
 
+<img src="{{'../../images/members/'}}{{ $member->image->name }}" alt="..." class="img-circle">
+
 <div>
 
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs nav-justified" role="tablist">
-		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información Personal/Medica</a></li>
+		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i>
+	Información Personal/Medica</a></li>
 		<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Información Antropometrica</a></li>
 		<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Pagos</a></li>
 		<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Creditos</a></li>
