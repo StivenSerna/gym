@@ -24,7 +24,7 @@ class MembersController extends Controller
         return view('member.create');
     }
 
-    public function store (Request $request)
+    public function store (MemberCreateRequest $request)
     {
 
         if($request->file('photo')){
@@ -34,7 +34,7 @@ class MembersController extends Controller
             $file->move($path, $name);
         }
         $member = new Member($request->all());
-        //$member->save();
+        $member->save();
 
         $image = new Image();
 
@@ -46,12 +46,12 @@ class MembersController extends Controller
         }
 
         $image->member()->associate($member);
-        //$image->save();
+        $image->save();
 
-        dd($request);
-        //Flash::success("¡Se ha registrado a " . $member->first_name . " de manera exitosa!");
 
-        //return redirect()->route('medicalrecord.create', $image->member_id);
+        Flash::success("¡Se ha registrado a " . $member->first_name . " de manera exitosa!");
+
+        return redirect()->route('medicalrecord.create', $image->member_id);
     }
 
     public function show ($id)
