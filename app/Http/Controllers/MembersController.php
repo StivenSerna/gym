@@ -64,8 +64,8 @@ class MembersController extends Controller
         //dd($birthDate);
         //$age = (date("md", date("U", mktime(0, 0, 0, , , ))) > date("md") ? ((date("Y")-$birthDate[2])-1):(date("Y")-$birthDate[2]));
         //echo "Age is:".$age;
-        dd($officialDate = Carbon::now());
-        //return view('member.show', ['member' => $member]);
+        $member->age = Carbon::createFromDate($birthDate[0], $birthDate[1], $birthDate[2])->age;
+        return view('member.show', ['member' => $member]);
     }
 
     public function edit($id)
