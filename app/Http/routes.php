@@ -25,6 +25,9 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('member/{id}/destroy', [
 		'uses' => 'MembersController@destroy',
 		'as' => 'admin.member.destroy']);
+            Route::post('member/search', [
+                       'uses' => 'MembersController@search',
+                       'as' => 'admin.member.search']);
 
 });
 
@@ -49,6 +52,7 @@ Route::post('anthropometricrecord', [
     'as' => 'anthropometricrecord.store',
     'uses' => 'AnthropometricsRecordsController@store'
 ]);
+
 
 Route::resource('membership', 'MembershipsController');
 

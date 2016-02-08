@@ -14,7 +14,6 @@
 	</li>
 </ol>
 <!-- Page fin titulo -->
-
 @endsection
 
 @section('content')

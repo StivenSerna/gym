@@ -60,9 +60,55 @@ class MembersController extends Controller
         return view('member.show', ['member' => $member]);
     }
 
-    public function edit ($id)
+    public function edit($id)
     {
 
+    }
+
+    public function update(Request $request, $id)
+    {
+        if($request->file('photo')){
+            $image = Image::where('member_id', $id)->first();
+            $later= pathinfo($image->name);
+            $file = $request->file('photo');
+
+            if ($later['filename'] == 'fotogym_placeholder') {
+                $filename = 'fotogym_' . time();
+            }
+            else{
+                $filename = $later['filename'];
+            }
+
+            $name =  $filename . '.' . $file->getClientOriginalExtension();
+            $path= public_path() . '/images/members/';
+            $file->move($path, $name);
+
+            $image->name = $name;
+            $image->save();
+        }
+
+        $member = Member::find($id);
+
+        Flash::success("<b>¡Se ha actualizado a " . $member->first_name . " de manera exitosa!</b>");
+
+        return redirect()->route('admin.member.show', $member->id);
+
+    }
+
+    public function search (Request $request)
+    {
+        if(isset($request->documento)){
+            //dd($request->documento);
+            $member = Member::where('document', $request->documento)->first();
+            //dd($member);
+            if($member == null){
+                Flash::error("No existe nungun miembro con el documento " . $request->documento . " registrado");
+                return redirect()->route('admin.member.index');
+            }
+            else{
+                return redirect()->route('admin.member.show', ['member' => $member]);
+            }
+        }
     }
 
     public function destroy($id)

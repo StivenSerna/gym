@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('tittle', 'Ficha antropometricca')
+@section('tittle', 'Perfil')
 
 @section('header')
 
@@ -13,36 +13,34 @@
 		<i class="fa fa-dashboard"></i> Inicio
 	</li>
 </ol>
-<!-- end Page titulo -->
-
 @endsection
 
 @section('content')
 
-<div class="row">
-	<div class="col-sm-12 col-md-12">
-		<div class="thumbnail">
-			<div class="row">
-				<div class="col-xs-6 col-md-3 .col-md-offset-3">
-					<a href="#" class="thumbnail">
-						<img src="{{'../../images/members/'}}{{ $member->image->name }}" alt="..." class="img-circle">
-					</a>
-				</div>
-				...
+
+<div class="well well-sm">
+	<div class="row">
+		<div class="col-md-3 col-md-offset-4">
+			<div class="thumbnail">
+				<img src='{{'../../images/members/'}}{{ isset($member->image->name) ? $member->image->name : 'fotogym_placeholder.png' }}' class="">
+				<button type="button" data-toggle="modal" class="btn btn-primary btn-xs" data-target="#fotoedit">
+					<i class="fa fa-camera"></i>
+					Cambiar
+				</button>
 			</div>
-			<div class="caption">
-				<h3>Thumbnail label</h3>
-				<p>...</p>
-				<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-			</div>
+			<h3 class="text-center">{!! ucfirst($member->first_name) ." ". ucfirst($member->second_name) ." ". ucfirst($member->last_name) !!}</h3>
 		</div>
 	</div>
 </div>
 
+
+<!-- Modal -->
+@include('member.partials.photo_edit')
+
 <!-- Nav tabs -->
 <ul class="nav nav-tabs nav-justified" role="tablist">
 	<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-		<i class="fa fa-info-circle"></i>Información Personal/Medica</a>
+		<i class="fa fa-info-circle"></i> Información Personal/Medica</a>
 	</li>
 	<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Información Antropometrica</a>
 	</li>
@@ -54,13 +52,14 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-	<div role="tabpanel" class="tab-pane active" id="home">
+	<div role="tabpanel" class="tab-pane fade in active" id="home">
 		<p></p><br>
 		<!-- contenido tab 1 -->
+
 		@include('member.partials.tabpersonal')
 		<!-- fin contenido tab 1 -->
 	</div>
-	<div role="tabpanel" class="tab-pane" id="profile">
+	<div role="tabpanel" class="tab-pane fade" id="profile">
 		<p></p><br>
 		<!-- contenido tab 2 -->
 		@include('member.partials.tabantropometrica')

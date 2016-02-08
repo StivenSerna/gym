@@ -9,8 +9,11 @@
 	Registro de nuevo miembro
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<i class="fa fa-dashboard"></i> <a href="#">Inicio</a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		Registrar nuevo miembro
 	</li>
 </ol>
 <!-- Page fin titulo -->
@@ -129,23 +132,23 @@
 				<div class="row">
 					<div class="col-sm-7">
 
-				<div class='form-group {{ $errors->has('address') ? 'has-error' : '' }} has-feedback'>
-					{!!Form::label('address', 'Direccion:')!!}
-					{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion' , 'aria-describedby'=> "inputError2Status"])!!}
-					@if ($errors->has('address'))
-					<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-					<span id="inputError2Status" class="help-block">
-						{{ $errors->first('address') }}
-					</span>
-					@endif
-				</div>
-				</div>
-				<div class="col-sm-5">
-				<div class="form-group">
-					{!!Form::label('phone', 'Telefono:')!!}
-					{!!Form::text('phone', null,['class'=>'form-control','placeholder'=>'Telefono'])!!}
-				</div>
-				</div>
+						<div class='form-group {{ $errors->has('address') ? 'has-error' : '' }} has-feedback'>
+							{!!Form::label('address', 'Direccion:')!!}
+							{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion' , 'aria-describedby'=> "inputError2Status"])!!}
+							@if ($errors->has('address'))
+							<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+							<span id="inputError2Status" class="help-block">
+								{{ $errors->first('address') }}
+							</span>
+							@endif
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<div class="form-group">
+							{!!Form::label('phone', 'Telefono:')!!}
+							{!!Form::text('phone', null,['class'=>'form-control','placeholder'=>'Telefono'])!!}
+						</div>
+					</div>
 				</div>
 
 			</div>
@@ -155,17 +158,7 @@
 
 				<div class="row">
 					<div class="col-xs-8 col-md-4 col-xs-offset-2 col-md-offset-4">
-						<div class="fileinput fileinput-new" data-provides="fileinput">
-							<div class="fileinput-new thumbnail" style="width:  180px; height: 220px;">
-								<img data-src="holder.js/100%x100%" alt="{{'../../images/members/'}}{{ "fotogym_placeholder.png" }}"
-								src="{{'../../images/members/'}}{{ "fotogym_placeholder.png" }}">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 180px; max-height: 220px;"></div>
-							<div>
-								<span class="btn btn-primary btn-file"><span class="fileinput-new">Seleccionar foto</span><span class="fileinput-exists">Cambiar</span><input type="file" name="photo"></span>
-								<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
-							</div>
-						</div>
+						@include('member.forms.photo_form')
 					</div>
 					<!--
 					<div class="col-xs-8 col-md-4">
