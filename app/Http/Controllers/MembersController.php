@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Member;
 use App\Image;
 use Laracasts\Flash\Flash;
+use Carbon\Carbon;
 
 class MembersController extends Controller
 {
@@ -57,7 +58,14 @@ class MembersController extends Controller
     public function show ($id)
     {
         $member = Member::find($id);
-        return view('member.show', ['member' => $member]);
+        //dd(Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days'));
+        $birthDate = $member->birthday;
+        $birthDate = explode("-", $birthDate);
+        //dd($birthDate);
+        //$age = (date("md", date("U", mktime(0, 0, 0, , , ))) > date("md") ? ((date("Y")-$birthDate[2])-1):(date("Y")-$birthDate[2]));
+        //echo "Age is:".$age;
+        dd($officialDate = Carbon::now());
+        //return view('member.show', ['member' => $member]);
     }
 
     public function edit($id)
