@@ -4,7 +4,7 @@
 		{!! Form::model($member->medicalrecord, array('route' => array('medicalrecord.update', $member->id), 'method'=>'PUT', 'files' => true)) !!}
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Editar informacion personal</h4>
+				<h4 class="modal-title" id="myModalLabel">Editar informacion medica</h4>
 			</div>
 			<div class="modal-body">
 

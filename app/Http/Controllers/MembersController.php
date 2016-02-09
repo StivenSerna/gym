@@ -12,6 +12,7 @@ use App\Image;
 use Laracasts\Flash\Flash;
 use Carbon\Carbon;
 
+
 class MembersController extends Controller
 {
     public function index ()
@@ -65,7 +66,11 @@ class MembersController extends Controller
         //$age = (date("md", date("U", mktime(0, 0, 0, , , ))) > date("md") ? ((date("Y")-$birthDate[2])-1):(date("Y")-$birthDate[2]));
         //echo "Age is:".$age;
         $member->age = Carbon::createFromDate($birthDate[0], $birthDate[1], $birthDate[2])->age;
-        return view('member.show', ['member' => $member]);
+        //$antropometricsm = AnthropometricMeasurement::where('member_id', $member->id)->orderBy('created_at', 'DEC')->paginate(5);
+        $medidas= array($member->anthropometricMeasurements, $member->leftAnthropometrics, 'atpr');
+
+        dd($medidas);
+        //return view('member.show', ['member' => $member]);
     }
 
     public function edit($id)

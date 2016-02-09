@@ -1,3 +1,5 @@
+<h2 class="page-header">Infomación personal</h2><br>
+
 <div class="row">
 	<div class="col-lg-7">
 		<!-- Panel -->
@@ -30,23 +32,23 @@
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="general">
 								<h5 class="text-primary"><b>Nombre completo</b></h5>
-								<p class="text-capitalize">{!! $member->first_name ." ". $member->second_name ." ". $member->last_name !!}</p><hr><br>
+								<p class="text-capitalize">{!! $member->first_name ." ". $member->second_name ." ". $member->last_name !!}</p><hr>
 								<h5 class="text-primary"><b>Documeo de Identidad</b></h5>
-								<p>{!! $member->document !!}</p><hr><br>
+								<p>{!! $member->document !!}</p><hr>
 								<h5 class="text-primary"><b>Fecha de Nacimiento</b></h5>
-								<p><i class="fa fa-birthday-cake"></i> {!! $member->birthday!!}</p><hr><br>
+								<p><i class="fa fa-birthday-cake"></i> {!! $member->birthday!!}</p><hr>
 								<h5 class="text-primary"><b>Fecha de Ingreso</b></h5>
-								<p><i class="fa fa-calendar"></i> {!! $member->date_of_admission !!}</p><hr><br>
+								<p><i class="fa fa-calendar"></i> {!! $member->date_of_admission !!}</p><hr>
 								<h5 class="text-primary"><b>Edad</b></h5>
-								<p class="text-capitalize"><i class="fa fa-calendar"></i> {!! $member->age !!} años</p><hr><br>
+								<p class="text-capitalize"><i class="fa fa-calendar"></i> {!! $member->age !!} años</p><hr>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="contacto">
 								<h5 class="text-primary"><b>Dirección</b></h5>
-								<p class="text-capitalize"><i class="fa fa-home"></i>  {!! $member->address !!}</p><hr><br>
+								<p class="text-capitalize"><i class="fa fa-home"></i>  {!! $member->address !!}</p><hr>
 								<h5 class="text-primary"><b>Numero de telefono</b></h5>
-								<p><i class="fa fa-phone"></i>  {!! $member->phone !!}</p><hr><br>
+								<p><i class="fa fa-phone"></i>  {!! $member->phone !!}</p><hr>
 								<h5 class="text-primary"><b> E-mail</b></h5>
-								<p><i class="fa fa-envelope"></i>  {!! $member->email !!}</p><hr><br>
+								<p><i class="fa fa-envelope"></i>  {!! $member->email !!}</p><hr>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="messages">...</div>
 							<div role="tabpanel" class="tab-pane fade" id="settings">...</div>

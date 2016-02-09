@@ -22,7 +22,7 @@ class Member extends Model
 
     public function anthropometricMeasurements()
     {
-        return $this->hasMany('App\AnthropometricMeasurement');
+        return $this->hasMany('App\AnthropometricMeasurement')->orderBy('created_at', 'DEC');
     }
 
     public function leftAnthropometrics()
