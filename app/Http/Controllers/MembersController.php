@@ -75,12 +75,13 @@ class MembersController extends Controller
 
     public function update(Request $request, $id)
     {
+        $member = Member::find($id);
         if($request->file('photo')){
-            $image = Image::where('member_id', $id)->first();
+            $image = Image::firstOrCreate(['member_id' => $member->id]);
             $later= pathinfo($image->name);
             $file = $request->file('photo');
 
-            if ($later['filename'] == 'fotogym_placeholder') {
+            if ($later['filename'] == 'fotogym_placeholder' | $later['filename'] == null) {
                 $filename = 'fotogym_' . time();
             }
             else{
@@ -95,7 +96,8 @@ class MembersController extends Controller
             $image->save();
         }
 
-        $member = Member::find($id);
+        $member->fill($request->all());
+        $member->save();
 
         Flash::success("<b>¡Se ha actualizado a " . $member->first_name . " de manera exitosa!</b>");
 

@@ -38,8 +38,16 @@ class MedicalRecordsController extends Controller
 
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $member = Member::find($id);
+        $medicalrecord = MedicalRecord::firstOrCreate(['member_id' => $member->id]);
+        $medicalrecord->fill($request->all());
+        $medicalrecord->member()->associate($member);
+        $medicalrecord->save();
 
+        Flash::success("<b>¡Se ha actualizado la ficha medica de " . $member->first_name . " de manera exitosa!</b>");
+
+        return redirect()->route('admin.member.show', $member->id);
     }
 }

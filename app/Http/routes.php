@@ -37,6 +37,11 @@ Route::get('medicalrecord/{member_id}/create', [
     'uses' => 'MedicalRecordsController@create'
 ]);
 
+Route::put('medicalrecord/{member_id}/update', [
+    'as' => 'medicalrecord.update',
+    'uses' => 'MedicalRecordsController@update'
+]);
+
 Route::post('medicalrecord', [
     'as' => 'medicalrecord.store',
     'uses' => 'MedicalRecordsController@store'

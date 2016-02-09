@@ -35,7 +35,7 @@
 
 
 <!-- Modal -->
-@include('member.partials.photo_edit')
+@include('member.partials.modal_photo_edit')
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs nav-justified" role="tablist">
