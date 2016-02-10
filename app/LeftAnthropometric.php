@@ -8,10 +8,10 @@ class LeftAnthropometric extends Model
 {
 	protected $table = 'left_anthropometrics';
 
-	protected $fillable = ['left_arm', 'left_forearm', 'left_high_leg', 'left_lower_leg', 'left_calf', 'member_id'];
+	protected $fillable = ['left_arm', 'left_forearm', 'left_high_leg', 'left_lower_leg', 'left_calf'];
 
-	public function member()
+	public function anthropometricMeasurement()
 	{
-		return $this->belongsTo('App\Member');
+		return $this->hasOne('App\AnthropometricMeasurement');
 	}
 }

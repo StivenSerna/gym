@@ -9,6 +9,7 @@ use App\Http\Requests\MemberCreateRequest;
 use App\Http\Controllers\Controller;
 use App\Member;
 use App\Image;
+use App\AnthropometricMeasurement;
 use Laracasts\Flash\Flash;
 use Carbon\Carbon;
 
@@ -67,10 +68,8 @@ class MembersController extends Controller
         //echo "Age is:".$age;
         $member->age = Carbon::createFromDate($birthDate[0], $birthDate[1], $birthDate[2])->age;
         //$antropometricsm = AnthropometricMeasurement::where('member_id', $member->id)->orderBy('created_at', 'DEC')->paginate(5);
-        $medidas= array($member->anthropometricMeasurements, $member->leftAnthropometrics, 'atpr');
-
-        dd($medidas);
-        //return view('member.show', ['member' => $member]);
+        //dd($member->anthropometricMeasurements);
+        return view('member.show', ['member' => $member]);
     }
 
     public function edit($id)

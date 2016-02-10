@@ -26,12 +26,15 @@ class AnthropometricsRecordsController extends Controller
 		$leftanthropometric = new LeftAnthropometric($request->all());
 		$rightanthropometric = new RightAnthropometric($request->all());
         //$anthropometricm->save();
-
 		$member = Member::find($request->member_id);
+		$leftanthropometric->save();
+		$rightanthropometric->save();
 
-		$member->anthropometricMeasurements()->save($anthropometricm);
-		$member->anthropometricMeasurements()->save($leftanthropometric);
-		$member->anthropometricMeasurements()->save($rightanthropometric);
+		$anthropometricm->leftAnthropometric()->associate($leftanthropometric);
+		$anthropometricm->rightAnthropometric()->associate($rightanthropometric);
+
+		$anthropometricm->member()->associate($member);
+		$anthropometricm->save();
 
       Flash::success("¡ Se ha registrado la ficha antropometrica de " . $member->first_name . " exitosamente !");
 

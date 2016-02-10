@@ -25,14 +25,4 @@ class Member extends Model
         return $this->hasMany('App\AnthropometricMeasurement')->orderBy('created_at', 'DEC');
     }
 
-    public function leftAnthropometrics()
-    {
-        return $this->hasMany('App\LeftAnthropometric');
-    }
-
-    public function rightAnthropometrics()
-    {
-        return $this->hasMany('App\RightAnthropometric');
-    }
-
 }

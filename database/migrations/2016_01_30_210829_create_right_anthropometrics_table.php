@@ -19,8 +19,6 @@ class CreateRightAnthropometricsTable extends Migration
            $table->integer('right_high_leg');
            $table->integer('right_lower_leg');
            $table->integer('right_calf');
-           $table->integer('member_id')->unsigned();
-           $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
 
            $table->timestamps();
        });

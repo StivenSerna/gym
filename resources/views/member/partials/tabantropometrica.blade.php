@@ -3,9 +3,21 @@
 <div class="row">
 
 	<div class="col-lg-10">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-info-circle"></i> </h3>
+
+				<ul class="nav nav-pills">
+					<li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
+					<li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
+					<li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
+							<li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 
 			<div class="panel-body">
@@ -14,22 +26,26 @@
 					<!-- INICIO DEL PANEL -->
 
 					{!!"<!--"!!}{{ $i = 0 }}{!!"-->"!!}
-					@foreach ($member->medidas as $anthrom)
+					@foreach ($member->anthropometricMeasurements as $anthrom)
 
 					<div class="panel panel-default">
+
 						<div class="panel-heading" role="tab" id="heading{{ $i }}">
 							<h4 class="panel-title">
 								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $i }}" aria-expanded="{{ ($i == 0) ? "true" : "false"}}" aria-controls="collapse{{ $i }}">
-									Ficha antropometrica: {{$anthrom->created_at->format('d M Y - H:i')}}
+									<i class="fa fa-arrow-circle-right"></i> Ficha antropometrica: {{$anthrom->created_at->format('d M Y - H:i')}}
 								</a>
 							</h4>
 						</div>
+
 						<div id="collapse{{ $i }}" class="panel-collapse collapse {{ ($i == 0) ? "in" : ""}}" aria-controls="collapse{{ $i }}" role="tabpanel" aria-labelledby="heading{{ $i }}">
 							<div class="panel-body">
-							<!-- Inicio contenido de la ficha -->
-								{{ $i++ }}
+								<!-- Inicio contenido de la ficha -->
+								{!!"<!--"!!}{{$i++}}{!!"-->"!!}
+								{{ $anthrom->weight }}
 
-							<!-- fin contenido de la ficha -->
+
+								<!-- fin contenido de la ficha -->
 							</div>
 						</div>
 					</div>
@@ -97,6 +113,6 @@
 
 <script type="text/javascript">
 	@-moz-document url-prefix() {
-	fieldset { display: table-cell; }
-}
+		fieldset { display: table-cell; }
+	}
 </script>
