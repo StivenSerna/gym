@@ -20,8 +20,6 @@
 
 @section('content')
 
-
-
-
+@include('membership.partials.table')
 
 @endsection

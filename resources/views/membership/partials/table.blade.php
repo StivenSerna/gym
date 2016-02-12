@@ -26,13 +26,20 @@
 						<th>Dias</th>
 						<th>Acciones</th>
 					</thead>
+				@foreach($memberships as $membership)
+
 					<tbody>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
+						<th>{{$membership->description}}</th>
+						<th>{{$membership->price}}</th>
+						<th>{{$membership->month}}</th>
+						<th>{{$membership->day}}</th>
+						<th><a href="{{ route('membership.edit', $membership->id) }}" class="btn btn-info"><i class="fa fa-info-circle "></i></a>
+								<a href="{{ route('membership.index') }}"
+								 class="btn btn-danger"><i class="fa fa-trash "></i></a>
+								</th>
 					</tbody>
+
+					@endforeach
 				</table>
 			</div>
 		</div>

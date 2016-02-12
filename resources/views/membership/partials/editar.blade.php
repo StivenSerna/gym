@@ -1,8 +1,31 @@
+
+@extends('admin.template.main')
+
+@section('tittle', 'Membresias editar')
+
+@section('header')
+
+
+<h1 class="page-header">
+	Editar Membresia
+</h1>
+<ol class="breadcrumb">
+	<li class="active">
+		<i class="fa fa-dashboard"></i> Inicio
+	</li>
+</ol>
+
+
+@endsection
+
+@section('content')
+
+
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-credit-card"></i> CREACIÓN DE MEMBRESÍA</h3>
+				<h3 class="panel-title"><i class="fa fa-credit-card"></i> EDITAR MEMBRESÍA</h3>
 			</div>
 			<div class="panel-body">
 
@@ -12,16 +35,13 @@
 
 						<h5>Acontinuacion se muestran los campos requeridos para la cración de una nueva membresía</h5>
 				
-					{!! Form::open(['route' =>'membership.store', 'method'=>'POST'])!!}
+					{!! Form::model($membership, array('route' => array('membership.update', $membership->id), 'method'=>'PUT')) !!}
 
 						<div class="form-group">
 							{!! Form::label('description', 'Descripcion:') !!}
-							{!! Form::text('description', null,['class'=>'form-control','placeholder'=>'Descripcion: ']) !!}
+							{!! Form::text('description',null, ['class'=>'form-control','placeholder'=>'Descripcion: ']) !!}
 						</div>
-
-
 					</div>
-
 				</div>
 
 
@@ -33,7 +53,7 @@
 
 							<div class="form-group">
 								{!! Form::label('price', 'Precio:') !!}
-								{!! Form::text('price', null,['class'=>'form-control','placeholder'=>'Precio ']) !!}
+								{!! Form::text('price',null,['class'=>'form-control','placeholder'=>'Precio ']) !!}
 							</div>
 						</div>
 
@@ -92,3 +112,10 @@
 	</div>
 
 </div>
+@endsection
+
+
+
+
+
+

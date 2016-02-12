@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Membership;
+use App\Http\Requests\MembershipCreateRequest;
+
 
 class MembershipsController extends Controller
 {
@@ -16,7 +18,9 @@ class MembershipsController extends Controller
      */
     public function index()
     {
-        //
+        $memberships= Membership::All();
+        return view('membership.index')->with('memberships',$memberships);
+        
     }
 
     /**
@@ -36,9 +40,20 @@ class MembershipsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+        {
+            $hola= Membership::create([
+            'description' => $request ["description"],
+            'price' => $request ["price"],
+            'month' => $request ["month"],
+            'day'=> $request ["day"],
+            ]);
+            $hola->save();
+            return view('membership.create');
+            
+        }
+
+          
+    
 
     /**
      * Display the specified resource.
@@ -57,9 +72,11 @@ class MembershipsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($description)
     {
-        //
+        $membership= Membership::find($description);
+        return view('membership.edit')->with('membership',$membership);
+
     }
 
     /**

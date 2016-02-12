@@ -1,13 +1,13 @@
 
 @extends('admin.template.main')
 
-@section('tittle', 'Membresias')
+@section('tittle', 'Membresias editar')
 
 @section('header')
 
 
 <h1 class="page-header">
-	Membresias
+	Editar Membresia
 </h1>
 <ol class="breadcrumb">
 	<li class="active">
@@ -21,7 +21,5 @@
 @section('content')
 
 
-
-
-
+@include('membership.partials.editar')
 @endsection
