@@ -40,4 +40,10 @@ class AnthropometricsRecordsController extends Controller
 
        return redirect()->route('admin.member.show', $member->id);
 	}
+
+	public function destroy($id)
+	{
+		$anthropometricrecord = AnthropometricMeasurement::where('member_id', $id);
+
+	}
 }

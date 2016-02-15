@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -129,6 +129,11 @@
                         {!! link_to_route('admin.member.create', $title = 'Registrar miembro', $parameters = array(), $attributes = array()) !!}
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a class="href">
+                <i class="fa fa-credit-card-alt"></i> Membresias
+                </a>
             </li>
         </ul>
     </div>

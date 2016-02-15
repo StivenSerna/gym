@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <title>@yield('tittle', 'Default') | Panel de administración</title>
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('plugins/bootstrap/css/bootstraptheme.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('plugins/bootstrap/css/sb-admin.css') }}" rel="stylesheet">
@@ -21,6 +21,7 @@
     <link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/jasny-bootstrap/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    @yield('stylesheet')
     <script src=" {{ asset('plugins/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
     <script src=" {{ asset('plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
     <script src=" {{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>

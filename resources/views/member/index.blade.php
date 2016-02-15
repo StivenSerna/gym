@@ -49,7 +49,7 @@
 				<h3 class="panel-title"><i class="fa fa-users"></i> Miembros</h3>
 				<div class="pull-right">
 					<span class="clickable filter btn-filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-						<i class="glyphicon glyphicon-filter"></i>
+						<i class="fa fa-filter"></i>
 					</span>
 				</div>
 			</div>

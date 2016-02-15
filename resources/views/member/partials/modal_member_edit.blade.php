@@ -54,4 +54,9 @@
 		mostrarImagen(this);
 	});
 */
+
+</script>
+
+<script type="text/javascript">
+	$('#memberedit').modal({ 'show' : {{ count($errors) > 0 ? true : false }}  });
 </script>

@@ -64,10 +64,10 @@
 
 						<div class="form-group">
 							{!!Form::label('birthday', 'Fecha de Nacimiento:')!!}
-							<div class='input-group date' date-provide='datepicker'>
+							<div class='input-group date'>
 								{!! Form::text('birthday', null, array('class'=>'form-control birthdate')) !!}
 								<div class="input-group-addon">
-									<span class='glyphicon glyphicon-th'></span>
+									<span class='glyphicon glyphicon-calendar'></span>
 								</div>
 							</div>
 						</div>
@@ -77,15 +77,28 @@
 
 				<div class="form-group">
 					{!!Form::label('email', 'Email:')!!}
-					{!!Form::text('email', null,['class'=>'form-control','placeholder'=>'Email'])!!}
+					<div class="input-group">
+						<div class="input-group-addon">
+							<span class='glyphicon glyphicon-envelope'></span>
+						</div>
+						{!!Form::text('email', null,['class'=>'form-control','placeholder'=>'Email'])!!}
+					</div>
 				</div>
 
 				<div class="row">
+
 					<div class="col-lg-7">
 
 						<div class='form-group {{ $errors->has('address') ? 'has-error' : '' }} has-feedback'>
+
 							{!!Form::label('address', 'Direccion:')!!}
-							{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion' , 'aria-describedby'=> "inputError2Status"])!!}
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class='glyphicon glyphicon-home'></span>
+								</div>
+								{!!Form::text('address', null,['class'=>'form-control','placeholder'=>'Direccion' , 'aria-describedby'=> "inputError2Status"])!!}
+							</div>
+
 							@if ($errors->has('address'))
 							<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 							<span id="inputError2Status" class="help-block">
@@ -93,11 +106,18 @@
 							</span>
 							@endif
 						</div>
+
 					</div>
+
 					<div class="col-lg-5">
 						<div class="form-group">
 							{!!Form::label('phone', 'Telefono:')!!}
-							{!!Form::text('phone', null,['class'=>'form-control','placeholder'=>'Telefono'])!!}
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class='glyphicon glyphicon-phone'></span>
+								</div>
+								{!!Form::text('phone', null,['class'=>'form-control','placeholder'=>'Telefono'])!!}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -130,7 +150,7 @@
 					<div class='input-group date'>
 						{!! Form::text('date_of_admission', null, array('class'=>'form-control datepicker')) !!}
 						<div class="input-group-addon">
-							<span class='glyphicon glyphicon-th'></span>
+							<span class='glyphicon glyphicon-calendar'></span>
 						</div>
 					</div>
 				</div>

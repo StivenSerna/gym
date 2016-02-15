@@ -18,7 +18,6 @@
 								<ul class="nav nav-pills nav-stacked" role="tablist">
 									<li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
 									<li role="presentation"><a href="#contacto" aria-controls="contacto" role="tab" data-toggle="tab">Contacto</a></li>
-									<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Otro</a></li>
 									<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Opciones</a></li>
 								</ul>
 								<!-- Fin Nav tabs -->
@@ -50,8 +49,17 @@
 								<h5 class="text-primary"><b> E-mail</b></h5>
 								<p><i class="fa fa-envelope"></i>  {!! $member->email !!}</p><hr>
 							</div>
-							<div role="tabpanel" class="tab-pane fade" id="messages">...</div>
-							<div role="tabpanel" class="tab-pane fade" id="settings">...</div>
+
+							<div role="tabpanel" class="tab-pane fade" id="settings">
+							<h3 class="page-header">Opciones de perfil</h3>
+							 <a href="" class="btn btn-default" data-toggle="modal" data-target="#memberedit">
+							 	Editar informacion personal
+							 </a>
+							 <a href="" class="btn btn-default" data-toggle="modal" data-target="#medicaledit">
+							 	Editar informacion medica
+							 </a>
+							 {!! link_to_route('anthropometricrecord.create', $title = 'Nueva Ficha antropometrica', $parameters = array($member->id), $attributes = array('class' => "btn btn-default")) !!}
+							</div>
 						</div>
 						<!--FIn  Tab panes -->
 						<!--

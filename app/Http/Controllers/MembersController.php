@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\MemberCreateRequest;
+use App\Http\Requests\MemberEditRequest;
 use App\Http\Controllers\Controller;
 use App\Member;
 use App\Image;
@@ -67,9 +68,12 @@ class MembersController extends Controller
         //$age = (date("md", date("U", mktime(0, 0, 0, , , ))) > date("md") ? ((date("Y")-$birthDate[2])-1):(date("Y")-$birthDate[2]));
         //echo "Age is:".$age;
         $member->age = Carbon::createFromDate($birthDate[0], $birthDate[1], $birthDate[2])->age;
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+        $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
+       ///echo $meses[date('n')-1];
         //$antropometricsm = AnthropometricMeasurement::where('member_id', $member->id)->orderBy('created_at', 'DEC')->paginate(5);
         //dd($member->anthropometricMeasurements);
-        return view('member.show', ['member' => $member]);
+        return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias]);
     }
 
     public function edit($id)
@@ -77,7 +81,7 @@ class MembersController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(MemberEditRequest $request, $id)
     {
         $member = Member::find($id);
         if($request->file('photo')){

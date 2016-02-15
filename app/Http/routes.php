@@ -16,9 +16,7 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('inicio');
+Route::get('/', 'DashboardController@index')->name('inicio');
 
 Route::group(['prefix' => 'admin'], function(){
 	Route::resource('member', 'MembersController');
@@ -51,6 +49,11 @@ Route::post('medicalrecord', [
 Route::get('anthropometricrecord/{member_id}/create', [
     'as' => 'anthropometricrecord.create',
     'uses' => 'AnthropometricsRecordsController@create'
+]);
+
+Route::get('anthropometricrecord/{member_id}/destroy', [
+    'as' => 'anthropometricrecord.destroy',
+    'uses' => 'AnthropometricsRecordsController@destroy'
 ]);
 
 Route::post('anthropometricrecord', [

@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
 
     ],
 
@@ -206,6 +207,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 
