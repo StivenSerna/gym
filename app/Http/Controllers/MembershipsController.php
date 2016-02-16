@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Membership;
 use App\Http\Requests\MembershipCreateRequest;
+use Laracasts\Flash\Flash;
 
 
 class MembershipsController extends Controller
@@ -88,7 +89,15 @@ class MembershipsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $membership = Membership::find($id);
+        $membership->description = $request->description;
+        $membership->price = $request->price;
+        $membership->month = $request->month;
+        $membership->day = $request->day;
+        $membership->save();
+
+        Flash::success('La Membresia ' . $membership->description . ' se ha actualizado correctamente');
+        return redirect()->route('membership.index');
     }
 
     /**
@@ -99,6 +108,10 @@ class MembershipsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $membership = Membership::find($id);
+        $membership->delete();
+
+        Flash::error("¡El miembro " . $membership->description . " fue eliminado de manera exitosa!");
+        return redirect()->route('membership.index');
     }
 }

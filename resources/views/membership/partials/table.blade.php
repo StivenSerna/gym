@@ -34,8 +34,8 @@
 						<th>{{$membership->month}}</th>
 						<th>{{$membership->day}}</th>
 						<th><a href="{{ route('membership.edit', $membership->id) }}" class="btn btn-info"><i class="fa fa-info-circle "></i></a>
-								<a href="{{ route('membership.index') }}"
-								 class="btn btn-danger"><i class="fa fa-trash "></i></a>
+								<a href="{{ route('membership.destroy', $membership->id) }}"
+								onclick="return confirm('¿Esta seguro de querer eliminar el registro?')" class="btn btn-danger"><i class="fa fa-trash "></i></a>
 								</th>
 					</tbody>
 
