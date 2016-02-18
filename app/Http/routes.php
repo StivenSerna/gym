@@ -63,6 +63,9 @@ Route::post('anthropometricrecord', [
 
 
 Route::resource('membership', 'MembershipsController');
+Route::get('membership/{id}/destroy', [
+        'uses' => 'MembershipsController@destroy',
+        'as' => 'membership.destroy']);
 
 /*
 |--------------------------------------------------------------------------
