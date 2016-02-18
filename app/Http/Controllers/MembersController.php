@@ -127,6 +127,28 @@ class MembersController extends Controller
                 return redirect()->route('admin.member.show', ['member' => $member]);
             }
         }
+        elseif (isset($request->nombre)) {
+            $members = Member::where('first_name', $request->nombre)->orWhere('second_name', $request->nombre);
+            //dd($member);
+            if($members->first() == null){
+                Flash::error("No existe nungun miembro con el nombre " . $request->nombre . " registrado");
+                return redirect()->route('admin.member.index');
+            }
+            else{
+                dd($members);
+            }
+        }
+        elseif (isset($request->apellido)) {
+            $members = Member::where('last_name', $request->apellido);
+            //dd($member);
+            if($members->first() == null){
+                Flash::error("No existe nungun miembro con el apellido " . $request->apellido . " registrado");
+                return redirect()->route('admin.member.index');
+            }
+            else{
+                dd($members);
+            }
+        }
     }
 
     public function destroy($id)
