@@ -21,7 +21,7 @@ class MembershipsController extends Controller
     {
         $memberships= Membership::All();
         return view('membership.index')->with('memberships',$memberships);
-        
+
     }
 
     /**
@@ -49,12 +49,12 @@ class MembershipsController extends Controller
             'day'=> $request ["day"],
             ]);
             $hola->save();
-            return view('membership.create');
-            
-        }
 
-          
-    
+            Flash::success("¡Se ha registrado la membresia " . $hola->description . " de manera exitosa!");
+
+            return redirect()->route('membership.index');
+
+        }
 
     /**
      * Display the specified resource.
@@ -111,7 +111,7 @@ class MembershipsController extends Controller
         $membership = Membership::find($id);
         $membership->delete();
 
-        Flash::error("¡El miembro " . $membership->description . " fue eliminado de manera exitosa!");
+        Flash::info("¡La membresia " . $membership->description . " fue eliminada de manera exitosa!");
         return redirect()->route('membership.index');
     }
 }

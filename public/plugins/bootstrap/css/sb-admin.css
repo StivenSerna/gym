@@ -230,7 +230,7 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
-/* otro css*/
+/* para el panel filtrable */
 
 .filterable {
     margin-top: 15px;
@@ -290,4 +290,101 @@ ul.alert-dropdown {
 
 @media (max-width: 767px) {
 
+}
+
+/*  Para los thumbnails de las membresias */
+
+.portlet-title {
+    padding: 0;
+    min-height: 40px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 18px;
+}
+
+.portlet .caption {
+    float: left;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.portlet {
+    background: #fff;
+    padding: 20px;
+}
+
+/* Actions  de los thumbnails*/
+
+.actions .btn {
+    color: #666;
+    padding: 3px 9px;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: 50px;
+}
+
+/* Btn Red thumbnails */
+.actions .btn.btn-red.active,
+.actions .btn.btn-red:hover {
+    color: #fff;
+    box-shadow: none;
+    background: #e26a6a;
+    border-color: #e26a6a;
+}
+
+/* Btn blue thumbnails */
+.actions .btn.btn-blue.active,
+.actions .btn.btn-blue:hover {
+    color: #fff;
+    box-shadow: none;
+    background: #337ab7;
+    border-color: #337ab7;
+}
+
+.portlet .portlet-body-price {
+  font-size: 25px;
+  padding: 20px;
+  margin: 0px;
+}
+
+.portlet .subscript
+{
+    font-size: 30px;
+}
+
+.pagination {
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0 0;
+    padding-left: 0;
+    float: right;
+}
+
+/* perfil imagen */
+
+.bg_blur
+{
+    background-image:url('../../../images/style/logo-large.jpg');
+    height: 350px;
+    background-size: cover;
+}
+.picture{
+    width:200px;
+    position:absolute;
+    top: 100px;
+    left:-100px;
+}
+
+.picture_mob{
+    position: absolute;
+    width: 35%;
+    left: 35%;
+    bottom: 70%;
+}
+
+.header-blur{
+    margin-left:15%;
+    margin-top:100px;
 }

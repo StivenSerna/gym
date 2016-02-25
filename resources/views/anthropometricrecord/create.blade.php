@@ -46,7 +46,7 @@
 
 				<div class="form-group">
 					{!!Form::label('height', 'Estatura:')!!}
-					{!!Form::text('height', null,['class'=>'form-control', 'data-mask' => '9.99', 'placeholder'=>'Estatura'])!!}
+					{!!Form::text('height', null,['class'=>'form-control', 'placeholder'=>'Estatura'])!!}
 				</div>
 
 				<div class="form-group">

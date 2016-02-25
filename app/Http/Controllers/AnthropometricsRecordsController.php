@@ -36,14 +36,43 @@ class AnthropometricsRecordsController extends Controller
 		$anthropometricm->member()->associate($member);
 		$anthropometricm->save();
 
-      Flash::success("¡ Se ha registrado la ficha antropometrica de " . $member->first_name . " exitosamente !");
+		Flash::success("¡ Se ha registrado la ficha antropometrica de " . $member->first_name . " exitosamente !");
 
-       return redirect()->route('admin.member.show', $member->id);
+		return redirect()->route('admin.member.show', $member->id);
 	}
 
-	public function destroy($id)
+	public function destroy(Request $request, $id)
 	{
-		$anthropometricrecord = AnthropometricMeasurement::where('member_id', $id);
+		if($request->optradio == 1){
+
+			$anthropometricrecords = AnthropometricMeasurement::where('member_id', $id)->orderBy('created_at', 'DEC')->take(1)->pluck('id');
+			$delete = AnthropometricMeasurement::where('id', '!=', $anthropometricrecords)->where('member_id', $id)->delete();
+
+			Flash::info("¡ Se ha(n) eliminado la(s) ficha(s) antropometrica(s) antiguas exitosamente !");
+
+			return redirect()->route('admin.member.show', $id);
+
+		}
+		elseif($request->optradio == 2){
+
+			$anthropometricrecords = AnthropometricMeasurement::where('member_id', $id)->orderBy('created_at', 'ASC')->take($request->borrar)->delete();
+			//dd($request->borrar);
+			Flash::info("¡ Se ha(n) eliminado la(s) ficha(s) antropometrica(s) antiguas exitosamente !");
+
+			return redirect()->route('admin.member.show', $id);
+		}
+		elseif($request->optradio == 3){
+
+			$fichasAll = AnthropometricMeasurement::where('member_id', $id)->count();
+			$borrar = $fichasAll - $request->dejar;
+
+			$anthropometricrecords = AnthropometricMeasurement::where('member_id', $id)->orderBy('created_at', 'ASC')->take($borrar)->delete();
+
+			Flash::info("¡ Se ha(n) eliminado la(s) ficha(s) antropometrica(s) antiguas exitosamente !");
+
+			return redirect()->route('admin.member.show', $id);
+
+		}
 
 	}
 }

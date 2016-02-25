@@ -1,13 +1,22 @@
-<h2 class="page-header">Infomación personal</h2><br>
+<h2 class="page-header">Infomación personal y medica</h2><br>
 
 <div class="row">
 	<div class="col-lg-7">
 		<!-- Panel -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-user"></i> Información personal</h3>
-			</div>
-			<div class="panel-body">
+		<div class="thumbnail">
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="actions pull-right">
+						<button type="button" class="btn btn-blue" data-toggle="modal" data-target="#memberedit">
+							<i class="fa fa-pencil"></i>
+							Editar
+						</button>
+					</div>
+					<div class="caption">
+						<p class="text-primary"><i class="fa fa-user"></i>  Información personal</p>
+					</div>
+
+				</div>
 
 				<div class="row" >
 
@@ -51,62 +60,45 @@
 							</div>
 
 							<div role="tabpanel" class="tab-pane fade" id="settings">
-							<h3 class="page-header">Opciones de perfil</h3>
-							 <a href="" class="btn btn-default" data-toggle="modal" data-target="#memberedit">
-							 	Editar informacion personal
-							 </a>
-							 <a href="" class="btn btn-default" data-toggle="modal" data-target="#medicaledit">
-							 	Editar informacion medica
-							 </a>
-							 {!! link_to_route('anthropometricrecord.create', $title = 'Nueva Ficha antropometrica', $parameters = array($member->id), $attributes = array('class' => "btn btn-default")) !!}
+								<h3 class="page-header">Opciones de perfil</h3>
+								<a href="" class="btn btn-default" data-toggle="modal" data-target="#memberedit">
+									Editar informacion personal
+								</a>
+								<a href="" class="btn btn-default" data-toggle="modal" data-target="#medicaledit">
+									Editar informacion medica
+								</a>
+								{!! link_to_route('anthropometricrecord.create', $title = 'Nueva Ficha antropometrica', $parameters = array($member->id), $attributes = array('class' => "btn btn-default")) !!}
 							</div>
 						</div>
-						<!--FIn  Tab panes -->
-						<!--
-						<div class="form-group">
-							<h4>Nombre Completo:</h4>
-						</div>
-
-						<div class="form-group">
-							<h4>Documeo Identidad:</h4>
-						</div>
-
-						<div class="form-group">
-							<h4>Fecha De Nacimiento:</h4>
-						</div>
-
-						<div class="form-group">
-							<h4>Direccion:</h4>
-						</div>
-
-						<div class="form-group">
-							<h4>E-mail:</h4>
-						</div>-->
 					</div>
 
 				</div>
 
 			</div>
-			<a href="" data-toggle="modal" data-target="#memberedit">
-				<div class="panel-footer">
-				<span class="pull-left"><i class="fa fa-pencil-square-o"></i><b> Editar informacion personal</b></span>
-					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-					<div class="clearfix"></div>
-				</div>
-			</a>
-			@include('member.partials.modal_member_edit')
 		</div>
 		<!-- Fin panel -->
+
 	</div>
 
 	<!--  Ficha medica    -->
 
 	<div class="col-lg-5">
-		<div class="panel panel-yellow">
-			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-medkit"></i> Informacion medica</h3>
-			</div>
-			<div class="panel-body">
+		<!-- Informacion medica -->
+
+		<div class="thumbnail">
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="actions pull-right">
+						<button type="button" class="btn btn-blue" data-toggle="modal" data-target="#medicaledit">
+							<i class="fa fa-pencil"></i>
+							Editar
+						</button>
+					</div>
+					<div class="caption">
+						<p class="text-warning"><i class="fa fa-medkit"></i> Informacion medica</p>
+					</div>
+
+				</div>
 
 				<div class="row">
 					<div class="col-md-4">
@@ -152,19 +144,11 @@
 					</div>
 				</div><br>
 
-
 			</div>
-
-			<a href="" data-toggle="modal" data-target="#medicaledit">
-				<div class="panel-footer">
-				<span class="pull-left"><i class="fa fa-pencil-square-o"></i><b> Editar informacion medica</b></span>
-					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-					<div class="clearfix"></div>
-				</div>
-			</a>
-			@include('member.partials.modal_medicalrecord_edit')
-
 		</div>
+
+		<!-- Fin informacion medica -->
+
 	</div>
 </div>
-
+@include('member.partials.modal_medicalrecord_edit')

@@ -25,4 +25,9 @@ class Member extends Model
         return $this->hasMany('App\AnthropometricMeasurement')->orderBy('created_at', 'DEC');
     }
 
+    public function affiliations()
+    {
+        return $this->hasMany('App\Affiliation')->orderBy('created_at', 'DEC');
+    }
+
 }

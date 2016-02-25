@@ -16,8 +16,8 @@ class CreateMembershipsTable extends Migration
             $table->increments('id');
             $table->string('description');
             $table->integer('price');
-            $table->integer('month'); 
-            $table->integer('day');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            $table->integer('month');
+            $table->integer('day');
             $table->timestamps();
 
         });

@@ -51,7 +51,7 @@ Route::get('anthropometricrecord/{member_id}/create', [
     'uses' => 'AnthropometricsRecordsController@create'
 ]);
 
-Route::get('anthropometricrecord/{member_id}/destroy', [
+Route::post('anthropometricrecord/{member_id}/destroy', [
     'as' => 'anthropometricrecord.destroy',
     'uses' => 'AnthropometricsRecordsController@destroy'
 ]);
@@ -66,6 +66,21 @@ Route::resource('membership', 'MembershipsController');
 Route::get('membership/{id}/destroy', [
         'uses' => 'MembershipsController@destroy',
         'as' => 'membership.destroy']);
+
+Route::resource('affiliation', 'AffiliationsController', ['only' => [
+    'index', 'store'
+]]);
+
+Route::get('affiliation/{member_id}/create', [
+    'as' => 'affiliation.create',
+    'uses' => 'AffiliationsController@create'
+]);
+
+Route::put('affiliation/{member_id}/update', [
+    'as' => 'affiliation.update',
+    'uses' => 'AffiliationsController@update'
+]);
+
 
 /*
 |--------------------------------------------------------------------------

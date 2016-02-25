@@ -10,12 +10,21 @@
 
 	<div class="col-lg-10">
 
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Medidas antropometricas
-			</div>
+		<div class="thumbnail">
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="actions pull-right">
+						<a href="{{ route('anthropometricrecord.create', $member->id) }}" class="btn btn-blue">
+							<i class="fa fa-file-text-o"></i>
+							Nueva
+						</a>
+					</div>
+					<div class="caption">
+						<p class="text-primary"><i class="fa fa-list-ol"></i>  Medidas antropometricas</p>
+					</div>
+				</div>
 
-			<div class="panel-body">
+
 				<!-- INICIO de las tabs de antropometricas -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="all-fichas">
@@ -44,6 +53,10 @@
 										</tr>
 									</thead>
 									<tbody>
+										<?php
+										$fechas = array();
+										$imc = array();
+										?>
 
 										{!!"<!--"!!}{{ $i = 0 }}{!!"-->"!!}
 										@foreach ($member->anthropometricMeasurements as $anthrom)
@@ -51,7 +64,11 @@
 										{!!"<!--"!!}{{$i++}}{!!"-->"!!}
 
 										<!-- Inicio contenido tabla -->
+										<?php
 
+										array_unshift($fechas, "'".$anthrom->created_at->format('w') . "-" . $anthrom->created_at->format('n') . "-" .$anthrom->created_at->format('Y')."'");
+										array_unshift($imc, $anthrom->imc)
+										?>
 										<tr>
 											<td class="agenda-date" class="active" rowspan="2">
 												<div class="dayofmonth">{{ $anthrom->created_at->format('d') }}</div>
@@ -172,14 +189,15 @@
 					</div>
 
 					<div role="tabpanel" class="tab-pane fade" id="estadisticas-fichas">
+						<div class="row">
+							<div id="containerChart" style="min-width: 310px; height: 400px; margin: 0 auto" class="contains-chart"></div>
+						</div>
 
 					</div>
 
 				</div>
 				<!-- FIN de las tabs de antropometricas -->
-			</div>
 
-			<div class="panel-footer">
 
 			</div>
 		</div>
@@ -195,44 +213,24 @@
 			<div class="col-lg-12 col-md-12">
 				<!-- Nav de fichas antropometricas -->
 				<ul class="nav nav-pills nav-stacked" role="tablist">
-					<li role="presentation" class="active"><a href="#all-fichas" aria-controls="all-fichas" role="tab" data-toggle="tab">
-						<span class="badge pull-right">
-							{{ isset($member->anthropometricMeasurements) ? count($member->anthropometricMeasurements) : ""}}
-						</span>Todas</a>
+					<li role="presentation" class="active">
+						<a href="#all-fichas" aria-controls="all-fichas" role="tab" data-toggle="tab">
+							<span class="badge pull-right">
+								{{ isset($member->anthropometricMeasurements) ? count($member->anthropometricMeasurements) : "0"}}
+							</span>
+							Todas
+						</a>
 					</li>
-					<li role="presentation"><a href="#">Mas reciente</a></li>
-					<li role="presentation"><a href="#estadisticas-fichas" aria-controls="estadisticas-fichas" role="tab" data-toggle="tab">Estadisticas</a></li>
+					<li role="presentation">
+						<a href="#estadisticas-fichas" aria-controls="estadisticas-fichas" role="tab" data-toggle="tab">
+							<i class="fa fa-area-chart"></i>
+							Estadisticas
+						</a>
+					</li>
 				</ul>
 				<!-- Fin Nav de fichas antropometricas -->
 			</div>
 		</div><br>
-
-
-		<!--
-		<div class="row">
-			<div class="col-lg-12 col-md-12">
-				<div class="panel panel-green">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-comments fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="huge">26</div>
-								<div>IMC actual</div>
-							</div>
-						</div>
-					</div>
-					<a href="#">
-						<div class="panel-footer">
-							<span class="pull-left">ver detalles</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>-->
 	</div>
 
 
@@ -243,58 +241,182 @@
 
 <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
+		{!! Form::open(array('route' => array('anthropometricrecord.destroy', $member->id), 'method' => 'POST')) !!}
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Borrar fichas antropometricas antiguas</h4>
 			</div>
 			<div class="modal-body">
-				<h5>Opciones</h5>
+				<h4 class="text-primary">Opciones <small> solo puede seleccionar una</small></h4><hr>
 
-				<input id="ex7-enabled" type="checkbox"/> Borrar por cantidad de registros<br>
-				<input id="ex7" type="text" data-slider-min="0" data-slider-max="{{ isset($member->anthropometricMeasurements) ? count($member->anthropometricMeasurements) : 0 }}" data-slider-step="1" data-slider-value="0" data-slider-enabled="false"/><br>
-				<span> Se conservarian <b><span id="ex7SliderVal">-</span></b>  fichas antropometricas</span><hr>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="radio">
+							<label>{{ Form::radio('optradio', 1, true, ['id' => 'ex8-enabled']) }}Dejar solo la ultima ficha</label>
+						</div>
+					</div>
+					<div class="col-md-8">
+
+					</div>
+				</div><hr>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="radio">
+							<label>{{ Form::radio('optradio', 2, false, ['id' => 'ex7-enabled']) }}Borrar antiguas</label>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<input id="ex7" type="text" data-slider-min="0" name="borrar" data-slider-max="{{ isset($member->anthropometricMeasurements) ? count($member->anthropometricMeasurements) : 0 }}" data-slider-step="1" data-slider-value="0" data-slider-enabled="false"/><br><br>
+						<span> Se conservarian <b><span id="ex7SliderVal">{!! count($member->anthropometricMeasurements) !!}</span></b>  ficha(s) antropometricas</span>
+					</div>
+				</div><hr>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="radio">
+							<div class="radio">
+								<label>{{ Form::radio('optradio', 3, false, ['id' => 'ex9-enabled']) }}Dejar las ultimas</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<input id="ex9" type="text" data-slider-min="0" name="dejar" data-slider-max="{{ isset($member->anthropometricMeasurements) ? count($member->anthropometricMeasurements) : 0 }}" data-slider-step="1" data-slider-value="0" data-slider-enabled="false"/><br>
+					</div>
+				</div>
 
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-danger">Eliminar</button>
+				{!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
 			</div>
 		</div>
+		{!! Form::close() !!}
 	</div>
 </div>
 
+
 <!-- Fin contenido de el modal de borrado de las fichas antropometrcas -->
 
-
-<script type="text/javascript">
-	@-moz-document url-prefix() {
-		fieldset { display: table-cell; }
-	}
-</script>
-
 <script type="text/javascript">
 
-	var slider = new Slider("#ex7", {
-		tooltip: 'always'
+	$(function () {
+		$('#containerChart').highcharts({
+			chart: {
+				renderTo: 'containerChart',
+				type: 'area'
+			},
+			title: {
+				text: 'Historico del indice de masa corporal'
+			},
+			subtitle: {
+				text: 'IMC por fechas, comenzando por la medicion mas antigua a la mas nueva'
+			},
+			xAxis: {
+				categories: [<?php echo join($fechas, ',') ?>],
+				tickmarkPlacement: 'on',
+				title: {
+					enabled: false
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Valor'
+				},
+				labels: {
+					formatter: function () {
+						return this.value / 1;
+					}
+				}
+			},
+			tooltip: {
+				shared: true,
+				valueSuffix: ' '
+			},
+			plotOptions: {
+				area: {
+					stacking: 'normal',
+					lineColor: '#666666',
+					lineWidth: 1,
+					marker: {
+						lineWidth: 1,
+						lineColor: '#666666'
+					}
+				}
+			},
+			lang: {
+				downloadPDF: "Descargar en PDF",
+				downloadJPEG: "Descargar como imagen JPEG",
+				downloadPNG: "Descargar como imagen PNG",
+				downloadSVG: "Descargar como SVG",
+				printChart: "Imprimir grafica"
+			},
+			series: [{
+				name: 'IMC',
+				data: [<?php echo join($imc, ',') ?>]
+			}]
+		});
 	});
 
-	$("#ex7-enabled").click(function() {
-		if(this.checked) {
-		// With JQuery
-		$("#ex7").slider("enable");
 
-		// Without JQuery
-		slider.enable();
-	}
-	else {
-		// With JQuery
-		$("#ex7").slider("disable");
+jQuery(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) { // on tab selection event
+    jQuery( ".contains-chart" ).each(function() { // target each element with the .contains-chart class
+        var chart = jQuery(this).highcharts(); // target the chart itself
+        chart.reflow() // reflow that chart
+       });
+   })
 
-		// Without JQuery
-		slider.disable();
-	}
-});
+  </script>
+  <!-- fin grafica -->
+
+
+  <script type="text/javascript">
+  	@-moz-document url-prefix() {
+  		fieldset { display: table-cell; }
+  	}
+  </script>
+
+
+  <!-- Para el slider -->
+  <script type="text/javascript">
+
+  	$("#ex7").slider({
+  		id: "slider12a"
+  	});
+
+  	$("#ex9").slider({
+  		id: "slider12b"
+  	});
+
+  	$("#ex7-enabled").click(function() {
+  		if(this.checked) {
+
+  			$("#ex7").slider("enable");
+  			$("#ex9").slider("disable");
+
+  		}
+  		else {
+
+  			$("#ex7").slider("disable");
+  		}
+  	});
+
+
+  	$("#ex9-enabled").click(function() {
+  		if(this.checked) {
+
+  			$("#ex7").slider("disable");
+  			$("#ex9").slider("enable");
+
+  		}
+  		else {
+
+  			$("#ex9").slider("disable");
+  		}
+  	});
+
+
 
 	//cambiar valores en el slider para el span
 

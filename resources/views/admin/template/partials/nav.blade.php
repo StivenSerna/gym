@@ -131,7 +131,7 @@
                 </ul>
             </li>
             <li>
-                <a class="href">
+                <a href="{{ route('membership.index') }}">
                 <i class="fa fa-credit-card-alt"></i> Membresias
                 </a>
             </li>

@@ -19,7 +19,7 @@ class MembersController extends Controller
 {
     public function index ()
     {
-        $members = Member::orderBy('created_at', 'DEC')->paginate(15);
+        $members = Member::orderBy('created_at', 'DEC')->get();
         return view('member.index')->with('members', $members);
     }
 
@@ -61,18 +61,39 @@ class MembersController extends Controller
     public function show ($id)
     {
         $member = Member::find($id);
-        //dd(Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days'));
+
         $birthDate = $member->birthday;
         $birthDate = explode("-", $birthDate);
-        //dd($birthDate);
-        //$age = (date("md", date("U", mktime(0, 0, 0, , , ))) > date("md") ? ((date("Y")-$birthDate[2])-1):(date("Y")-$birthDate[2]));
-        //echo "Age is:".$age;
+
         $member->age = Carbon::createFromDate($birthDate[0], $birthDate[1], $birthDate[2])->age;
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
-       ///echo $meses[date('n')-1];
-        //$antropometricsm = AnthropometricMeasurement::where('member_id', $member->id)->orderBy('created_at', 'DEC')->paginate(5);
-        //dd($member->anthropometricMeasurements);
+
+
+        foreach ($member->anthropometricMeasurements as $anthrom) {
+            if ($anthrom->height == 0) {
+                $imc = 0;
+            }
+            else{
+                $imc = $anthrom->weight / (($anthrom->height / 100) * ($anthrom->height / 100));
+            }
+
+            $anthrom->imc = $imc;
+        }
+
+        $currentdate = Carbon::today();
+
+        $affiliations = $member->affiliations;
+
+        foreach ($affiliations as $affiliation) {
+        $finalization = new Carbon($affiliation->finalization);
+            if ($currentdate->lte($finalization)) {
+                $affiliation->active = true;
+            } else {
+                $affiliation->active = false;
+            }
+        }
+        $member->affiliations = $affiliations;
         return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias]);
     }
 
@@ -101,6 +122,7 @@ class MembersController extends Controller
             $file->move($path, $name);
 
             $image->name = $name;
+            $image->member()->associate($member);
             $image->save();
         }
 
