@@ -4,9 +4,15 @@
 
 @section('stylesheet')
 <link href="{{ asset('plugins/slider/bootstrap-slider.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('plugins/bdt/dateTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/slider/bootstrap-slider.min.js') }}"></script>
 <script src=" {{ asset('plugins/chart/highcharts.js') }}"></script>
 <script src=" {{ asset('plugins/chart/exporting.js') }}"></script>
+<script src=" {{ asset('plugins/bdt/jquery.dateTables.js') }}"></script>
+
+<link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet" type="text/css">
+<script src=" {{ asset('plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
 @endsection
 
 @section('header')

@@ -1,7 +1,7 @@
 <h2 class="page-header">Membresias</h2><br>
 
 <div class="row">
-	<div class="col-lg-8">
+	<div class="col-lg-9">
 		<!-- Panel -->
 		<div class="thumbnail">
 			<div class="portlet">
@@ -27,7 +27,7 @@
 							<div role="tabpanel" class="tab-pane fade in active" id="opcionUno">
 
 								<div class="table-responsive">
-									<table class="table table-bordered table-hover">
+									<table class="table table-striped table-bordered" data-order='[[ 4, "dec" ]]' id='ordenable' width="100%">
 										<thead>
 											<tr>
 												<th>#</th>
@@ -35,16 +35,14 @@
 												<th>Descripción</th>
 												<th>Inicio</th>
 												<th>Finalización</th>
-												<th>Tipo de transacción</th>
+												<th>Transacción</th>
 												<th>Precio</th>
-												<th>Pago / abono</th>
-												<th>Saldo - Debe</th>
 											</tr>
 										</thead>
 										<tbody>
 											@foreach ($member->affiliations as $affiliation)
 											<tr>
-												<td>{!! "A-".($affiliation->id + 1000) !!}</td>
+												<td>{!! "A-".($affiliation->id + 100000) !!}</td>
 												<td>
 													@if ($affiliation->active)
 													<span class="label label-success">Activa</span>
@@ -63,14 +61,12 @@
 													@endif
 												</td>
 												<td>$ {!! $affiliation->price !!}</td>
-												<td>$ {!! $affiliation->payout !!}</td>
-												<td>$ {!! $affiliation->payout -  $affiliation->payout !!}</td>
 											</tr>
 											@endforeach
 										</tbody>
 
 									</table>
-								</div>
+								</div><hr>
 
 
 							</div>
@@ -125,31 +121,47 @@
 
 	<!--  Ficha medica    -->
 
-	<div class="col-lg-4">
+	<div class="col-lg-3">
 		<!-- Informacion medica -->
 
 		<div class="thumbnail">
 			<div class="portlet">
+
+
+				@if ($activa != null)
+
 				<div class="portlet-title">
-					<div class="actions pull-right">
-						<!--Boton -->
-					</div>
 					<div class="caption">
 						<p class="text-success"><i class="fa fa-check"></i> Membresia activa</p>
 					</div>
-
 				</div>
 
-				<div class="row">
-					<div class="col-md-4">
-						<dt>Enfermedades actuales</dt>
+				<dt><h4>{!! $activa->membership->description !!}</h4></dt>
+
+				<dt>Duración </dt>
+				<dd>{!! $activa->membership->month !!} meses y {!! $activa->membership->day !!} dias</dd><br>
+				<dt>Inicia </dt>
+				<dd>{!! $activa->initiation !!}</dd>
+				<dt>Caduca </dt>
+				<dd>{!! $activa->finalization !!}</dd><br>
+
+				<div class="progress">
+					<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{$activa->porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$activa->porcentaje}}%">
+						<b>{{intval($activa->porcentaje)}}%</b>
 					</div>
-					<div class="col-md-8">
-						@if(isset($member->medicalrecord->current_diseases))
-						<dd>{!! $member->medicalrecord->current_diseases !!}</dd>
-						@endif
+				</div>
+
+				@else
+
+				<div class="portlet-title">
+					<div class="caption">
+						<p class="text-danger"><i class="fa fa-times"></i> Ninguna membresia activa</p>
 					</div>
-				</div><hr><br>
+				</div>
+
+				@endif
+
+				<hr>
 
 			</div>
 		</div>
@@ -158,4 +170,16 @@
 
 	</div>
 </div>
-@include('member.partials.modal_medicalrecord_edit')
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#ordenable').dataTable( {
+			"language": {
+				"url": "{{ asset('plugins/bdt/spanish.json') }}"
+			},
+			"aoColumnDefs": [
+			{ "bSortable": false, "aTargets": [0] }
+			]
+		} );
+	} );
+</script>

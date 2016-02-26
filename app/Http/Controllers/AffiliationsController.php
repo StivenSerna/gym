@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\AffiliationCreateRequest;
 use App\Http\Controllers\Controller;
 use App\Membership;
 use App\Member;
 use App\Affiliation;
+use App\Payment;
 use Carbon\Carbon;
 use Laracasts\Flash\Flash;
 
@@ -31,13 +33,37 @@ class AffiliationsController extends Controller
      */
     public function create($member_id)
     {
+
         $memberships = Membership::all()->lists('description', 'id');
         $membershipsAll = Membership::all();
         $member = Member::find($member_id);
 
+        $rangeArray = array();
+
+        $rangeDates = \App\Affiliation::orderBy('finalization', 'DEC')
+        ->where('member_id', $member_id)
+        ->where('finalization', '>=', Carbon::now())->get();
+
+        foreach ($rangeDates as $range) {
+
+            $initiationRange = new Carbon($range->initiation);
+            $finalizationRange = new Carbon($range->finalization);
+
+            $diference = $initiationRange->diffInDays($finalizationRange);
+
+            for ($i=0; $i <= $diference; $i++) {
+                array_unshift($rangeArray, "'".$initiationRange->copy()->format('Y-m-d')."'");
+                $initiationRange->addDay();
+            }
+
+        }
+
         return view('affiliation.create')->with('memberships', $memberships)
         ->with('membershipsAll', $membershipsAll)
-        ->with('member', $member);
+        ->with('member', $member)
+        ->with('affiliationRange', $rangeArray);
+
+
     }
 
     /**
@@ -46,7 +72,7 @@ class AffiliationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AffiliationCreateRequest $request)
     {
         //dd($request);
         /*"_token" => "8s9rQffPRk7lOCtbGidK1Wzvp4fmMQ00GLTvNFQv"
@@ -67,24 +93,41 @@ class AffiliationsController extends Controller
     $membership = Membership::find($request->membership_id);
 
     $affiliation = new Affiliation($request->all());
+    $payment = new Payment();
+
 
     $end = new Carbon($request->initiation);
-    $end->addMonths($membership->month);
-    $end->addDays($membership->day);
+    if ($membership->month > 0) {
+        $end->addMonths($membership->month);
+    }
+    if ($membership->day > 0) {
+        $end->addDays($membership->day - 1);
+    }
+
+    $payment->member_id = $request->member_id;
 
     $affiliation->finalization = $end;
     $affiliation->price =$membership->price;
     $affiliation->active = true;
 
-    if ($request->type == "payment") {
-        $affiliation->payout = $membership->price;
+
+    if ($request->type == "credit") {
+        $payment->amount = $request->payout;
+        $payment->type = "payout";
+    }else{
+        $payment->amount = $membership->price;
+        $payment->type = "payment";
     }
 
     $affiliation->save();
 
+    if ($payment->amount > 0) {
+        $payment->save();
+    }
+
     Flash::success("¡Se ha registrado la afiliacion del miembro de manera exitosa!");
 
-    return redirect()->route('admin.member.show', $request->member_id);
+    return redirect()->route('admin.member.show', [$request->member_id, '#membership-member']);
 }
 
     /**

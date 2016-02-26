@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAffiliationsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,13 @@ class CreateAffiliationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('affiliations', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->date('initiation');
-            $table->date('finalization');
-            $table->integer('price');
-            $table->enum('type', ['payment', 'credit']);
-            $table->boolean('active');
+            $table->integer('amount');
+            $table->enum('type', ['payment', 'payout']);
 
             $table->integer('member_id')->unsigned();
-            $table->integer('membership_id')->unsigned();
-
             $table->foreign('member_id')->references('id')->on('members');
-            $table->foreign('membership_id')->references('id')->on('memberships');
 
             $table->timestamps();
         });
@@ -38,6 +31,6 @@ class CreateAffiliationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('affiliations');
+        Schema::drop('payments');
     }
 }

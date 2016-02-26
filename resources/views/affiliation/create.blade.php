@@ -4,7 +4,10 @@
 
 @section('stylesheet')
 <link href="{{ asset('plugins/steps/steps.css') }}" rel="stylesheet" type="text/css">
+<link href=" {{ asset('plugins/datepickerDos/bootstrap-datetimepicker.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/steps/steps.js') }}"></script>
+<script src=" {{ asset('plugins/datepickerDos/moment.js') }}"></script>
+<script src=" {{ asset('plugins/datepickerDos/bootstrap-datetimepicker.js') }}"></script>
 <script src=" {{ asset('plugins/steps/date.js') }}"></script>
 @endsection
 
@@ -22,6 +25,22 @@
 @endsection
 
 @section('content')
+
+<!-- Mostrar errores -->
+
+@if(count($errors) > 0)
+<div class="alert alert-danger alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong>¡Error! </strong>
+	@foreach($errors->all() as $error)
+
+	{!! $error !!}
+
+	@endforeach
+</div>
+@endif
+
+<!-- Fin mostrar errores -->
 
 <div class="row">
 	<section>
@@ -94,9 +113,10 @@
 									<h3>Fecha de inicio para la membresia</h3><br>
 
 									<p>Seleccione la fecha desde la cual empezara a correr la membresia.</p><br>
+
 									<div class="form-group">
 										{!!Form::label('initiation', 'Fecha de inicio')!!}
-										<div class='input-group date' data-provide="datepicker">
+										<div class='input-group date' id="datetimepicker">
 											{!! Form::text('initiation', null, array('class'=>'form-control', 'id' => 'initiation')) !!}
 											<div class="input-group-addon">
 												<span class='fa fa-calendar'></span>
@@ -251,6 +271,15 @@
 	@endforeach
 </div>
 
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#initiation').datetimepicker({
+			format: "YYYY-MM-DD",
+			disabledDates:  [<?php echo join($affiliationRange, ',') ?>]
+		});
+	});
+</script>
+
 <script>
 	$(document).ready(function () {
 
@@ -289,9 +318,11 @@
 
 			if(type == 'payment'){
 				$('#payout').val(price);
+				$('#payout').prop('disabled', true);
 			}
 			else if(type == 'credit'){
 				$('#payout').val('0');
+				$('#payout').prop('disabled', false);
 			}
 
 			// add month to date
@@ -313,7 +344,7 @@
 
 		//alterar fecha finalizacion
 
-		$('#initiation').change(function () {
+		$("#initiation").on("dp.change", function() {
 			var date = parseDate($(this).val());
 
 			var d1 = Date.parse(date);
@@ -391,19 +422,7 @@
 	});
 </script>
 
-<script type="text/javascript">
 
-	$('.input-group.date').datepicker({
-
-		format: "yyyy-mm-dd",
-		language: "es",
-		todayBtn: "linked",
-		autoclose: true,
-		orientation: "bottom left"
-
-	});
-
-</script>
 
 
 @endsection

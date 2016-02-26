@@ -106,7 +106,6 @@
 	</div><!-- /.row -->
 </div>
 
-
 <script type="text/javascript">
 	$('#input-daterange').datepicker({
 		format: "yyyy-mm-dd",

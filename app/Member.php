@@ -30,4 +30,9 @@ class Member extends Model
         return $this->hasMany('App\Affiliation')->orderBy('created_at', 'DEC');
     }
 
+    public function payments()
+    {
+        return $this->hasMany('App\Payment')->orderBy('created_at', 'DEC');
+    }
+
 }

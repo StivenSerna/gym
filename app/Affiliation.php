@@ -8,7 +8,7 @@ class Affiliation extends Model
 {
 	protected $table = 'affiliations';
 
-	protected $fillable = ['initiation', 'finalization', 'price', 'payout', 'type', 'active', 'member_id', 'membership_id'];
+	protected $fillable = ['initiation', 'finalization', 'price', 'type', 'active', 'member_id', 'membership_id'];
 
 	public function member()
 	{

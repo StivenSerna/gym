@@ -69,6 +69,7 @@ class MembersController extends Controller
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
 
+        //optimizable colocandolo a la hora de insertar la medicion
 
         foreach ($member->anthropometricMeasurements as $anthrom) {
             if ($anthrom->height == 0) {
@@ -77,7 +78,6 @@ class MembersController extends Controller
             else{
                 $imc = $anthrom->weight / (($anthrom->height / 100) * ($anthrom->height / 100));
             }
-
             $anthrom->imc = $imc;
         }
 
@@ -86,7 +86,7 @@ class MembersController extends Controller
         $affiliations = $member->affiliations;
 
         foreach ($affiliations as $affiliation) {
-        $finalization = new Carbon($affiliation->finalization);
+            $finalization = new Carbon($affiliation->finalization);
             if ($currentdate->lte($finalization)) {
                 $affiliation->active = true;
             } else {
@@ -94,7 +94,30 @@ class MembersController extends Controller
             }
         }
         $member->affiliations = $affiliations;
-        return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias]);
+
+        if ($member->affiliations->where('active', true)->first() != null)
+        {
+            $memshipactiva = $member->affiliations->where('active', true)->first();
+
+            $initiation = new Carbon($memshipactiva->initiation);
+            $finalization = new Carbon($memshipactiva->finalization);
+
+            $corrido = $initiation->diffInDays($currentdate);
+
+            if ($initiation->lt($currentdate)) {
+                $diference = $initiation->diffInDays($finalization);
+                $porcentaje = ($corrido / $diference) * 100;
+            } else {
+                $porcentaje = 0;
+            }
+
+            $memshipactiva->porcentaje = $porcentaje;
+
+        }else{
+            $memshipactiva = null;
+        }
+
+        return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias, 'activa' => $memshipactiva]);
     }
 
     public function edit($id)
