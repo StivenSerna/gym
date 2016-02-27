@@ -27,7 +27,7 @@ class Member extends Model
 
     public function affiliations()
     {
-        return $this->hasMany('App\Affiliation')->orderBy('created_at', 'DEC');
+        return $this->hasMany('App\Affiliation')->orderBy('finalization', 'DEC');
     }
 
     public function payments()

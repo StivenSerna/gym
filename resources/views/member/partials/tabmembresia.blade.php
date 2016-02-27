@@ -13,7 +13,7 @@
 						</a>
 					</div>
 					<div class="caption">
-						<p class="text-primary"><i class="fa fa-list-alt"></i>  Afiliaciones a membresias</p>
+						<p class="text-primary"><i class="fa fa-list-alt"></i>  Membresias activas</p>
 					</div>
 
 				</div>
@@ -44,10 +44,10 @@
 											<tr>
 												<td>{!! "A-".($affiliation->id + 100000) !!}</td>
 												<td>
-													@if ($affiliation->active)
+													@if ($affiliation->id == $activa->id)
 													<span class="label label-success">Activa</span>
 													@else
-													<span class="label label-danger">Inactiva</span>
+													<span class="label label-default">Espera</span>
 													@endif
 												</td>
 												<td>{!! $affiliation->membership->description !!}</td>
@@ -67,7 +67,6 @@
 
 									</table>
 								</div><hr>
-
 
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="opcionDos">
@@ -132,7 +131,7 @@
 
 				<div class="portlet-title">
 					<div class="caption">
-						<p class="text-success"><i class="fa fa-check"></i> Membresia activa</p>
+						<p class="text-success"><i class="fa fa-check"></i> Membresia activa-actual</p>
 					</div>
 				</div>
 
@@ -171,9 +170,74 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="col-lg-9">
+		<div class="thumbnail">
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+					<p class="text-danger"><i class="fa fa-list-alt"></i>  Membresias caducadas</p>
+					</div>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered" data-order='[[ 4, "dec" ]]' id='ordenableDos' width="100%">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Activa</th>
+								<th>Descripción</th>
+								<th>Inicio</th>
+								<th>Finalización</th>
+								<th>Transacción</th>
+								<th>Precio</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($inactivas as $affiliation)
+							<tr>
+								<td>{!! "A-".($affiliation->id + 100000) !!}</td>
+								<td>
+									@if ($affiliation->active)
+									<span class="label label-success">Activa</span>
+									@else
+									<span class="label label-danger">Caducada</span>
+									@endif
+								</td>
+								<td>{!! $affiliation->membership->description !!}</td>
+								<td>{!! $affiliation->initiation !!}</td>
+								<td>{!! $affiliation->finalization !!}</td>
+								<td>
+									@if ($affiliation->type == 'payment')
+									<span class="label label-primary">Contado</span>
+									@else
+									<span class="label label-warning">Credito</span>
+									@endif
+								</td>
+								<td>$ {!! $affiliation->price !!}</td>
+							</tr>
+							@endforeach
+						</tbody>
+
+					</table>
+				</div><hr>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#ordenable').dataTable( {
+			"language": {
+				"url": "{{ asset('plugins/bdt/spanish.json') }}"
+			},
+			"aoColumnDefs": [
+			{ "bSortable": false, "aTargets": [0] }
+			]
+		} );
+
+		$('#ordenableDos').dataTable( {
 			"language": {
 				"url": "{{ asset('plugins/bdt/spanish.json') }}"
 			},

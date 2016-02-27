@@ -25,6 +25,16 @@ class AnthropometricsRecordsController extends Controller
 		$anthropometricm = new AnthropometricMeasurement($request->all());
 		$leftanthropometric = new LeftAnthropometric($request->all());
 		$rightanthropometric = new RightAnthropometric($request->all());
+
+
+		if ($anthropometricm->height == 0) {
+			$imc = 0;
+		}
+		else{
+			$imc = $anthropometricm->weight / (($anthropometricm->height / 100) * ($anthropometricm->height / 100));
+		}
+		$anthropometricm->imc = $imc;
+
         //$anthropometricm->save();
 		$member = Member::find($request->member_id);
 		$leftanthropometric->save();

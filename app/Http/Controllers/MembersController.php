@@ -69,23 +69,21 @@ class MembersController extends Controller
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
 
-        //optimizable colocandolo a la hora de insertar la medicion
-
-        foreach ($member->anthropometricMeasurements as $anthrom) {
-            if ($anthrom->height == 0) {
-                $imc = 0;
-            }
-            else{
-                $imc = $anthrom->weight / (($anthrom->height / 100) * ($anthrom->height / 100));
-            }
-            $anthrom->imc = $imc;
-        }
-
         $currentdate = Carbon::today();
+
+        $sumaAffiliations = $member->affiliations->sum('price');
 
         $affiliations = $member->affiliations;
 
-        foreach ($affiliations as $affiliation) {
+        $affiliationActives = \App\Affiliation::orderBy('finalization', 'DEC')
+        ->where('member_id', $member->id)
+        ->where('finalization', '>=', $currentdate)->get();
+
+        $affiliationInactives = \App\Affiliation::orderBy('finalization', 'DEC')
+        ->where('member_id', $member->id)
+        ->where('finalization', '<', $currentdate)->get();
+
+        foreach ($affiliationActives as $affiliation) {
             $finalization = new Carbon($affiliation->finalization);
             if ($currentdate->lte($finalization)) {
                 $affiliation->active = true;
@@ -93,15 +91,14 @@ class MembersController extends Controller
                 $affiliation->active = false;
             }
         }
-        $member->affiliations = $affiliations;
 
-        if ($member->affiliations->where('active', true)->first() != null)
+        $member->affiliations = $affiliationActives;
+
+        if ($affiliationActives->first() != null)
         {
-            $memshipactiva = $member->affiliations->where('active', true)->first();
-
+            $memshipactiva = $affiliationActives->last();
             $initiation = new Carbon($memshipactiva->initiation);
             $finalization = new Carbon($memshipactiva->finalization);
-
             $corrido = $initiation->diffInDays($currentdate);
 
             if ($initiation->lt($currentdate)) {
@@ -112,96 +109,125 @@ class MembersController extends Controller
             }
 
             $memshipactiva->porcentaje = $porcentaje;
-
-        }else{
+        }
+        else{
             $memshipactiva = null;
         }
 
-        return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias, 'activa' => $memshipactiva]);
+
+        $saldo = $sumaAffiliations - $member->payments->sum('amount');
+        $member->saldo = $saldo;
+        $member->sumaPagos = $member->payments->sum('amount');
+        $member->sumaAffiliations = $sumaAffiliations;
+
+
+        if($member->sumaPagos == 0 and $sumaAffiliations == 0)
+        {
+        //no tiene pagos ni afiliaciones
+         $member->difUltimoPago = -1;
+     }
+     elseif ($member->sumaPagos <= 0 and $sumaAffiliations > 0)
+     {
+            //no tiene pagos pero si tiene afiliaciones
+        $fechaUltimoPago = \App\Affiliation::orderBy('created_at', 'asc')->where('member_id', $member->id)->first();
+        $fechaUltimoPago = new Carbon($fechaUltimoPago->created_at);
+        $difUltimoPago = $fechaUltimoPago->diffInDays($currentdate);
+        $member->difUltimoPago = $difUltimoPago;
+    }
+    elseif($member->sumaPagos > 0 and $sumaAffiliations > 0)
+    {
+            // tiene afiliaciones y pagos
+        $fechaUltimoPago = new Carbon($member->payments->first()->created_at);
+        $difUltimoPago = $fechaUltimoPago->diffInDays($currentdate);
+        $member->difUltimoPago = $difUltimoPago;
     }
 
-    public function edit($id)
-    {
 
-    }
+    return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias, 'activa' => $memshipactiva, 'inactivas' => $affiliationInactives]);
+}
 
-    public function update(MemberEditRequest $request, $id)
-    {
-        $member = Member::find($id);
-        if($request->file('photo')){
-            $image = Image::firstOrCreate(['member_id' => $member->id]);
-            $later= pathinfo($image->name);
-            $file = $request->file('photo');
+public function edit($id)
+{
 
-            if ($later['filename'] == 'fotogym_placeholder' | $later['filename'] == null) {
-                $filename = 'fotogym_' . time();
-            }
-            else{
-                $filename = $later['filename'];
-            }
+}
 
-            $name =  $filename . '.' . $file->getClientOriginalExtension();
-            $path= public_path() . '/images/members/';
-            $file->move($path, $name);
+public function update(MemberEditRequest $request, $id)
+{
+    $member = Member::find($id);
+    if($request->file('photo')){
+        $image = Image::firstOrCreate(['member_id' => $member->id]);
+        $later= pathinfo($image->name);
+        $file = $request->file('photo');
 
-            $image->name = $name;
-            $image->member()->associate($member);
-            $image->save();
+        if ($later['filename'] == 'fotogym_placeholder' | $later['filename'] == null) {
+            $filename = 'fotogym_' . time();
+        }
+        else{
+            $filename = $later['filename'];
         }
 
-        $member->fill($request->all());
-        $member->save();
+        $name =  $filename . '.' . $file->getClientOriginalExtension();
+        $path= public_path() . '/images/members/';
+        $file->move($path, $name);
 
-        Flash::success("<b>¡Se ha actualizado a " . $member->first_name . " de manera exitosa!</b>");
-
-        return redirect()->route('admin.member.show', $member->id);
-
+        $image->name = $name;
+        $image->member()->associate($member);
+        $image->save();
     }
 
-    public function search (Request $request)
-    {
-        if(isset($request->documento)){
+    $member->fill($request->all());
+    $member->save();
+
+    Flash::success("<b>¡Se ha actualizado a " . $member->first_name . " de manera exitosa!</b>");
+
+    return redirect()->route('admin.member.show', $member->id);
+
+}
+
+public function search (Request $request)
+{
+    if(isset($request->documento)){
             //dd($request->documento);
-            $member = Member::where('document', $request->documento)->first();
+        $member = Member::where('document', $request->documento)->first();
             //dd($member);
-            if($member == null){
-                Flash::error("No existe nungun miembro con el documento " . $request->documento . " registrado");
-                return redirect()->route('admin.member.index');
-            }
-            else{
-                return redirect()->route('admin.member.show', ['member' => $member]);
-            }
+        if($member == null){
+            Flash::error("No existe nungun miembro con el documento " . $request->documento . " registrado");
+            return redirect()->route('admin.member.index');
         }
-        elseif (isset($request->nombre)) {
-            $members = Member::where('first_name', $request->nombre)->orWhere('second_name', $request->nombre);
-            //dd($member);
-            if($members->first() == null){
-                Flash::error("No existe nungun miembro con el nombre " . $request->nombre . " registrado");
-                return redirect()->route('admin.member.index');
-            }
-            else{
-                dd($members);
-            }
-        }
-        elseif (isset($request->apellido)) {
-            $members = Member::where('last_name', $request->apellido);
-            //dd($member);
-            if($members->first() == null){
-                Flash::error("No existe nungun miembro con el apellido " . $request->apellido . " registrado");
-                return redirect()->route('admin.member.index');
-            }
-            else{
-                dd($members);
-            }
+        else{
+            return redirect()->route('admin.member.show', ['member' => $member]);
         }
     }
-
-    public function destroy($id)
-    {
-        $member = Member::find($id);
-        $member->delete();
-
-        Flash::error("¡El miembro " . $member->first_name . " fue eliminado de manera exitosa!");
-        return redirect()->route('admin.member.index');
+    elseif (isset($request->nombre)) {
+        $members = Member::where('first_name', $request->nombre)->orWhere('second_name', $request->nombre);
+            //dd($member);
+        if($members->first() == null){
+            Flash::error("No existe nungun miembro con el nombre " . $request->nombre . " registrado");
+            return redirect()->route('admin.member.index');
+        }
+        else{
+            dd($members);
+        }
     }
+    elseif (isset($request->apellido)) {
+        $members = Member::where('last_name', $request->apellido);
+            //dd($member);
+        if($members->first() == null){
+            Flash::error("No existe nungun miembro con el apellido " . $request->apellido . " registrado");
+            return redirect()->route('admin.member.index');
+        }
+        else{
+            dd($members);
+        }
+    }
+}
+
+public function destroy($id)
+{
+    $member = Member::find($id);
+    $member->delete();
+
+    Flash::error("¡El miembro " . $member->first_name . " fue eliminado de manera exitosa!");
+    return redirect()->route('admin.member.index');
+}
 }

@@ -64,16 +64,16 @@
 
 				<div class="portlet-body">
 					<div class="table-responsive">
-						<table class="table table-striped" id='filtrable'>
+						<table class="table table-striped table-bordered" id='filtrable'>
 							<thead>
 								<tr>
 									<th>Nombre</th>
 									<th>Telefono</th>
-									<th>Direccion</th>
+									<th>Dirección</th>
 									<th>Correo</th>
 									<th>Fecha de ingreso</th>
-									<th>Ver</th>
-									<th>Borrar</th>
+									<th class="text-center">Ver</th>
+									<th class="text-center">Borrar</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -84,12 +84,12 @@
 									<td>{{ $member->address }}</td>
 									<td>{{ $member->email }}</td>
 									<td>{{ $member->date_of_admission }}</td>
-									<td><a href="{{ route('admin.member.show', $member->id) }}" class="btn btn-primary btn-xs">
-										<i class="fa fa-eye fa-2x"></i></a>
+									<td class="text-center"><a href="{{ route('admin.member.show', $member->id) }}" class="btn btn-primary btn-xs">
+										<i class="fa fa-eye"></i></a>
 									</td>
-									<td><a href="{{ route('admin.member.destroy', $member->id) }}"
+									<td class="text-center"><a href="{{ route('admin.member.destroy', $member->id) }}"
 										onclick="return confirm('¿Esta seguro de querer eliminar el registro?')" class="btn btn-danger btn-xs">
-										<i class="fa fa-trash fa-2x"></i></a>
+										<i class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 								@endforeach

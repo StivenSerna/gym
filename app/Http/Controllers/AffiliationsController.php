@@ -108,8 +108,6 @@ class AffiliationsController extends Controller
 
     $affiliation->finalization = $end;
     $affiliation->price =$membership->price;
-    $affiliation->active = true;
-
 
     if ($request->type == "credit") {
         $payment->amount = $request->payout;

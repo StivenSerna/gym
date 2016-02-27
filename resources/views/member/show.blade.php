@@ -5,6 +5,7 @@
 @section('stylesheet')
 <link href="{{ asset('plugins/slider/bootstrap-slider.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('plugins/bdt/dateTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('plugins/steps/tablasSuma.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/slider/bootstrap-slider.min.js') }}"></script>
 <script src=" {{ asset('plugins/chart/highcharts.js') }}"></script>
 <script src=" {{ asset('plugins/chart/exporting.js') }}"></script>
@@ -106,7 +107,7 @@
 	<div role="tabpanel" class="tab-pane fade" id="credit">
 		<p></p><br>
 		<!-- contenido tab 2 -->
-		creditos
+		@include('member.partials.tabpayments')
 	</div>
 
 </div><br><br><br>

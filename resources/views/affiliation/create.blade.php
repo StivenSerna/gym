@@ -4,6 +4,7 @@
 
 @section('stylesheet')
 <link href="{{ asset('plugins/steps/steps.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('plugins/steps/tablasSuma.css') }}" rel="stylesheet" type="text/css">
 <link href=" {{ asset('plugins/datepickerDos/bootstrap-datetimepicker.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/steps/steps.js') }}"></script>
 <script src=" {{ asset('plugins/datepickerDos/moment.js') }}"></script>
