@@ -70,7 +70,6 @@ class MembersController extends Controller
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
 
         $currentdate = Carbon::today();
-
         $sumaAffiliations = $member->affiliations->sum('price');
 
         $affiliations = $member->affiliations;

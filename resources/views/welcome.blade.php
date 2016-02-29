@@ -17,7 +17,6 @@
 	</div>
 </div>
 
-@if ($birthdays > 0)
 <div class="row">
 	<div class="col-lg-3 col-md-6">
 		<div class="panel panel-green">
@@ -27,7 +26,7 @@
 						<i class="fa fa-birthday-cake fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<div class="huge">{!! $birthdays !!}</div>
+						<div class="huge">{!! count($birthdays) !!}</div>
 						<div>¡Cumpleaños hoy!</div>
 					</div>
 				</div>
@@ -42,6 +41,10 @@
 		</div>
 	</div>
 </div>
-@endif
+
+@foreach ($birthdays as $member)
+	{{$member->first_name}}
+@endforeach
+
 
 @endsection

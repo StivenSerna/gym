@@ -42,15 +42,15 @@ class MembershipsController extends Controller
      */
     public function store(Request $request)
         {
-            $hola= Membership::create([
+            $membership= Membership::create([
             'description' => $request ["description"],
             'price' => $request ["price"],
             'month' => $request ["month"],
             'day'=> $request ["day"],
             ]);
-            $hola->save();
+            $membership->save();
 
-            Flash::success("¡Se ha registrado la membresia " . $hola->description . " de manera exitosa!");
+            Flash::success("¡Se ha registrado la membresia " . $membership->description . " de manera exitosa!");
 
             return redirect()->route('membership.index');
 
@@ -73,10 +73,10 @@ class MembershipsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($description)
+    public function edit($id)
     {
-        $membership= Membership::find($description);
-        return view('membership.edit')->with('membership',$membership);
+        $membership= Membership::find($id);
+        return view('membership.edit')->with('membership',$id);
 
     }
 

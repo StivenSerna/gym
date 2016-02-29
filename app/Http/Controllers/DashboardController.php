@@ -13,10 +13,10 @@ class DashboardController extends Controller
 {
     public function index ()
     {
-    		$officialDate = Carbon::now();
+    		$officialDate = Carbon::now()->subDay();
 
     		$birthdays = Member::whereMonth('birthday', '=', $officialDate->format('m'))
-    		->whereDay('birthday', '=',  $officialDate->format('d'))->count();
+    		->whereDay('birthday', '=',  $officialDate->format('d'))->get();
 
     		//dd($members);
     		return view('welcome')->with('birthdays', $birthdays);
