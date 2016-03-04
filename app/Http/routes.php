@@ -71,6 +71,10 @@ Route::resource('affiliation', 'AffiliationsController', ['only' => [
     'index', 'store'
 ]]);
 
+Route::resource('payment', 'PaymentsController', ['only' => [
+    'index', 'store'
+]]);
+
 Route::get('affiliation/{member_id}/create', [
     'as' => 'affiliation.create',
     'uses' => 'AffiliationsController@create'
