@@ -20,7 +20,7 @@
 
 <!-- Page titulo -->
 <h1 class="page-header">
-	Perfil
+	Perfil <span class="text-capitalize">{!! $member->first_name ." ". $member->second_name ." ". $member->last_name !!}</span>
 </h1>
 <ol class="breadcrumb">
 	<li class="active">
@@ -31,9 +31,10 @@
 
 @section('content')
 
+<!-- Comienzo pruebas -->
+<!-- fin pruebas -->
 
-
-<div class="row panel">
+<div class="row panel" style="background-color: #f7f7f7;">
 	<div class="col-md-3 bg_blur">
 
 	</div>
@@ -68,7 +69,7 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs nav-justified" role="tablist">
-	<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+	<li role="presentation" class="active"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">
 		<i class="fa fa-info-circle"></i> Información Personal/Medica</a>
 	</li>
 	<li role="presentation"><a href="#metrics" aria-controls="metrics" role="tab" data-toggle="tab">
@@ -84,7 +85,7 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-	<div role="tabpanel" class="tab-pane fade in active" id="home">
+	<div role="tabpanel" class="tab-pane fade in active" id="personal">
 		<p></p><br>
 		<!-- contenido tab 1 -->
 
@@ -113,6 +114,7 @@
 </div><br><br><br>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 <script type="text/javascript">
 	var url = document.location.toString();

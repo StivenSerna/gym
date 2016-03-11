@@ -8,15 +8,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@yield('tittle', 'Default') | Panel de administración</title>
+
+    <link rel="shortcut icon" href="{{{ asset('images/icon/vacation.png') }}}">
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('plugins/bootstrap/css/sb-admin.css') }}" rel="stylesheet">
 
+
     <script src="{{ asset('plugins/bootstrap/js/jquery.js') }}"></script>
 
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/plugins/metisMenu/metisMenu.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/sb-admin.js') }}"></script>
     <!-- Custom Fonts -->
     <link href="{{ asset('plugins/bootstrap/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 

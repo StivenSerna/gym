@@ -29,7 +29,7 @@
 #page-wrapper {
     width: 100%;
     padding: 0;
-    background-color: #fff;
+    background-color: #F7F7F7;
 }
 
 .huge {
@@ -158,6 +158,24 @@ ul.alert-dropdown {
 .side-nav>li>ul>li>a:hover {
     color: #fff;
 }
+
+.side-nav ul li a.active {
+    color: #fff;
+    background-color: #000;
+}
+
+.side-nav .arrow {
+    float: right;
+}
+
+.side-nav .fa.arrow:before {
+    content: "\f104";
+}
+
+.side-nav .active>a>.fa.arrow:before {
+    content: "\f107";
+}
+
 
 /* Flot Chart Containers */
 
@@ -297,7 +315,7 @@ ul.alert-dropdown {
 .portlet-title {
     padding: 0;
     min-height: 40px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
     margin-bottom: 18px;
 }
 
@@ -387,4 +405,87 @@ ul.alert-dropdown {
 .header-blur{
     margin-left:15%;
     margin-top:100px;
+}
+
+/* Pruebas paneles collapse */
+
+.clickable{
+    cursor: pointer;
+}
+
+.portlet-title span {
+    margin-top: -20px;
+    font-size: 15px;
+}
+
+/* miga de pan blanca */
+
+.breadcrumb {
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #ddd;
+    border-radius: 4px; display: block;
+}
+
+/* line a depage-header*/
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Tabs */
+
+ .nav-tabs {
+  border: none;
+  margin: 0px;
+}
+ .nav-tabs > li {
+  margin-right: 2px;
+}
+ .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+}
+ .nav-tabs > li > a > i {
+  color: #a6a6a6;
+}
+ .nav-tabs > li.open,  .nav-tabs > li:hover {
+  border-bottom: 4px solid #B7D2E8;
+}
+/* fbcdcf hover */
+ .nav-tabs > li.open > a,  .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+ .nav-tabs > li.open > a > i,  .nav-tabs > li:hover > a > i {
+  color: #a6a6a6;
+}
+ .nav-tabs > li.open .dropdown-menu,  .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+ .nav-tabs > li.active {
+  border-bottom: 4px solid #337ab7;
+  position: relative;
+}
+/* f3565d active */
+
+ .nav-tabs > li.active > a {
+  border: 0;
+  color: #333333;
+}
+ .nav-tabs > li.active > a > i {
+  color: #404040;
+}
+ .tab-content {
+  margin-top: -3px;
+  background-color: none;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+.tab-content {
+  padding-bottom: 0;
 }

@@ -14,14 +14,14 @@
 
 <!-- Page titulo -->
 <h1 class="page-header">
-	Registro de nuevo miembro
+	Registro
 </h1>
 <ol class="breadcrumb">
 	<li>
 		<i class="fa fa-dashboard"></i> <a href="#">Inicio</a>
 	</li>
 	<li class="active">
-		Registrar nuevo miembro
+		Registro miembro
 	</li>
 </ol>
 <!-- Page fin titulo -->
@@ -48,44 +48,29 @@
 
 {!! Form::open(['route'=>'admin.member.store', 'method'=>'POST', 'files' => true]) !!}
 
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-user-plus"></i> Informacion personal</h3>
-	</div>
-	<div class="panel-body">
+<div class="thumbnail">
+	<div class="portlet">
 
-		<!-- comienzo form-->
-
-		@include('member.forms.member_form_edit')
-
-		<!-- Fin form-->
-
-	</div>
-
-	<div class="panel-footer">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="button-group">
-							<a class="btn btn-danger btn-block" href="#" role="button">Cancelar</a>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="button-group">
-							{!! Form::submit('Siguiente', ['class' => 'btn btn-success btn-block']) !!}
-						</div>
-					</div>
-				</div>
+		<div class="portlet-title">
+			<div class="caption">
+				<p class="text-primary"><i class="fa fa-user-plus"></i> Informacion personal</p>
 			</div>
-			<div class="col-md-3"></div>
 		</div>
 
+		<div class="portlet-body">
+			<!-- comienzo form-->
+			@include('member.forms.member_form_edit')
+			<!-- Fin form-->
+		</div><hr>
+
+		<span class="pull-right">
+			<a class="btn btn-danger" href="#" role="button">Cancelar</a>
+			{!! Form::submit('Siguiente', ['class' => 'btn btn-success']) !!}
+		</span>
+		<div class="clearfix"></div>
+
 	</div>
-
 </div>
-
 {!! Form::close() !!}
 
 <script type="text/javascript">

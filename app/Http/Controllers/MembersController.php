@@ -82,15 +82,6 @@ class MembersController extends Controller
         ->where('member_id', $member->id)
         ->where('finalization', '<', $currentdate)->get();
 
-        foreach ($affiliationActives as $affiliation) {
-            $finalization = new Carbon($affiliation->finalization);
-            if ($currentdate->lte($finalization)) {
-                $affiliation->active = true;
-            } else {
-                $affiliation->active = false;
-            }
-        }
-
         $member->affiliations = $affiliationActives;
 
         if ($affiliationActives->first() != null)

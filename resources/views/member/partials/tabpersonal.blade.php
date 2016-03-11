@@ -7,10 +7,10 @@
 			<div class="portlet">
 				<div class="portlet-title">
 					<div class="actions pull-right">
-						<button type="button" class="btn btn-blue" data-toggle="modal" data-target="#memberedit">
+						<a class="btn btn-blue" data-toggle="modal" data-target="#memberedit">
 							<i class="fa fa-pencil"></i>
 							Editar
-						</button>
+						</a>
 					</div>
 					<div class="caption">
 						<p class="text-primary"><i class="fa fa-user"></i>  Información personal</p>
@@ -89,10 +89,10 @@
 			<div class="portlet">
 				<div class="portlet-title">
 					<div class="actions pull-right">
-						<button type="button" class="btn btn-blue" data-toggle="modal" data-target="#medicaledit">
+						<a class="btn btn-blue" data-toggle="modal" data-target="#medicaledit">
 							<i class="fa fa-pencil"></i>
 							Editar
-						</button>
+						</a>
 					</div>
 					<div class="caption">
 						<p class="text-warning"><i class="fa fa-medkit"></i> Informacion medica</p>

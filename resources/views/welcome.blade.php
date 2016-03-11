@@ -46,5 +46,9 @@
 	{{$member->first_name}}
 @endforeach
 
+<script type="text/javascript">
+	$("#page-inicio").addClass("active");
+</script>
+
 
 @endsection

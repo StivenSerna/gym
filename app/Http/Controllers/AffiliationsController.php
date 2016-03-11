@@ -23,7 +23,17 @@ class AffiliationsController extends Controller
      */
     public function index()
     {
-        return "Holi";
+
+        $currentdate = Carbon::today();
+
+        $affiliationActives = \App\Affiliation::orderBy('created_at', 'DEC')
+        ->where('finalization', '>=', $currentdate)->get();
+
+        $affiliationInactives = \App\Affiliation::orderBy('created_at', 'DEC')
+        ->where('finalization', '<', $currentdate)->get();
+
+        return view('affiliation.index')->with('affiliationActives',$affiliationActives)
+        ->with("affiliationInactives", $affiliationInactives);
     }
 
     /**

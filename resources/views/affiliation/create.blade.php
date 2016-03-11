@@ -50,7 +50,7 @@
 				<div class="connecting-line"></div>
 				<ul class="nav nav-tabs" role="tablist">
 
-					<li role="presentation" class="active">
+					<li role="presentation" class="active" style="border: none;">
 						<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
 							<span class="round-tab">
 								<i class="glyphicon glyphicon-tag"></i>
@@ -58,7 +58,7 @@
 						</a>
 					</li>
 
-					<li role="presentation" class="disabled">
+					<li role="presentation" class="disabled" style="border: none;">
 						<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
 							<span class="round-tab">
 								<i class="fa fa-money"></i>
@@ -66,7 +66,7 @@
 						</a>
 					</li>
 
-					<li role="presentation" class="disabled">
+					<li role="presentation" class="disabled" style="border: none;">
 						<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
 							<span class="round-tab">
 								<i class="fa fa-table"></i>

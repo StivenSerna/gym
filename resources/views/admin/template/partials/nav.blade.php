@@ -115,25 +115,41 @@
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav side-nav">
-            <li>
-                <a href="{{ route('inicio') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
+        <ul class="nav navbar-nav side-nav" id="side-menu">
+            <li id="page-inicio">
+                <a href="{{route('inicio')}}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Miembros <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Miembros <span class="fa arrow"></span></a>
                 <ul id="demo" class="collapse">
-                    <li>
+                    <li >
                         {!! link_to_route('admin.member.index', $title = 'Administrar miembros', $parameters = array(), $attributes = array()) !!}
                     </li>
-                    <li>
+                    <li id="page-members-create">
                         {!! link_to_route('admin.member.create', $title = 'Registrar miembro', $parameters = array(), $attributes = array()) !!}
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="{{ route('membership.index') }}">
-                <i class="fa fa-credit-card-alt"></i> Membresias
-                </a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#membresias"><i class="fa fa-credit-card-alt"></i> Membresias <span class="fa arrow"></span></a>
+                <ul id="membresias" class="collapse">
+                    <li id="page-memberships">
+                        <a href="{{ route('membership.index') }}">
+                            Administrar membresias
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('affiliation.index') }}">
+                            Afiliaciones
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-money"></i> Ingresos / Egresos</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-line-chart"></i> Reportes</a>
             </li>
         </ul>
     </div>

@@ -198,11 +198,7 @@
 							<tr>
 								<td>{!! "A-".($affiliation->id + 100000) !!}</td>
 								<td>
-									@if ($affiliation->active)
-									<span class="label label-success">Activa</span>
-									@else
 									<span class="label label-danger">Caducada</span>
-									@endif
 								</td>
 								<td>{!! $affiliation->membership->description !!}</td>
 								<td>{!! $affiliation->initiation !!}</td>
