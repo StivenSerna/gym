@@ -83,7 +83,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<!-- Nav tabs -->
-								<ul class="nav nav-pills nav-stacked" role="tablist">
+								<ul class="nav nav-pills nav-stacked nav-pills-right" role="tablist">
 									<li role="presentation" class="active">
 										<a href="#opcionUno" aria-controls="opcionUno" role="tab" data-toggle="tab">
 											<span class="badge pull-right">

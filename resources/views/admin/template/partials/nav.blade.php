@@ -116,17 +116,18 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav" id="side-menu">
-            <li id="page-inicio">
+            <li id="page-inicio" class="uno">
                 <a href="{{route('inicio')}}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
             </li>
+            <li><hr style="border-color: #008cba;"></li>
             <li>
                 <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Miembros <span class="fa arrow"></span></a>
                 <ul id="demo" class="collapse">
-                    <li >
-                        {!! link_to_route('admin.member.index', $title = 'Administrar miembros', $parameters = array(), $attributes = array()) !!}
+                    <li>
+                        <a href="{{route('admin.member.index')}}"><i class="fa fa-chevron-right"></i> Administrar</a>
                     </li>
-                    <li id="page-members-create">
-                        {!! link_to_route('admin.member.create', $title = 'Registrar miembro', $parameters = array(), $attributes = array()) !!}
+                    <li>
+                        <a href="{{route('admin.member.create')}}"><i class="fa fa-chevron-right"></i> Registrar</a>
                     </li>
                 </ul>
             </li>
@@ -134,14 +135,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#membresias"><i class="fa fa-credit-card-alt"></i> Membresias <span class="fa arrow"></span></a>
                 <ul id="membresias" class="collapse">
                     <li id="page-memberships">
-                        <a href="{{ route('membership.index') }}">
-                            Administrar membresias
-                        </a>
+                        <a href="{{ route('membership.index') }}"><i class="fa fa-chevron-right"></i> Administrar</a>
                     </li>
                     <li>
-                        <a href="{{ route('affiliation.index') }}">
-                            Afiliaciones
-                        </a>
+                        <a href="{{ route('affiliation.index') }}"><i class="fa fa-chevron-right"></i> Afiliaciones </a>
                     </li>
                 </ul>
             </li>

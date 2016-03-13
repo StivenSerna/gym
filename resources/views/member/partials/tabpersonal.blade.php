@@ -25,9 +25,15 @@
 							<div class="col-md-12">
 								<!-- Nav tabs -->
 								<ul class="nav nav-pills nav-stacked" role="tablist">
-									<li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
-									<li role="presentation"><a href="#contacto" aria-controls="contacto" role="tab" data-toggle="tab">Contacto</a></li>
-									<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Opciones</a></li>
+									<li role="presentation" class="active">
+										<a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a>
+									</li>
+									<li role="presentation">
+										<a href="#contacto" aria-controls="contacto" role="tab" data-toggle="tab">Contacto</a>
+									</li>
+									<li role="presentation">
+										<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Opciones</a>
+									</li>
 								</ul>
 								<!-- Fin Nav tabs -->
 							</div>

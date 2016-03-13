@@ -84,7 +84,7 @@
 </ul>
 
 <!-- Tab panes -->
-<div class="tab-content">
+<div class="tab-content" style="border: 2px solid #ddd;">
 	<div role="tabpanel" class="tab-pane fade in active" id="personal">
 		<p></p><br>
 		<!-- contenido tab 1 -->

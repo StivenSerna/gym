@@ -212,7 +212,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
 				<!-- Nav de fichas antropometricas -->
-				<ul class="nav nav-pills nav-stacked" role="tablist">
+				<ul class="nav nav-pills nav-stacked nav-pills-right" role="tablist">
 					<li role="presentation" class="active">
 						<a href="#all-fichas" aria-controls="all-fichas" role="tab" data-toggle="tab">
 							<span class="badge pull-right">
