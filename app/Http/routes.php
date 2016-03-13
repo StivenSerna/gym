@@ -97,6 +97,6 @@ Route::put('affiliation/{member_id}/update', [
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+Route::get('login', function(){
+        return view('login.login');
+        });
