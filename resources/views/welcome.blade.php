@@ -2,6 +2,13 @@
 
 @section('tittle', 'Inicio')
 
+@section('stylesheet')
+
+<link href="{{ asset('plugins/NProgress/nprogress.css') }}" rel="stylesheet">
+<script src="{{ asset('plugins/NProgress/nprogress.js') }}"></script>
+
+@endsection
+
 @section('content')
 
 <div class="row">
@@ -48,6 +55,12 @@
 
 <script type="text/javascript">
 	$("#page-inicio").addClass("active");
+</script>
+
+<script>
+NProgress.configure({ showSpinner: false});
+NProgress.start();
+NProgress.done();
 </script>
 
 

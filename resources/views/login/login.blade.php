@@ -10,29 +10,42 @@
 
 			<div class="inner cover">
 				<div class="row">
-				<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-						<form>
-							<h2 class="form-signin-heading text-center">GYM Formas - fénix renace</h2><hr style="border-color:#222;">
-							<div class="form-group">
-								<label for="inputEmail">Email address</label>
-								<input type="text" id="inputEmail" class="form-control" placeholder="Correo electrónico" required autofocus>
-							</div>
-							<div class="form-group">
-								<label for="inputPassword">Password</label>
-								<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-							</div>
-							<div class="checkbox text-left">
-								<label>
-									<input type="checkbox" value="remember-me"> <span  style="color:#fff;" class="text-left">Recordarme</span>
-								</label>
-							</div>
-							<div class="row">
-								<div class="col-sm-4 col-sm-offset-4">
-									<button class="btn btn-default btn-block" type="submit">Iniciar sesión</button>
-								</div>
-							</div>
+					<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+						{!! Form::open(['route'=>'authenticate', 'method'=>'POST']) !!}
+						<h2 class="form-signin-heading text-center">GYM Formas - fénix renace</h2><hr style="border-color:#222;">
 
-						</form>
+						@if (count($errors) > 0)
+						@foreach ($errors->all() as $err)
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>¡Error!</strong> {{ $err }}.
+						</div>
+						@endforeach
+						@endif
+
+						<div class="form-group">
+							{!!Form::label('email', 'Correo electrónico')!!}
+							{!!Form::text('email', null,['class'=>'form-control', 'placeholder'=>'Correo electrónico', 'required' => true, 'autofocus' => 'true'])!!}
+						</div>
+
+						<div class="form-group">
+							{!!Form::label('password', 'Contraseña')!!}
+							{!!Form::password('password', ['class'=>'form-control', 'placeholder'=>'Contraseña', 'required' => true])!!}
+						</div>
+
+						<div class="checkbox text-left">
+							<label>
+								{!! Form::checkbox('remember', true) !!} <span  style="color:#fff;" class="text-left">Recordarme</span>
+							</label>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-4 col-sm-offset-4">
+								<button class="btn btn-default btn-block" type="submit">Iniciar sesión</button>
+							</div>
+						</div>
+
+						{!! Form::close() !!}
 					</div>
 				</div>
 

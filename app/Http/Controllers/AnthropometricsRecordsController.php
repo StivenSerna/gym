@@ -14,6 +14,11 @@ use Laracasts\Flash\Flash;
 
 class AnthropometricsRecordsController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	public function create($member_id){
 
 		return view('anthropometricrecord.create')->with('member_id', $member_id);

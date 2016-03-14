@@ -94,9 +94,15 @@
                 </li>
             </ul>
         </li>
+
+        @if (Auth::guest())
+        <li><a href="{{ route('login') }}">Login</a></li>
+        @else
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
                 <li>
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
@@ -107,11 +113,11 @@
                     <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                </li>
+                <li><a href="{{ route('logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar sesión</a></li>
             </ul>
         </li>
+        @endif
+
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">

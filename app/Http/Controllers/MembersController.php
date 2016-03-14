@@ -17,6 +17,11 @@ use Carbon\Carbon;
 
 class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index ()
     {
         $members = Member::orderBy('created_at', 'DEC')->get();

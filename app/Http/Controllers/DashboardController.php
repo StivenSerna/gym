@@ -11,14 +11,20 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
-    public function index ()
-    {
-    		$officialDate = Carbon::now()->subDay();
 
-    		$birthdays = Member::whereMonth('birthday', '=', $officialDate->format('m'))
-    		->whereDay('birthday', '=',  $officialDate->format('d'))->get();
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
+	public function index()
+	{
+		$officialDate = Carbon::now()->subDay();
+
+		$birthdays = Member::whereMonth('birthday', '=', $officialDate->format('m'))
+		->whereDay('birthday', '=',  $officialDate->format('d'))->get();
 
     		//dd($members);
-    		return view('welcome')->with('birthdays', $birthdays);
-    }
+		return view('welcome')->with('birthdays', $birthdays);
+	}
 }

@@ -13,6 +13,11 @@ use Laracasts\Flash\Flash;
 
 class MedicalRecordsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create($member_id)
     {
     	return view('medicalrecord.create')->with('member_id', $member_id);
