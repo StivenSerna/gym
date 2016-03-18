@@ -16,8 +16,11 @@
 	Administracion de miembros
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		<i class="fa fa-users"></i> Miembros
 	</li>
 </ol>
 <!-- Page fin titulo -->

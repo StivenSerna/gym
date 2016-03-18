@@ -9,8 +9,17 @@
 	Ficha antropometrica
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.index") }}"><i class="fa fa-users"></i> Miembros</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.show", $member->id) }}"><i class="fa fa-user"></i> Perfil <span class="text-capitalize">{!! $member->first_name!!}</span></a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		<i class="fa fa-list-ol"></i> Registrar ficha antropometrica
 	</li>
 </ol>
 <!-- end Page titulo -->
@@ -19,45 +28,66 @@
 
 @section('content')
 
+<div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Información: </strong> Puede ingresar fichas antropometricas desde el
+  <a href="{!! route("admin.member.show", $member->id) !!}" class="alert-link"> perfil</a> en cualquier momento.
+</div>
+
 {!! Form::open(['route'=>'anthropometricrecord.store', 'method'=>'POST']) !!}
 
-{!! Form::hidden('member_id', $member_id) !!}
+{!! Form::hidden('member_id', $member->id) !!}
 
 <div class="row">
 	<div class="col-lg-3 col-md-9">
-	<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-list"></i></i> Informacion general</h3>
-	</div>
-	<div class="panel-body">
-
-		<div class="row" >
-
-			<div class="col-lg-12">
-
-				<div class="form-group">
-					{!! Form::label('weight', 'Peso:') !!}
-					<div class="input-group">
-						{!! Form::text('weight', null,['class'=>'form-control','placeholder'=>'Peso']) !!}
-						<div class="input-group-addon">kg</div>
+		<!--Panel-->
+		<div class="thumbnail">
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="actions pull-right">
+						<span class="clickable"><i class="fa fa-chevron-up"></i></span>
 					</div>
-
+					<div class="caption">
+						<p><i class="fa fa-credit-card"></i> Información general</p>
+					</div>
 				</div>
+				<div class="thumbnail-collapse collapse in">
+					<div class="portlet-body">
+						<!--Contenido del panel -->
+						<div class="row" >
 
-				<div class="form-group">
-					{!!Form::label('height', 'Estatura:')!!}
-					{!!Form::text('height', null,['class'=>'form-control', 'placeholder'=>'Estatura'])!!}
+							<div class="col-lg-12">
+
+								<div class="form-group">
+									{!! Form::label('weight', 'Peso') !!}
+									<div class="input-group">
+										{!! Form::text('weight', null,['class'=>'form-control','placeholder'=>'Peso']) !!}
+										<div class="input-group-addon">kg</div>
+									</div>
+
+								</div>
+
+								<div class="form-group">
+									{!!Form::label('height', 'Estatura')!!}
+									<div class="input-group">
+										{!!Form::text('height', null,['class'=>'form-control', 'placeholder'=>'Estatura'])!!}
+										<div class="input-group-addon">cm</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									{!!Form::label('comment', 'Comentario')!!}
+									{!!Form::textarea('comment', null,['class'=>'form-control', 'rows'=>'3','placeholder'=>'Comentarios '])!!}
+								</div>
+
+							</div>
+						</div>
+						<!-- Fin contenido del panel -->
+					</div>
 				</div>
-
-				<div class="form-group">
-					{!!Form::label('comment', 'Comentario:')!!}
-					{!!Form::textarea('comment', null,['class'=>'form-control', 'rows'=>'3','placeholder'=>'Comentarios '])!!}
-				</div>
-
 			</div>
 		</div>
-	</div>
-</div>
+		<!--Fin Panel-->
 
 	</div>
 
@@ -190,7 +220,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="button-group">
-							<a class="btn btn-danger btn-block" href="#" role="button">Cancelar</a>
+							<a class="btn btn-danger btn-block" href="{!! route("admin.member.show", $member->id) !!}" role="button">Cancelar</a>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -207,5 +237,28 @@
 
 </div>
 {!! Form::close() !!}
+
+<!--
+<div class="thumbnail">
+	<div class="portlet">
+		<div class="portlet-title">
+			<div class="actions pull-right">
+				<span class="clickable"><i class="fa fa-chevron-up"></i></span>
+				<a class="btn btn-blue" data-toggle="modal" data-target="#newMembership">
+					<i class="fa fa-plus"></i>
+					Nueva
+				</a>
+			</div>
+			<div class="caption">
+				<p class="text-primary"><i class="fa fa-credit-card"></i> Membresias</p>
+			</div>
+		</div>
+		<div class="thumbnail-collapse collapse in">
+			<div class="portlet-body">
+
+			</div>
+		</div>
+	</div>
+</div>-->
 
 @endsection

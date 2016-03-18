@@ -8,7 +8,7 @@
 				<div class="portlet-title">
 					<div class="actions pull-right">
 						<a href="{{ route('affiliation.create', $member->id) }}" type="button" class="btn btn-xs btn-blue">
-							<i class="fa fa-plus"></i>
+							<i class="fa fa-file-text-o"></i>
 							Nueva afiliación
 						</a>
 					</div>

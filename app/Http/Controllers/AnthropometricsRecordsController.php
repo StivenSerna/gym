@@ -21,7 +21,8 @@ class AnthropometricsRecordsController extends Controller
 
 	public function create($member_id){
 
-		return view('anthropometricrecord.create')->with('member_id', $member_id);
+		$member = Member::find($member_id);
+		return view('anthropometricrecord.create')->with('member', $member);
 
 	}
 

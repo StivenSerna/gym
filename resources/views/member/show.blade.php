@@ -23,8 +23,14 @@
 	Perfil <span class="text-capitalize">{!! $member->first_name ." ". $member->second_name ." ". $member->last_name !!}</span>
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.index") }}"><i class="fa fa-users"></i> Miembros</a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		<i class="fa fa-user"></i> Perfil <span class="text-capitalize">{!! $member->first_name!!}</span>
 	</li>
 </ol>
 @endsection

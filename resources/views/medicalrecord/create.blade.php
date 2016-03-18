@@ -9,8 +9,17 @@
 	Información medica
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.index") }}"><i class="fa fa-users"></i> Miembros</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.show", $member->id) }}"><i class="fa fa-user"></i> Perfil <span class="text-capitalize">{!! $member->first_name!!}</span></a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		<i class="fa fa-list-ol"></i> Registrar información medica
 	</li>
 </ol>
 <!-- end Page titulo -->
@@ -26,7 +35,7 @@
 
 {!! Form::open(['route'=>'medicalrecord.store', 'method'=>'POST']) !!}
 
-{!! Form::hidden('member_id', $member_id) !!}
+{!! Form::hidden('member_id', $member->id) !!}
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
@@ -46,7 +55,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="button-group">
-							<a class="btn btn-danger btn-block" href="#" role="button">Cancelar</a>
+							<a class="btn btn-danger btn-block" href="{!! route("admin.member.show", $member->id) !!}" role="button">Cancelar</a>
 						</div>
 					</div>
 					<div class="col-md-6">

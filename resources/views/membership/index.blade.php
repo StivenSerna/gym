@@ -17,8 +17,11 @@
 	Membresias
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		<i class="fa fa-credit-card"></i> Membresias
 	</li>
 </ol>
 
@@ -36,7 +39,7 @@
 					<div class="actions pull-right">
 						<span class="clickable"><i class="fa fa-chevron-up"></i></span>
 						<a class="btn btn-blue" data-toggle="modal" data-target="#newMembership">
-							<i class="fa fa-plus"></i>
+							<i class="fa fa-file-text-o"></i>
 							Nueva
 						</a>
 					</div>

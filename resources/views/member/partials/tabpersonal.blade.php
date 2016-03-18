@@ -43,6 +43,7 @@
 					<div class="col-lg-10">
 
 						<!-- Tab panes -->
+						<!-- Tab panes /tab-content-->
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="general">
 								<h5 class="text-primary"><b>Nombre completo</b></h5>

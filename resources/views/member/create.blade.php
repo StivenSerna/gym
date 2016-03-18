@@ -18,10 +18,13 @@
 </h1>
 <ol class="breadcrumb">
 	<li>
-		<i class="fa fa-dashboard"></i> <a href="#">Inicio</a>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.index") }}"><i class="fa fa-users"></i> Miembros</a>
 	</li>
 	<li class="active">
-		Registro miembro
+		<i class="fa fa-file-text-o"></i> Registrar miembro
 	</li>
 </ol>
 <!-- Page fin titulo -->

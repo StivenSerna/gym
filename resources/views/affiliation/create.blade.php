@@ -19,8 +19,17 @@
 	Realizar pago/credito de afiliación
 </h1>
 <ol class="breadcrumb">
+	<li>
+		<a href="{{ route("inicio") }}"><i class="fa fa-dashboard"></i> Inicio</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.index") }}"><i class="fa fa-users"></i> Miembros</a>
+	</li>
+	<li>
+		<a href="{{ route("admin.member.show", $member->id) }}"><i class="fa fa-user"></i> Perfil <span class="text-capitalize">{!! $member->first_name!!}</span></a>
+	</li>
 	<li class="active">
-		<i class="fa fa-dashboard"></i> Inicio
+		<i class="fa fa-credit-card"></i> Registrar afiliación
 	</li>
 </ol>
 @endsection

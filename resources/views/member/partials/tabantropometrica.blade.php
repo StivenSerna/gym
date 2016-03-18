@@ -26,6 +26,7 @@
 
 
 				<!-- INICIO de las tabs de antropometricas -->
+				<!-- Tab panes /tab-content-->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="all-fichas">
 						<!-- INICIO DE la tabla -->
