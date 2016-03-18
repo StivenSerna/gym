@@ -63,5 +63,4 @@ NProgress.start();
 NProgress.done();
 </script>
 
-
 @endsection
