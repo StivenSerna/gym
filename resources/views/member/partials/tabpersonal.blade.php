@@ -8,7 +8,7 @@
 				<div class="portlet-title">
 					<div class="actions pull-right">
 						<a class="btn btn-blue" data-toggle="modal" data-target="#memberedit">
-							<i class="fa fa-pencil"></i>
+							<i class="fa fa-pencil-square-o"></i>
 							Editar
 						</a>
 					</div>
@@ -96,8 +96,8 @@
 			<div class="portlet">
 				<div class="portlet-title">
 					<div class="actions pull-right">
-						<a class="btn btn-blue" data-toggle="modal" data-target="#medicaledit">
-							<i class="fa fa-pencil"></i>
+						<a class="btn btn-yellow" data-toggle="modal" data-target="#medicaledit">
+							<i class="fa fa-pencil-square-o"></i>
 							Editar
 						</a>
 					</div>

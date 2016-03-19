@@ -37,10 +37,12 @@
 			<div class="portlet">
 				<div class="portlet-title">
 					<div class="actions pull-right">
-						<span class="clickable"><i class="fa fa-chevron-up"></i></span>
 						<a class="btn btn-blue" data-toggle="modal" data-target="#newMembership">
 							<i class="fa fa-file-text-o"></i>
 							Nueva
+						</a>
+						<a class="btn btn-blue buttonclickable">
+							<span class="clickable"><i class="fa fa-chevron-up"></i></span>
 						</a>
 					</div>
 					<div class="caption">

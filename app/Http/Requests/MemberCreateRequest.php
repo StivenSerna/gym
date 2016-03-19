@@ -25,8 +25,9 @@ class MemberCreateRequest extends Request
     {
         return [
         'first_name' => 'required|alpha',
+        'second_name' =>'alpha',
         'last_name' => 'required|alpha',
-        'email' => 'required',
+        'email' => 'required|email',
         'phone' => 'numeric',
         'birthday' => 'required',
         'gender' => 'required',
@@ -42,7 +43,9 @@ class MemberCreateRequest extends Request
         'required' => 'Este campo es requerido',
         'document.unique' => 'Ya existe un Miembro con este documento',
         'unique' => 'Ya existe un registro con este campo',
-        'alpha' => 'Este campo solo debe contener caracteres alfabeticos'
+        'alpha' => 'Este campo solo debe contener caracteres alfabeticos',
+        'email' => 'No es un correo valido',
+        'numeric' => 'Este campo debe ser numerico'
         ];
     }
 }

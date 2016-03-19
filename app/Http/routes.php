@@ -84,6 +84,7 @@ Route::put('affiliation/{member_id}/update', [
     'uses' => 'AffiliationsController@update'
     ]);
 
+Route::resource('incomeExpense', 'Income_expensesController');
 
 /*
 |--------------------------------------------------------------------------

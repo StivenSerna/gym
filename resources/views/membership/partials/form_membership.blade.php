@@ -1,25 +1,15 @@
 <div class="row" >
-
 	<div class="col-lg-12">
-
 		<h5></h5>
-
-
 		<div class="form-group">
 			{!! Form::label('description', 'Descripcion:') !!}
 			{!! Form::text('description', null,['class'=>'form-control','placeholder'=>'Descripcion: ']) !!}
 		</div>
-
-
 	</div>
-
 </div>
 
-
 <div class="row" >
-
-	<div class="col-lg-3">
-
+	<div class="col-lg-4">
 		<div class="input-group">
 
 			<div class="form-group">
@@ -30,7 +20,7 @@
 
 	</div>
 
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 
 		<div class="form-group">
 			{!! Form::label('month', 'Meses:') !!}
@@ -39,7 +29,7 @@
 
 	</div>
 
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 
 		<div class="form-group">
 			{!! Form::label('day', 'Dias:') !!}
@@ -48,6 +38,7 @@
 		</div>
 
 	</div>
+
 
 </div>
 

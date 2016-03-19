@@ -4,7 +4,11 @@
 
 @section('stylesheet')
 <link href="{{ asset('plugins/bdt/dateTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/bdt/jquery.dateTables.js') }}"></script>
+<script src=" {{ asset('plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src=" {{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
 
 
 @endsection

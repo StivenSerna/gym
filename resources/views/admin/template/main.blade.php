@@ -29,45 +29,38 @@
     @yield('stylesheet')
     <script src=" {{ asset('plugins/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
 
-    <script src=" {{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <div class="main-container">
-        </div>
+    <!--<script src=" {{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>-->
 
-        <div id="wrapper">
-            <!-- Navigation -->
-            @include('admin.template.partials.nav')
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @yield('header')
-                        </div>
+</head>
+<body>
+    <div class="main-container">
+    </div>
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        @include('admin.template.partials.nav')
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        @yield('header')
                     </div>
-                    <!-- /.row -->
-                    @include('flash::message')
-                    @yield('content')
-
                 </div>
-                <!-- /.container-fluid -->
+                <!-- /.row -->
+                @include('flash::message')
+                @yield('content')
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /.container-fluid -->
         </div>
-        <!-- /#wrapper -->
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
+    <!-- jQuery -->
 
-        <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core JavaScript -->
 
+</body>
 
-    </body>
-
-    </html>
+</html>

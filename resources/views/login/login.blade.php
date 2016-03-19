@@ -10,7 +10,7 @@
 
 			<div class="inner cover">
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+					<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 						{!! Form::open(['route'=>'authenticate', 'method'=>'POST']) !!}
 						<h2 class="form-signin-heading text-center">GYM Formas - fénix renace</h2><hr style="border-color:#222;">
 
@@ -40,7 +40,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-sm-4 col-sm-offset-4">
+							<div class="col-sm-6 col-sm-offset-3">
 								<button class="btn btn-default btn-block" type="submit">Iniciar sesión</button>
 							</div>
 						</div>

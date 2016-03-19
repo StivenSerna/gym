@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">GYM</a>
+        <a class="navbar-brand" href="{{route('inicio')}}"><li class="fa fa-user"></li> GYM</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -75,7 +75,7 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav" id="side-menu">
-            <li id="page-inicio" class="uno">
+            <li id="page-inicio">
                 <a href="{{route('inicio')}}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
             </li>
             <li><hr style="border-color: #008cba;"></li>
@@ -101,8 +101,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-money"></i> Ingresos / Egresos</a>
+            <li id="page-incomeExpenses">
+                <a href="{{ route('incomeExpense.index') }}"><i class="fa fa-fw fa-money"></i> Ingresos / Egresos</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-fw fa-line-chart"></i> Reportes</a>
@@ -110,4 +110,20 @@
         </ul>
     </div>
     <!-- /.navbar-collapse -->
+    <div class="sidebar-footer hidden-xs">
+        <a data-container="body" class="clickablenav" data-toggle="tooltip" data-placement="top" title="Configuración">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </a>
+        <a data-container="body" tabindex="0" class="clickablenav" data-toggle="popover" data-trigger="focus" title="Pantalla completa" data-placement="top" data-content='Presione "F11" para navegar en pantalla completa.'>
+            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+        </a>
+        <a data-container="body" class="clickablenav" data-toggle="tooltip" data-placement="top" title="Lock">
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+        </a>
+        <a data-container="body" href="{{ route('logout') }}" data-toggle="tooltip" data-placement="top" title="Cerrar sesión">
+            <span class="fa fa-sign-out" aria-hidden="true"></span>
+        </a>
+    </div>
+
+
 </nav>

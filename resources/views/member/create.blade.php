@@ -7,6 +7,7 @@
 <link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('plugins/datepicker/css/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src=" {{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
 
 @endsection
 
@@ -36,7 +37,7 @@
 <!-- Mostrar errores -->
 
 @if(count($errors) > 0)
-<div class="alert alert-danger alert-dismissible" role="alert">
+<div class="alert alert-danger alert-dismissible hidden" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<strong>¡Error! </strong>
 	@foreach($errors->all() as $error)

@@ -7,7 +7,7 @@
  /* Global Styles */
 
  body {
-    background-color: #222;
+    background-color: #F7F7F7;
 }
 .main-container{
     height: 100px;
@@ -162,7 +162,7 @@ ul.alert-dropdown {
 
 .side-nav ul li a.active {
     color: #fff;
-    background-color: #000;
+    background-color: #080808;
 }
 
 .navbar-nav>.active>a {
@@ -283,11 +283,6 @@ ul.alert-dropdown {
     color: #333;
 }
 
-
-.clickable{
-    cursor: pointer;
-}
-
 /* Para las tablas */
 
 .agenda {  }
@@ -371,6 +366,24 @@ ul.alert-dropdown {
     border-color: #337ab7;
 }
 
+/* Btn green thumbnails */
+.actions .btn.btn-green.active,
+.actions .btn.btn-green:hover {
+    color: #fff;
+    box-shadow: none;
+    background: #5cb85c;
+    border-color: #5cb85c;
+}
+
+/* Btn yellow thumbnails */
+.actions .btn.btn-yellow.active,
+.actions .btn.btn-yellow:hover {
+    color: #fff;
+    box-shadow: none;
+    background: #f0ad4e;
+    border-color: #f0ad4e;
+}
+
 .portlet .portlet-body-price {
   font-size: 25px;
   padding: 20px;
@@ -421,11 +434,17 @@ ul.alert-dropdown {
 
 .clickable{
     cursor: pointer;
+    font-size: 13px;
+}
+
+.clickablenav{
+    cursor: pointer;
+    font-size: 13px;
 }
 
 .portlet-title span {
     margin-top: -20px;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 /* miga de pan blanca */
@@ -562,4 +581,33 @@ ul.alert-dropdown {
 .nav-pills-right> li.active {
   border-left: 4px solid #337ab7;
   border-right: none;
+}
+
+/* sidebar footer*/
+
+.sidebar-footer {
+    bottom: 0px;
+    clear: both;
+    display: block;
+    padding: 5px 0 0 0;
+    position: fixed;
+    width: 225px;
+    z-index: 1000;
+    background: #222;
+}
+
+.sidebar-footer a {
+    padding: 7px 0 3px;
+    text-align: center;
+    width: 25%;
+    font-size: 17px;
+    display: block;
+    float: left;
+    background: #0d0d0d;
+    color: #999;
+}
+
+.sidebar-footer a:hover {
+    background: #000;
+    color:#fff;
 }

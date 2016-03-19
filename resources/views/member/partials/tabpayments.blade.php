@@ -53,7 +53,7 @@
 
 					@if ($member->saldo > 0)
 					<div class="actions pull-right">
-						<a href="" type="button" class="btn btn-xs btn-blue" data-toggle="modal" data-target="#newPayout">
+						<a href="" type="button" class="btn btn-green" data-toggle="modal" data-target="#newPayout">
 							<i class="fa fa-money"></i>
 							Pago / abono
 						</a>
