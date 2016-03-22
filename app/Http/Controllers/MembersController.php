@@ -116,27 +116,23 @@ class MembersController extends Controller
         $member->sumaAffiliations = $sumaAffiliations;
 
 
-        if($member->sumaPagos == 0 and $sumaAffiliations == 0)
-        {
+        if($member->sumaPagos == 0 and $sumaAffiliations == 0){
         //no tiene pagos ni afiliaciones
          $member->difUltimoPago = -1;
      }
-     elseif ($member->sumaPagos <= 0 and $sumaAffiliations > 0)
-     {
+     elseif ($member->sumaPagos <= 0 and $sumaAffiliations > 0){
             //no tiene pagos pero si tiene afiliaciones
         $fechaUltimoPago = \App\Affiliation::orderBy('created_at', 'asc')->where('member_id', $member->id)->first();
         $fechaUltimoPago = new Carbon($fechaUltimoPago->created_at);
         $difUltimoPago = $fechaUltimoPago->diffInDays($currentdate);
         $member->difUltimoPago = $difUltimoPago;
     }
-    elseif($member->sumaPagos > 0 and $sumaAffiliations > 0)
-    {
+    elseif($member->sumaPagos > 0 and $sumaAffiliations > 0){
             // tiene afiliaciones y pagos
         $fechaUltimoPago = new Carbon($member->payments->first()->created_at);
         $difUltimoPago = $fechaUltimoPago->diffInDays($currentdate);
         $member->difUltimoPago = $difUltimoPago;
     }
-
 
     return view('member.show', ['member' => $member, 'meses' => $meses, 'dias' => $dias, 'activa' => $memshipactiva, 'inactivas' => $affiliationInactives]);
 }
@@ -179,43 +175,7 @@ public function update(MemberEditRequest $request, $id)
 
 }
 
-public function search (Request $request)
-{
-    if(isset($request->documento)){
-            //dd($request->documento);
-        $member = Member::where('document', $request->documento)->first();
-            //dd($member);
-        if($member == null){
-            Flash::error("No existe nungun miembro con el documento " . $request->documento . " registrado");
-            return redirect()->route('admin.member.index');
-        }
-        else{
-            return redirect()->route('admin.member.show', ['member' => $member]);
-        }
-    }
-    elseif (isset($request->nombre)) {
-        $members = Member::where('first_name', $request->nombre)->orWhere('second_name', $request->nombre);
-            //dd($member);
-        if($members->first() == null){
-            Flash::error("No existe nungun miembro con el nombre " . $request->nombre . " registrado");
-            return redirect()->route('admin.member.index');
-        }
-        else{
-            dd($members);
-        }
-    }
-    elseif (isset($request->apellido)) {
-        $members = Member::where('last_name', $request->apellido);
-            //dd($member);
-        if($members->first() == null){
-            Flash::error("No existe nungun miembro con el apellido " . $request->apellido . " registrado");
-            return redirect()->route('admin.member.index');
-        }
-        else{
-            dd($members);
-        }
-    }
-}
+
 
 public function destroy($id)
 {

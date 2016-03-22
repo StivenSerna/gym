@@ -39,22 +39,6 @@
 		orientation: "bottom left",
 		autoclose: true
 	});
-/*
-	function mostrarImagen(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$('#img_destino').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$("#photo").change(function(){
-		mostrarImagen(this);
-	});
-*/
-
 </script>
 
 <script type="text/javascript">

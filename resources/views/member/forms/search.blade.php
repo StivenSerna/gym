@@ -2,10 +2,10 @@
 	<div class="caption">
 		<p></p>
 
-		{!! Form::open(['route'=>'admin.member.search', 'method'=>'POST']) !!}
+		{!! Form::open(['route'=>'searchMember.document', 'method'=>'POST']) !!}
 		<div class="form-group">
 
-			<label for="documento">Buscar por documento: </label>
+			<label for="documento">Buscar por documento </label>
 			<div class="input-group">
 				{!! Form::text('documento', null, array('class'=>'form-control', 'placeholder' => 'Documento')) !!}
 				<span class="input-group-btn">
@@ -16,10 +16,10 @@
 		</div>
 		{!! Form::close() !!}
 
-		{!! Form::open(['route'=>'admin.member.search', 'method'=>'POST']) !!}
+		{!! Form::open(['route'=>'searchMember.name', 'method'=>'POST']) !!}
 		<div class="form-group">
 
-			<label for="nombre">Filtrar por nombre: </label>
+			<label for="nombre">Filtrar por nombre </label>
 			<div class="input-group">
 				{!! Form::text('nombre', null, array('class'=>'form-control', 'placeholder' => 'Nombre')) !!}
 				<span class="input-group-btn">
@@ -30,27 +30,20 @@
 		</div>
 		{!! Form::close() !!}
 
-		{!! Form::open(['route'=>'admin.member.search', 'method'=>'POST']) !!}
+		<!-- Search by range date -->
+		{!! Form::open(['route'=>'searchMember.date', 'method'=>'POST']) !!}
+
 		<div class="form-group">
+			{!!Form::label('start', 'Filtrar por fecha de ingreso')!!}
 
-			<label for="apellido">Filtrar por apellido: </label>
-			<div class="input-group">
-				{!! Form::text('apellido', null, array('class'=>'form-control', 'placeholder' => 'Apellido')) !!}
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Filtrar</button>
-				</span>
-			</div><!-- /input-group -->
+			<div class="input-group" id="input-rangedate">
 
-		</div>
-		{!! Form::close() !!}
+				{!! Form::text('start', null, array('class'=>'form-control input-rangedate')) !!}
 
-		{!! Form::open(['route'=>'admin.member.search', 'method'=>'POST']) !!}
-		<div class="form-group">
-			{!!Form::label('start', 'Filtrar por fecha de ingreso:')!!}
-			<div class="input-daterange input-group" id="input-daterange">
-				{!! Form::text('start', null, array('class'=>'input form-control', 'id' => 'input-daterange')) !!}
 				<span class="input-group-addon">hasta</span>
-				{!! Form::text('end', null, array('class'=>'input form-control', 'id' => 'input-daterange')) !!}
+
+				{!! Form::text('end', null, array('class'=>'form-control input-rangedate')) !!}
+
 				<div class="input-group-btn">
 					<button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Filtrar</button>
 				</div>

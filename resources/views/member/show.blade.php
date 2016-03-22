@@ -92,9 +92,9 @@
 </ul>
 
 <!-- Tab panes -->
-<div class="tab-content" style="border: 2px solid #ddd;">
+<div class="tab-content" style="border: 1px solid #ddd;">
 	<div role="tabpanel" class="tab-pane fade in active" id="personal">
-		<p></p><br>
+
 		<!-- contenido tab 1 -->
 
 		@include('member.partials.tabpersonal')
@@ -102,26 +102,22 @@
 	</div>
 
 	<div role="tabpanel" class="tab-pane fade" id="metrics">
-		<p></p><br>
 		<!-- contenido tab 2 -->
 		@include('member.partials.tabantropometrica')
 	</div>
 
 	<div role="tabpanel" class="tab-pane fade" id="membership-member">
-		<p></p><br>
 		<!-- contenido tab 2 -->
 		@include('member.partials.tabmembresia')
 	</div>
 
 	<div role="tabpanel" class="tab-pane fade" id="credit">
-		<p></p><br>
 		<!-- contenido tab 2 -->
 		@include('member.partials.tabpayments')
 	</div>
 
 </div><br><br><br>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 <script type="text/javascript">

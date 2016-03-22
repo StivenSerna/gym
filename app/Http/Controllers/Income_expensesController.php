@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\IncomeExpense;
 use Laracasts\Flash\Flash;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 
 class Income_expensesController extends Controller
 {
@@ -19,12 +21,63 @@ class Income_expensesController extends Controller
     public function index()
     {
         //$incomeExpenses = IncomeExpense::orderBy('created_at', 'DEC')->paginate(5);
-        $inflows = IncomeExpense::where('type', 'inflow')->orderBy('created_at', 'DEC')->paginate(5, ['*'], 'pagein');
-        $outflows = IncomeExpense::where('type', 'outflow')->orderBy('created_at', 'DEC')->paginate(5,['*'], 'pageout');
+        $counts = array(
+            "todos" => IncomeExpense::all()->count(),
+            "ingresos" => IncomeExpense::where('type', 'inflow')->count(),
+            "egresos" => IncomeExpense::where('type', 'outflow')->count(),
+            "page" => "week"
+            );
+
+        $inflows = IncomeExpense::where('type', 'inflow')
+        ->orderBy('created_at', 'DEC')
+        ->paginate(5, ['*'], 'pagein');
+
+        $outflows = IncomeExpense::where('type', 'outflow')
+        ->orderBy('created_at', 'DEC')
+        ->paginate(5,['*'], 'pageout');
 
         return view('incomeExpense.index')
-            ->with('inflows', $inflows)
-            ->with('outflows', $outflows);
+        ->with('inflows', $inflows)
+        ->with('outflows', $outflows)
+        ->with('countIE', $counts);
+    }
+
+    public function lastmonth(){
+        $counts = array(
+            "todos" => IncomeExpense::all()->count(),
+            "page" => "month"
+            );
+
+        $currentdate = Carbon::today();
+
+        $incomeExpenses = IncomeExpense::where('created_at', '>=', $currentdate->subMonth(1))
+        ->orderBy('created_at', 'DEC')
+        ->paginate(5, ['*'], 'pagein');
+
+        return view('incomeExpense.showtab_onlytable')
+        ->with('incomeExpense', $incomeExpenses)
+        ->with('countIE', $counts);
+    }
+
+    public function lastweek(){
+        $counts = array(
+            "todos" => IncomeExpense::all()->count(),
+            "page" => "week"
+            );
+
+        $currentdate = Carbon::today();
+
+        $incomeExpenses = IncomeExpense::where('created_at', '>=', $currentdate->subWeek())
+        ->orderBy('created_at', 'DEC')
+        ->paginate(5, ['*'], 'pagein');
+
+        return view('incomeExpense.showtab_onlytable')
+        ->with('incomeExpense', $incomeExpenses)
+        ->with('countIE', $counts);
+    }
+
+    public function customsearch(){
+        dd(Input::get('hasta', false));
     }
 
     /**

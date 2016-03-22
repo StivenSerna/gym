@@ -29,53 +29,38 @@
 @section('content')
 
 <div class="alert alert-info alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Información:</strong> Puede modificar la ficha medica desde el modulo de miembros en cualquier momento.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong>Información:</strong> Puede modificar la ficha medica desde el
+	<a class="alert-link" href="{!! route("admin.member.show", $member->id) !!}">perfil</a> en cualquier momento.
 </div>
 
-{!! Form::open(['route'=>'medicalrecord.store', 'method'=>'POST']) !!}
+<div class="thumbnail">
+	<div class="portlet">
+		{!! Form::open(['route'=>'medicalrecord.store', 'method'=>'POST']) !!}
 
-{!! Form::hidden('member_id', $member->id) !!}
+		{!! Form::hidden('member_id', $member->id) !!}
+		<div class="portlet-title">
+			<div class="actions pull-right">
 
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-medkit"></i> Informacion medica</h3>
-	</div>
-	<div class="panel-body">
-
-
-	@include('medicalrecord.forms.medicalrecord_form_edit')
-
-	</div>
-
-	<div class="panel-footer">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="button-group">
-							<a class="btn btn-danger btn-block" href="{!! route("admin.member.show", $member->id) !!}" role="button">Cancelar</a>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="button-group">
-							{!! Form::submit('Siguiente', ['class' => 'btn btn-success btn-block']) !!}
-						</div>
-					</div>
-				</div>
 			</div>
-			<div class="col-md-3"></div>
+			<div class="caption">
+				<p class="text-primary"><i class="fa fa-medkit"></i> Información medica</p>
+			</div>
+		</div>
+		<div class="thumbnail-collapse collapse in">
+			<div class="portlet-body">
+				@include('medicalrecord.forms.medicalrecord_form_edit')
+				<hr>
+				<span class="pull-right">
+					<a class="btn btn-danger" href="{!! route("admin.member.show", $member->id) !!}" role="button">Cancelar</a>
+					{!! Form::submit('Siguiente', ['class' => 'btn btn-success']) !!}
+				</span>
+				<div class="clearfix"></div>
+			</div>
 		</div>
 
+		{!! Form::close() !!}
 	</div>
-
 </div>
-
-
-{!! Form::close() !!}
-<br>
-
-
 
 @endsection

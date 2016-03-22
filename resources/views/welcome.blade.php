@@ -53,6 +53,29 @@
 	{{$member->first_name}}
 @endforeach
 
+<!--
+<div class="thumbnail">
+	<div class="portlet">
+		<div class="portlet-title">
+			<div class="actions pull-right">
+				<span class="clickable"><i class="fa fa-chevron-up"></i></span>
+				<a class="btn btn-blue" data-toggle="modal" data-target="#newMembership">
+					<i class="fa fa-plus"></i>
+					Nueva
+				</a>
+			</div>
+			<div class="caption">
+				<p class="text-primary"><i class="fa fa-credit-card"></i> Membresias</p>
+			</div>
+		</div>
+		<div class="thumbnail-collapse collapse in">
+			<div class="portlet-body">
+
+			</div>
+		</div>
+	</div>
+</div>-->
+
 <script type="text/javascript">
 	$("#page-inicio").addClass("active");
 </script>

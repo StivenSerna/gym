@@ -1,7 +1,7 @@
 <div class="row" >
 
 	<div class="col-lg-12">
-
+		<p class="text-right"><b>Fecha: </b><span id="spanDate"> - </span></p>
 		<h5></h5>
 
 		<div class="form-group">
@@ -30,14 +30,8 @@
 				<div class="input-group-addon">$</div>
 				{!! Form::number('amount', null, ['class' => 'form-control', 'id' => 'amount', 'required' => true]); !!}
 			</div>
-		</div><br>
+		</div>
 
 	</div>
 
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<span id="spanAmount"> - </span>
-	</div>
 </div>

@@ -466,7 +466,6 @@ ul.alert-dropdown {
 /* Tabs */
 
 .nav-tabs {
-  border: none;
   margin: 0px;
 }
 .nav-tabs > li {
@@ -503,7 +502,6 @@ ul.alert-dropdown {
 /* f3565d active */
 
 .nav-tabs > li.active > a {
-  border: 0;
   color: #333333;
 }
 .nav-tabs > li.active > a > i {

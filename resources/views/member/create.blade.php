@@ -68,7 +68,7 @@
 		</div><hr>
 
 		<span class="pull-right">
-			<a class="btn btn-danger" href="#" role="button">Cancelar</a>
+			<a class="btn btn-danger" href="{!! route('admin.member.index') !!}" role="button">Cancelar</a>
 			{!! Form::submit('Siguiente', ['class' => 'btn btn-success']) !!}
 		</span>
 		<div class="clearfix"></div>

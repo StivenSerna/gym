@@ -36,113 +36,82 @@
 <!-- section Tabs -->
 
 <ul class="nav nav-tabs">
-	<li role="presentation" class="active"><a href="{!! route('incomeExpense.index') !!}">Todos <span class="badge">{!! $countIE['todos'] !!}</span></a></li>
-	<li role="presentation"><a href="{!! route('incomeExpense.lastweek') !!}">Ultima semana</span></a></li>
-	<li role="presentation"><a href="{!! route('incomeExpense.lastmonth') !!}">Ultimo mes</span></a></li>
-	<li role="presentation"><a href="#">Personalizado</span></a></li>
+	<li role="presentation"><a href="{!! route('incomeExpense.index') !!}">Todos <span class="badge">{!! $countIE['todos'] !!}</span></a></li>
+
+	<li role="presentation" class="{{ $countIE['page']  == 'week' ? 'active' : '' }}"	>
+		<a href="{!! route('incomeExpense.lastweek') !!}">Ultima semana</span></a>
+	</li>
+
+	<li role="presentation" class="{{ $countIE['page']  == 'month' ? 'active' : '' }}" >
+		<a href="{!! route('incomeExpense.lastmonth') !!}">Ultimo mes</span></a>
+	</li>
+
+	<li role="presentation" class="{{ $countIE['page']  == 'custom' ? 'active' : 'disabled' }}"><a href="#">Personalizado</span></a></li>
 </ul>
 
 <!-- Fin section Tabs -->
 
 <div class="tab-content" style="border: 1px solid #ddd;">
 	<div class="row">
-		<div class="col-md-6">
-			<!-- panel -->
+
+		<div class="col-md-2">
 			<div class="thumbnail">
 				<div class="portlet">
-					<div class="portlet-title">
+				{!! Form::open(['route' =>'incomeExpense.search', 'method'=>'GET']) !!}
+					<h4 class="text-center">Filtros</h4><hr>
 
-						<div class="actions pull-right">
-							<a class="btn btn-green" data-toggle="modal" data-target="#newIncomeExpense" id="newInflow">
-								<i class="fa fa-file-text-o"></i>
-								Nuevo
-							</a>
-							<a class="btn btn-green buttonclickable">
-								<span class="clickable"><i class="fa fa-chevron-up"></i></span>
-							</a>
-							<a class="btn btn-green fullscreen">
-								<i class="glyphicon glyphicon-fullscreen"></i>
-							</a>
-						</div>
-
-						<div class="caption">
-							<p class="text-success"><i class="fa fa-sign-in"></i> Ingresos y egresos</p>
-						</div>
+					<h5 class="text-center text-primary">Fecha</h5>
+					<div class="form-group">
+						<label for="exampleInputEmail1" style="text-decoration: :none;">Desde</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="desde">
 					</div>
-					<div class="thumbnail-collapse collapse in">
-						<div class="portlet-body">
-							<div class="row">
-								<div class="col-md-12">
-
-									<div class="table-responsive">
-										<table class="table table-striped table-bordered" id='allAffiliations'>
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Descripción</th>
-													<th>Fecha</th>
-													<th>Tipo</th>
-													<th>Monto</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($inflows as $inflow)
-
-												<tr>
-													<td>{!! "C-".($inflow->id + 100000) !!}</td>
-													<td>{!! $inflow->description !!}</td>
-													<td>{!! $inflow->created_at !!}</td>
-
-													<td class="text-center">
-
-														@if ($inflow->type == 'inflow')
-														<span class="label label-success">Ingreso</span>
-														@else
-														<span class="label label-warning">Egreso</span>
-														@endif
-
-													</td>
-
-													<td class="text-right">$ {!! $inflow->amount !!}</td>
-												</tr>
-
-												@endforeach
-											</tbody>
-										</table>
-										{!! $inflows->appends(array_except(Request::query(), 'pagein'))->links(); !!}
-									</div>
-
-								</div>
-
-							</div>
-						</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1" style="text-decoration: :none;">Hasta</label>
+						<input name="hasta" type="email" class="form-control" id="exampleInputEmail1" placeholder="Hasta">
 					</div>
+
+					<h5 class="text-center text-primary">Descripción</h5>
+					<div class="form-group">
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Descripción">
+					</div>
+					<h5 class="text-center text-primary">Tipo</h5>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="">
+							Ingreso
+						</label>
+						<label class="pull-right">
+							<input type="checkbox" value="">
+							Egreso
+						</label>
+					</div><br>
+					<button type="submit" class="btn btn-default btn-block">Buscar</button>
+					{!! Form::close() !!}
 				</div>
 			</div>
-			<!-- fin panel -->
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-10">
 			<!-- panel -->
 			<div class="thumbnail">
 				<div class="portlet">
 					<div class="portlet-title">
 
 						<div class="actions pull-right">
-							<a class="btn btn-yellow" data-toggle="modal" data-target="#newIncomeExpense" id="newOutflow">
+							<a class="btn btn-blue" data-toggle="modal" data-target="#newIncomeExpense" id="newOutflow">
 								<i class="fa fa-file-text-o"></i>
 								Nuevo
 							</a>
-							<a class="btn btn-yellow buttonclickable">
+							<a class="btn btn-blue buttonclickable">
 								<span class="clickable"><i class="fa fa-chevron-up"></i></span>
 							</a>
-							<a class="btn btn-yellow fullscreen">
+							<a class="btn btn-blue fullscreen">
 								<i class="glyphicon glyphicon-fullscreen"></i>
 							</a>
 						</div>
 
 						<div class="caption">
-							<p class="text-warning"><i class="fa fa-sign-out"></i> Egresos</p>
+							<p class="text-primary"><i class="fa fa-money"></i> Ingresos y egresos</p>
 						</div>
 					</div>
 					<div class="thumbnail-collapse collapse in">
@@ -162,7 +131,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												@foreach($outflows as $outflow)
+												@foreach($incomeExpense as $outflow)
 
 												<tr>
 													<td>{!! "C-".($outflow->id + 100000) !!}</td>
@@ -186,7 +155,7 @@
 											</tbody>
 										</table>
 									</div>
-									{!! $outflows->appends(array_except(Request::query(), 'pageout'))->links() !!}
+									{!! $incomeExpense->appends(array_except(Request::query(), 'pageout'))->links() !!}
 								</div>
 
 							</div>

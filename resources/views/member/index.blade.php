@@ -114,7 +114,7 @@
 </div>
 
 <script type="text/javascript">
-	$('#input-daterange').datepicker({
+	$('.input-rangedate').datepicker({
 		format: "yyyy-mm-dd",
 		language: "es",
 		autoclose: true,

@@ -22,10 +22,6 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('member/{id}/destroy', [
 		'uses' => 'MembersController@destroy',
 		'as' => 'admin.member.destroy']);
-    Route::post('member/search', [
-     'uses' => 'MembersController@search',
-     'as' => 'admin.member.search']);
-
 });
 
 
@@ -84,7 +80,39 @@ Route::put('affiliation/{member_id}/update', [
     'uses' => 'AffiliationsController@update'
     ]);
 
+/* Income expenses form search and routes*/
+
+Route::get('incomeExpense/lastmonth', [
+    'as' => 'incomeExpense.lastmonth',
+    'uses' => 'Income_expensesController@lastmonth'
+    ]);
+
+Route::get('incomeExpense/lastweek', [
+    'as' => 'incomeExpense.lastweek',
+    'uses' => 'Income_expensesController@lastweek'
+    ]);
+
+Route::get('incomeExpense/search', [
+    'as' => 'incomeExpense.search',
+    'uses' => 'Income_expensesController@customsearch'
+    ]);
+
 Route::resource('incomeExpense', 'Income_expensesController');
+
+/* Routes by search forms */
+
+Route::post('searchMemberByDate', [
+    'as' => 'searchMember.date',
+    'uses' => 'SearchsController@findMemberByDate'
+    ]);
+Route::post('searchMemberByName', [
+    'as' => 'searchMember.name',
+    'uses' => 'SearchsController@findMemberByName'
+    ]);
+Route::post('searchMemberByDocument', [
+    'as' => 'searchMember.document',
+    'uses' => 'SearchsController@findMemberByDocument'
+    ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +124,9 @@ Route::resource('incomeExpense', 'Income_expensesController');
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+
+
+/* Routes by login and logout */
 
 Route::get('login',[
     'as' => 'login',
