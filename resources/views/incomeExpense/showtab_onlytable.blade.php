@@ -9,6 +9,10 @@
 <script src=" {{ asset('plugins/steps/date-es-CO.js') }}"></script>
 <link href="{{ asset('plugins/NProgress/nprogress.css') }}" rel="stylesheet">
 <script src="{{ asset('plugins/NProgress/nprogress.js') }}"></script>
+<!-- Daterange picker -->
+<script src=" {{ asset('plugins/datepickerDos/moment.js') }}"></script>
+<link href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 
 @endsection
 
@@ -39,11 +43,11 @@
 	<li role="presentation"><a href="{!! route('incomeExpense.index') !!}">Todos <span class="badge">{!! $countIE['todos'] !!}</span></a></li>
 
 	<li role="presentation" class="{{ $countIE['page']  == 'week' ? 'active' : '' }}"	>
-		<a href="{!! route('incomeExpense.lastweek') !!}">Ultima semana</span></a>
+		<a href="{!! route('incomeExpense.lastcashbox', 1) !!}">Ultima semana</span></a>
 	</li>
 
 	<li role="presentation" class="{{ $countIE['page']  == 'month' ? 'active' : '' }}" >
-		<a href="{!! route('incomeExpense.lastmonth') !!}">Ultimo mes</span></a>
+		<a href="{!! route('incomeExpense.lastcashbox', 2) !!}">Ultimo mes</span></a>
 	</li>
 
 	<li role="presentation" class="{{ $countIE['page']  == 'custom' ? 'active' : 'disabled' }}"><a href="#">Personalizado</span></a></li>
@@ -55,40 +59,7 @@
 	<div class="row">
 
 		<div class="col-md-2">
-			<div class="thumbnail">
-				<div class="portlet">
-				{!! Form::open(['route' =>'incomeExpense.search', 'method'=>'GET']) !!}
-					<h4 class="text-center">Filtros</h4><hr>
-
-					<h5 class="text-center text-primary">Fecha</h5>
-					<div class="form-group">
-						<label for="exampleInputEmail1" style="text-decoration: :none;">Desde</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="desde">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1" style="text-decoration: :none;">Hasta</label>
-						<input name="hasta" type="email" class="form-control" id="exampleInputEmail1" placeholder="Hasta">
-					</div>
-
-					<h5 class="text-center text-primary">Descripción</h5>
-					<div class="form-group">
-						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Descripción">
-					</div>
-					<h5 class="text-center text-primary">Tipo</h5>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" value="">
-							Ingreso
-						</label>
-						<label class="pull-right">
-							<input type="checkbox" value="">
-							Egreso
-						</label>
-					</div><br>
-					<button type="submit" class="btn btn-default btn-block">Buscar</button>
-					{!! Form::close() !!}
-				</div>
-			</div>
+			@include('incomeExpense.forms.form_search')
 		</div>
 
 		<div class="col-md-10">
@@ -191,6 +162,27 @@
 </div>
 
 <script type="text/javascript">
+	$(function() {
+		$('input[name="desde-hasta"]').daterangepicker({
+			autoUpdateInput: false,
+			locale: {
+				applyLabel: 'Aplicar',
+				cancelLabel: 'Cancelar',
+			}
+		});
+
+		$('input[name="desde-hasta"]').on('apply.daterangepicker', function(ev, picker) {
+			$(this).val(picker.startDate.format('YYYY-MM-DD') + ' / ' + picker.endDate.format('YYYY-MM-DD'));
+		});
+
+		$('input[name="desde-hasta"]').on('cancel.daterangepicker', function(ev, picker) {
+			$(this).val('');
+		});
+
+	});
+</script>
+
+<script type="text/javascript">
 	var fechaDate = new Date();
 	var fecha = fechaDate.toString('dddd') +" "+ fechaDate.toString('dd') +", de " + fechaDate.toString('MMMM') + " de " + fechaDate.toString('yyyy');
 	$('#spanDate').text(fecha);
@@ -201,16 +193,16 @@
 
 	$("#page-incomeExpenses").addClass("active");
 
-//typeID id -> select
-var element = document.getElementById('typeID');
+	//typeID id -> select
+	var element = document.getElementById('typeID');
 
-$('#newOutflow').click(function() {
-	element.value = 'outflow';
-});
+	$('#newOutflow').click(function() {
+		element.value = 'outflow';
+	});
 
-$('#newInflow').click(function() {
-	element.value = 'inflow';
-});
+	$('#newInflow').click(function() {
+		element.value = 'inflow';
+	});
 
 </script>
 

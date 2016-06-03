@@ -30,11 +30,11 @@ class Income_expensesController extends Controller
 
         $inflows = IncomeExpense::where('type', 'inflow')
         ->orderBy('created_at', 'DEC')
-        ->paginate(5, ['*'], 'pagein');
+        ->paginate(20, ['*'], 'pagein');
 
         $outflows = IncomeExpense::where('type', 'outflow')
         ->orderBy('created_at', 'DEC')
-        ->paginate(5,['*'], 'pageout');
+        ->paginate(20,['*'], 'pageout');
 
         return view('incomeExpense.index')
         ->with('inflows', $inflows)
@@ -42,42 +42,71 @@ class Income_expensesController extends Controller
         ->with('countIE', $counts);
     }
 
-    public function lastmonth(){
-        $counts = array(
-            "todos" => IncomeExpense::all()->count(),
-            "page" => "month"
-            );
+    public function lastcashbox($tab){
 
         $currentdate = Carbon::today();
 
-        $incomeExpenses = IncomeExpense::where('created_at', '>=', $currentdate->subMonth(1))
+        if ($tab == 1) {
+            $page = "week";
+            $currentdate->subWeek();
+        }else{
+            $page = "month";
+            $currentdate->subMonth(1);
+        }
+
+        $counts = array(
+            "todos" => IncomeExpense::all()->count(),
+            "page" => $page
+            );
+
+        $incomeExpenses = IncomeExpense::where('created_at', '>=', $currentdate)
         ->orderBy('created_at', 'DEC')
-        ->paginate(5, ['*'], 'pagein');
+        ->paginate(20, ['*'], 'pagein');
 
         return view('incomeExpense.showtab_onlytable')
         ->with('incomeExpense', $incomeExpenses)
         ->with('countIE', $counts);
     }
 
-    public function lastweek(){
-        $counts = array(
-            "todos" => IncomeExpense::all()->count(),
-            "page" => "week"
-            );
-
-        $currentdate = Carbon::today();
-
-        $incomeExpenses = IncomeExpense::where('created_at', '>=', $currentdate->subWeek())
-        ->orderBy('created_at', 'DEC')
-        ->paginate(5, ['*'], 'pagein');
-
-        return view('incomeExpense.showtab_onlytable')
-        ->with('incomeExpense', $incomeExpenses)
-        ->with('countIE', $counts);
-    }
 
     public function customsearch(){
-        dd(Input::get('hasta', false));
+
+        $range = Input::get('desde-hasta', false);
+        $description = Input::get('description', false);
+        $typeIn = Input::get('typeIn', false);
+        $typeOut = Input::get('typeOut', false);
+        $currentdate = Carbon::today();
+        $type = ["inflow", "outflow"];
+        
+
+        if ($range == null) {
+            $range = "0000-00-00/".$currentdate->addDay(1);
+        }
+
+        if ($typeIn != "true" && $typeOut == "true"){
+            $type = ["outflow"];
+        }
+        elseif ($typeIn == "true" && $typeOut != "true"){
+            $type = ["inflow"];
+        }
+
+        $arrayRange = explode("/", $range);
+
+        $counts = array(
+            "todos" => IncomeExpense::all()->count(),
+            "page" => "custom"
+            );
+
+        $incomeExpenses = IncomeExpense::where('created_at', '>=', $arrayRange[0])
+        ->where('created_at', '<=', $arrayRange[1])
+        ->where('description', 'like', '%'.$description.'%')
+        ->whereIn('type', $type)
+        ->orderBy('created_at', 'DEC')
+        ->paginate(20, ['*'], 'pagein');
+
+        return view('incomeExpense.showtab_onlytable')
+        ->with('incomeExpense', $incomeExpenses)
+        ->with('countIE', $counts);
     }
 
     /**

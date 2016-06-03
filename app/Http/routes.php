@@ -24,7 +24,6 @@ Route::group(['prefix' => 'admin'], function(){
 		'as' => 'admin.member.destroy']);
 });
 
-
 Route::get('medicalrecord/{member_id}/create', [
     'as' => 'medicalrecord.create',
     'uses' => 'MedicalRecordsController@create'
@@ -40,7 +39,6 @@ Route::post('medicalrecord', [
     'uses' => 'MedicalRecordsController@store'
     ]);
 
-
 Route::get('anthropometricrecord/{member_id}/create', [
     'as' => 'anthropometricrecord.create',
     'uses' => 'AnthropometricsRecordsController@create'
@@ -55,7 +53,6 @@ Route::post('anthropometricrecord', [
     'as' => 'anthropometricrecord.store',
     'uses' => 'AnthropometricsRecordsController@store'
     ]);
-
 
 Route::resource('membership', 'MembershipsController');
 Route::get('membership/{id}/destroy', [
@@ -82,14 +79,9 @@ Route::put('affiliation/{member_id}/update', [
 
 /* Income expenses form search and routes*/
 
-Route::get('incomeExpense/lastmonth', [
-    'as' => 'incomeExpense.lastmonth',
-    'uses' => 'Income_expensesController@lastmonth'
-    ]);
-
-Route::get('incomeExpense/lastweek', [
-    'as' => 'incomeExpense.lastweek',
-    'uses' => 'Income_expensesController@lastweek'
+Route::get('incomeExpense/{tab}/lastcashbox', [
+    'as' => 'incomeExpense.lastcashbox',
+    'uses' => 'Income_expensesController@lastcashbox'
     ]);
 
 Route::get('incomeExpense/search', [
@@ -99,7 +91,7 @@ Route::get('incomeExpense/search', [
 
 Route::resource('incomeExpense', 'Income_expensesController');
 
-/* Routes by search forms */
+/* Routes for search forms */
 
 Route::post('searchMemberByDate', [
     'as' => 'searchMember.date',
@@ -112,6 +104,13 @@ Route::post('searchMemberByName', [
 Route::post('searchMemberByDocument', [
     'as' => 'searchMember.document',
     'uses' => 'SearchsController@findMemberByDocument'
+    ]);
+
+/* Routes for reports */
+
+Route::get('reports', [
+    'as' => 'reports.index',
+    'uses' => 'ReportsController@index'
     ]);
 
 /*

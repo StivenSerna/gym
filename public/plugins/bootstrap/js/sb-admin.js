@@ -48,15 +48,22 @@ $(function () {
 
 //full screen porlets
 
+var tempClass = "";
+
 $(document)
 .on('click', '.portlet-title a.fullscreen', function(e){
-    if ($(this).parent('div').parent('div').parent('div').parent('div').parent('div').attr('class') == "col-md-6") {
-        $(this).parent('div').parent('div').parent('div').parent('div').parent('div').removeClass();
-        $(this).parent('div').parent('div').parent('div').parent('div').parent('div').toggleClass('col-md-12');
+    var classDiv = $(this).parent('div').parent('div').parent('div').parent('div').parent('div').attr('class');
+    var partsClass = classDiv.split('-');
+    var sizeClass = parseInt(partsClass[2]);
+    
+    if (sizeClass < 12) {
+        tempClass = classDiv;
+        $(this).parents('.thumbnail').parent('div').removeClass();
+        $(this).parents('.thumbnail').parent('div').toggleClass('col-md-12');
         $(this).find('i').removeClass('glyphicon glyphicon-fullscreen').addClass('glyphicon glyphicon-resize-small');
     } else {
-        $(this).parent('div').parent('div').parent('div').parent('div').parent('div').removeClass();
-        $(this).parent('div').parent('div').parent('div').parent('div').parent('div').toggleClass('col-md-6');
+        $(this).parents('.thumbnail').parent('div').removeClass();
+        $(this).parents('.thumbnail').parent('div').toggleClass(tempClass);
         $(this).find('i').removeClass('glyphicon glyphicon-resize-small').addClass('glyphicon glyphicon-fullscreen');
     }
 })

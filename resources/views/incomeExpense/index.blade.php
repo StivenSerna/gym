@@ -10,6 +10,10 @@
 <link href="{{ asset('plugins/NProgress/nprogress.css') }}" rel="stylesheet">
 <script src="{{ asset('plugins/NProgress/nprogress.js') }}"></script>
 
+<script src=" {{ asset('plugins/datepickerDos/moment.js') }}"></script>
+<link href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+
 @endsection
 
 @section('header')
@@ -37,167 +41,180 @@
 
 <ul class="nav nav-tabs">
 	<li role="presentation" class="active"><a href="{!! route('incomeExpense.index') !!}">Todos <span class="badge">{!! $countIE['todos'] !!}</span></a></li>
-	<li role="presentation"><a href="{!! route('incomeExpense.lastweek') !!}">Ultima semana</span></a></li>
-	<li role="presentation"><a href="{!! route('incomeExpense.lastmonth') !!}">Ultimo mes</span></a></li>
+	<li role="presentation"><a href="{!! route('incomeExpense.lastcashbox', 1) !!}">Ultima semana</span></a></li>
+	<li role="presentation"><a href="{!! route('incomeExpense.lastcashbox', 2) !!}">Ultimo mes</span></a></li>
 	<li role="presentation"><a href="#">Personalizado</span></a></li>
 </ul>
 
 <!-- Fin section Tabs -->
 
 <div class="tab-content" style="border: 1px solid #ddd;">
+<span id="holi">asd</span>
 	<div class="row">
-		<div class="col-md-6">
-			<!-- panel -->
-			<div class="thumbnail">
-				<div class="portlet">
-					<div class="portlet-title">
 
-						<div class="actions pull-right">
-							<a class="btn btn-green" data-toggle="modal" data-target="#newIncomeExpense" id="newInflow">
-								<i class="fa fa-file-text-o"></i>
-								Nuevo
-							</a>
-							<a class="btn btn-green buttonclickable">
-								<span class="clickable"><i class="fa fa-chevron-up"></i></span>
-							</a>
-							<a class="btn btn-green fullscreen">
-								<i class="glyphicon glyphicon-fullscreen"></i>
-							</a>
-						</div>
+		<div class="col-md-2">
+			@include('incomeExpense.forms.form_search')
+		</div><!-- Div de el filtro-->
 
-						<div class="caption">
-							<p class="text-success"><i class="fa fa-sign-in"></i> Ingresos y egresos</p>
-						</div>
-					</div>
-					<div class="thumbnail-collapse collapse in">
-						<div class="portlet-body">
-							<div class="row">
-								<div class="col-md-12">
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-6">
+					<!-- panel -->
+					<div class="thumbnail">
+						<div class="portlet">
+							<div class="portlet-title">
 
-									<div class="table-responsive">
-										<table class="table table-striped table-bordered" id='allAffiliations'>
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Descripción</th>
-													<th>Fecha</th>
-													<th>Tipo</th>
-													<th>Monto</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($inflows as $inflow)
-
-												<tr>
-													<td>{!! "C-".($inflow->id + 100000) !!}</td>
-													<td>{!! $inflow->description !!}</td>
-													<td>{!! $inflow->created_at !!}</td>
-
-													<td class="text-center">
-
-														@if ($inflow->type == 'inflow')
-														<span class="label label-success">Ingreso</span>
-														@else
-														<span class="label label-warning">Egreso</span>
-														@endif
-
-													</td>
-
-													<td class="text-right">$ {!! $inflow->amount !!}</td>
-												</tr>
-
-												@endforeach
-											</tbody>
-										</table>
-										{!! $inflows->appends(array_except(Request::query(), 'pagein'))->links(); !!}
-									</div>
-
+								<div class="actions pull-right">
+									<a class="btn btn-green" data-toggle="modal" data-target="#newIncomeExpense" id="newInflow">
+										<i class="fa fa-file-text-o"></i>
+										Nuevo
+									</a>
+									<a class="btn btn-green buttonclickable">
+										<span class="clickable"><i class="fa fa-chevron-up"></i></span>
+									</a>
+									<a class="btn btn-green fullscreen">
+										<i class="glyphicon glyphicon-fullscreen"></i>
+									</a>
 								</div>
 
+								<div class="caption">
+									<p class="text-success"><i class="fa fa-sign-in"></i> Ingresos y egresos</p>
+								</div>
+							</div>
+							<div class="thumbnail-collapse collapse in">
+								<div class="portlet-body">
+									<div class="row">
+										<div class="col-md-12">
+
+											<div class="table-responsive">
+												<table class="table table-striped table-bordered" id='allAffiliations'>
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>Descripción</th>
+															<th>Fecha</th>
+															<th>Tipo</th>
+															<th>Monto</th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach($inflows as $inflow)
+
+														<tr>
+															<td>{!! "C-".($inflow->id + 100000) !!}</td>
+															<td>{!! $inflow->description !!}</td>
+															<td>{!! $inflow->created_at !!}</td>
+
+															<td class="text-center">
+
+																@if ($inflow->type == 'inflow')
+																<span class="label label-success">Ingreso</span>
+																@else
+																<span class="label label-warning">Egreso</span>
+																@endif
+
+															</td>
+
+															<td class="text-right">$ {!! $inflow->amount !!}</td>
+														</tr>
+
+														@endforeach
+													</tbody>
+												</table>
+												{!! $inflows->appends(array_except(Request::query(), 'pagein'))->links(); !!}
+											</div>
+
+										</div>
+
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<!-- fin panel -->
 				</div>
-			</div>
-			<!-- fin panel -->
-		</div>
 
-		<div class="col-md-6">
-			<!-- panel -->
-			<div class="thumbnail">
-				<div class="portlet">
-					<div class="portlet-title">
+				<div class="col-md-6">
+					<!-- panel -->
+					<div class="thumbnail">
+						<div class="portlet">
+							<div class="portlet-title">
 
-						<div class="actions pull-right">
-							<a class="btn btn-yellow" data-toggle="modal" data-target="#newIncomeExpense" id="newOutflow">
-								<i class="fa fa-file-text-o"></i>
-								Nuevo
-							</a>
-							<a class="btn btn-yellow buttonclickable">
-								<span class="clickable"><i class="fa fa-chevron-up"></i></span>
-							</a>
-							<a class="btn btn-yellow fullscreen">
-								<i class="glyphicon glyphicon-fullscreen"></i>
-							</a>
-						</div>
-
-						<div class="caption">
-							<p class="text-warning"><i class="fa fa-sign-out"></i> Egresos</p>
-						</div>
-					</div>
-					<div class="thumbnail-collapse collapse in">
-						<div class="portlet-body">
-							<div class="row">
-								<div class="col-md-12">
-
-									<div class="table-responsive">
-										<table class="table table-striped table-bordered" id='allAffiliations'>
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Descripción</th>
-													<th>Fecha</th>
-													<th>Tipo</th>
-													<th>Monto</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($outflows as $outflow)
-
-												<tr>
-													<td>{!! "C-".($outflow->id + 100000) !!}</td>
-													<td>{!! $outflow->description !!}</td>
-													<td>{!! $outflow->created_at !!}</td>
-
-													<td class="text-center">
-
-														@if ($outflow->type == 'inflow')
-														<span class="label label-success">Ingreso</span>
-														@else
-														<span class="label label-warning">Egreso</span>
-														@endif
-
-													</td>
-
-													<td class="text-right">$ {!! $outflow->amount !!}</td>
-												</tr>
-
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-									{!! $outflows->appends(array_except(Request::query(), 'pageout'))->links() !!}
+								<div class="actions pull-right">
+									<a class="btn btn-yellow" data-toggle="modal" data-target="#newIncomeExpense" id="newOutflow">
+										<i class="fa fa-file-text-o"></i>
+										Nuevo
+									</a>
+									<a class="btn btn-yellow buttonclickable">
+										<span class="clickable"><i class="fa fa-chevron-up"></i></span>
+									</a>
+									<a class="btn btn-yellow fullscreen">
+										<i class="glyphicon glyphicon-fullscreen"></i>
+									</a>
 								</div>
 
+								<div class="caption">
+									<p class="text-warning"><i class="fa fa-sign-out"></i> Egresos</p>
+								</div>
+							</div>
+							<div class="thumbnail-collapse collapse in">
+								<div class="portlet-body">
+									<div class="row">
+										<div class="col-md-12">
+
+											<div class="table-responsive">
+												<table class="table table-striped table-bordered" id='allAffiliations'>
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>Descripción</th>
+															<th>Fecha</th>
+															<th>Tipo</th>
+															<th>Monto</th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach($outflows as $outflow)
+
+														<tr>
+															<td>{!! "C-".($outflow->id + 100000) !!}</td>
+															<td>{!! $outflow->description !!}</td>
+															<td>{!! $outflow->created_at !!}</td>
+
+															<td class="text-center">
+
+																@if ($outflow->type == 'inflow')
+																<span class="label label-success">Ingreso</span>
+																@else
+																<span class="label label-warning">Egreso</span>
+																@endif
+
+															</td>
+
+															<td class="text-right">$ {!! $outflow->amount !!}</td>
+														</tr>
+
+														@endforeach
+													</tbody>
+												</table>
+											</div>
+											{!! $outflows->appends(array_except(Request::query(), 'pageout'))->links() !!}
+										</div>
+
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<!-- fin panel -->
 				</div>
+
 			</div>
-			<!-- fin panel -->
 		</div>
 
 	</div>
+
+	
 </div>
 
 <!-- Modal -->
@@ -220,6 +237,28 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(function() {
+		$('input[name="desde-hasta"]').daterangepicker({
+			autoUpdateInput: false,
+			locale: {
+				applyLabel: 'Aplicar',
+				cancelLabel: 'Cancelar',
+			}
+		});
+
+
+  $('input[name="desde-hasta"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('YYYY-MM-DD') + ' / ' + picker.endDate.format('YYYY-MM-DD'));
+  });
+
+  $('input[name="desde-hasta"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
+	});
+</script>
 
 <script type="text/javascript">
 	var fechaDate = new Date();

@@ -13,7 +13,7 @@
 					<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 						{!! Form::open(['route'=>'authenticate', 'method'=>'POST']) !!}
 						<h2 class="form-signin-heading text-center">GYM Formas - fénix renace</h2><hr style="border-color:#222;">
-
+						<h5>{!! $user->email !!} - secret</h5>
 						@if (count($errors) > 0)
 						@foreach ($errors->all() as $err)
 						<div class="alert alert-danger alert-dismissible" role="alert">

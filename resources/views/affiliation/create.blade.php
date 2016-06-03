@@ -7,9 +7,10 @@
 <link href="{{ asset('plugins/steps/tablasSuma.css') }}" rel="stylesheet" type="text/css">
 <link href=" {{ asset('plugins/datepickerDos/bootstrap-datetimepicker.css') }}" rel="stylesheet" type="text/css">
 <script src=" {{ asset('plugins/steps/steps.js') }}"></script>
+<script src=" {{ asset('plugins/steps/date.js') }}"></script>
 <script src=" {{ asset('plugins/datepickerDos/moment.js') }}"></script>
 <script src=" {{ asset('plugins/datepickerDos/bootstrap-datetimepicker.js') }}"></script>
-<script src=" {{ asset('plugins/steps/date.js') }}"></script>
+
 @endsection
 
 @section('header')
@@ -282,10 +283,13 @@
 </div>
 
 <script type="text/javascript">
+	var currentDate = Date.today(); 
+
 	$(document).ready(function () {
 		$('#initiation').datetimepicker({
 			format: "YYYY-MM-DD",
-			disabledDates:  [<?php echo join($affiliationRange, ',') ?>]
+			disabledDates:  [<?php echo join($affiliationRange, ',') ?>],
+			minDate:   currentDate
 		});
 	});
 </script>
@@ -336,11 +340,15 @@
 			}
 
 			// add month to date
-			d1.addMonths(parseInt(months));
-    		//add days to date
-    		d1.add(parseInt(days)).days();
-    		$('#finalization').val(d1.toString('yyyy-MM-dd'));
-    	}
+			if (parseInt(months) > 0) {
+				d1.addMonths(parseInt(months));
+			}
+			else if (parseInt(days) > 0) {
+
+				d1.add(parseInt(days)).days();
+			}
+			$('#finalization').val(d1.toString('yyyy-MM-dd'));
+		}
 
 		// para obtener el precio de la input
 
@@ -364,17 +372,20 @@
 			var months = $("#hidden-00" + memshipid).attr('month');
 			var days = $("#hidden-00" + memshipid).attr('day');
 
-    		// add month to date
+    	// add month to date
+    	if (parseInt(months) > 0) {
     		d1.addMonths(parseInt(months));
+    	}
+    	else if (parseInt(days) > 0) {
+    	  //add days to date
+    	  d1.add(parseInt(days)).days();
+    	}
 
-    		//add days to date
-    		d1.add(parseInt(days)).days();
+    	$('#finalization').val(d1.toString('yyyy-MM-dd'));
+    	$("#display-month").text(months);
+    	$("#display-day").text(days);
 
-    		$('#finalization').val(d1.toString('yyyy-MM-dd'));
-    		$("#display-month").text(months);
-    		$("#display-day").text(days);
-
-    	});
+    });
 
 		$('#type').change(function() {
 			var type = $(this).val();

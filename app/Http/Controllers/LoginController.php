@@ -17,7 +17,8 @@ class LoginController extends Controller
 		if (User::all()->count() <= 0) {
 			echo "No hay usuarios registrados";
 		}
-		return view('login.login');
+		$user = User::all()->first();
+		return view('login.login')->with('user', $user);
 
 	}
 

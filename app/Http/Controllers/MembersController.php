@@ -169,7 +169,7 @@ public function update(MemberEditRequest $request, $id)
     $member->fill($request->all());
     $member->save();
 
-    Flash::success("<b>¡Se ha actualizado a " . $member->first_name . " de manera exitosa!</b>");
+    Flash::success("¡Se ha actualizado a " . $member->first_name . " de manera exitosa!");
 
     return redirect()->route('admin.member.show', $member->id);
 
